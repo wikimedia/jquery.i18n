@@ -1,4 +1,4 @@
-Jquery Internationalization Library
+Jquery based Javascript internationalization library
 ==================================
 
 
@@ -15,6 +15,10 @@ Documentation
 
 Test
 ----------
+Before you can run the tests, make sure the submodules are updated:
+```
+git submodule update --init
+```
 
 Then open up `./test/index.html` in your browser.
 
