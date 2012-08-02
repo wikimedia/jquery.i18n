@@ -1,20 +1,20 @@
-Jquery based Javascript internationalization library
-==================================
+jQuery based Javascript internationalization library
+====================================================
 
 
 Quick start
-----------
+-----------
 
 ```bash
 git clone https://github.com/santhoshtr/jquery.i18n.git
 ```
 
 Documentation
---------------
+-------------
 
 
 Test
-----------
+----
 Before you can run the tests, make sure the submodules are updated:
 ```
 git submodule update --init
