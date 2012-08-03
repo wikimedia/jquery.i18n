@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ml" dir="ltr">
+<html lang="en" dir="ltr">
 	<head>
 		<meta charset="utf-8"/>
 
@@ -19,6 +19,8 @@
 
 		<!-- Source -->
 		<script src="../src/jquery.i18n.js"></script>
+		<script src="../src/jquery.i18n.parser.js"></script>
+		<script src="../src/jquery.i18n.language.js"></script>
 		<!-- Demo -->
 		<script src="js/bootstrap.min.js"></script>
 		<link href="css/bootstrap.min.css" rel="stylesheet"/>
@@ -30,19 +32,27 @@
 
 	<body>
 		<div class="container">
-			<header id="overview" class="jumbotron subhead">
+			<header id="overview" class="subhead well">
 				<h1>Jquery i18n Demo</h1>
 				<p class="lead">
 					Jquery i18n Demo
 				</p>
 			</header>
-			<p>
-				The message keys can be provided by data-i18n attributes. For example <code>&lt;li data-i18n="message-key" &gt;&lt;/li&gt;</code>
-			</p>
-			<ul>
-				<li data-i18n='one'></li>
-				<li data-i18n='two'></li>
-			</ul>
+			<div class ="lead">
+				<select class="input-small person">
+					<option data-i18n='Meera' value="female">Meera</option>
+					<option data-i18n='Harry' value="male">Harry</option>
+				</select>
+				has <input class="input-mini kittens" value=1 size="3" type="number" /> kitten. She loves to play with it.
+			</div>
+			<div class="lead">
+				Translate the above sentence to <select class="language span3">
+					<option value="en">English</option>
+					<option value="ml">Malayalam</option>
+				</select>
+			</div>
+			<div class="result lead alert alert alert-success" >Meera has 1 kitten. She loves to play with it.</div>
+			<hr/>
 			<footer>
 				<p>
 					&copy; Copyright by Santhosh Thottingal ( santhosh dot thottingal at gmail dot com ).

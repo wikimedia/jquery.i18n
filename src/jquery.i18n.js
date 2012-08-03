@@ -1,4 +1,5 @@
-;(function($, window, document, undefined) {"use strict";
+;(function($, window, document, undefined) {
+	"use strict";
 	var I18N = function(options) {
 		this.options = $.extend({}, $.i18n.defaults, options)
 		this.messages = {};
@@ -51,6 +52,9 @@
 				} while (i--);
 				return this_val;
 			};
+		},
+		destroy : function() {
+			$('body').data('i18n', null);
 		},
 		/**
 		 *
@@ -161,10 +165,19 @@
 
 	$.i18n = function(key, parameter_1 /* [, parameter_2] */ ) {
 		var parameters = [], i18n = $('body').data('i18n');
+		var options = typeof key == 'object' && key;
+		if( options && options.locale && i18n && i18n.locale !== options.locale ){
+			i18n.destroy();
+			i18n = null;
+		}
 		if (!i18n) {
-			var options = typeof key == 'object' && key;
 			$('body').data('i18n', ( i18n = new I18N(options)));
-			return i18n;
+			$('[data-i18n]').each(function(e) {
+				var $this = $(this);
+				if ($this.data('i18n')) {
+					$this.text($.i18n($this.data('i18n')));
+				}
+			});
 		}
 		if (!key) {
 			return i18n;
@@ -195,12 +208,6 @@
 	$._ = $.i18n;
 	$(document).ready(function() {
 		/* i18n DATA-API */
-		$('[data-i18n]').each(function(e) {
-			var $this = $(this);
-			if ($this.data('i18n')) {
-				$this.text($this.data('i18n').toLocaleString());
-			}
-		});
 
 	});
 
