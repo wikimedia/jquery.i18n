@@ -1,5 +1,7 @@
 /* global pluralRuleParser, QUnit, jQuery */
 (function($) {
+	"use strict";
+
 	module('jquery.i18n en', {
 		setup : function() {
 			$.i18n({
@@ -31,7 +33,7 @@
 		assert.strictEqual($.i18n("message_1"), "ഒന്ന്", "Simple message");
 		assert.strictEqual($.i18n("This message key does not exist"), "This message key does not exist", "This message key does not exist");
 		assert.strictEqual($.i18n("Hello $1", "Bob"), "Hello Bob", "Parameter replacement");
-		assert.strictEqual($.i18n("$1 has $2 {{plural:$2|kitten|kittens}}. {{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.", "മീര", 1, "female"), "മീരയ്ക്ക് ഒരു പൂച്ചക്കുട്ടി ഉണ്ടു്. അവള്‍ അതുമായി കളിക്കാന്‍ ഇഷ്ടപ്പെടുന്നു.", "Plural and gender test" );
-		assert.strictEqual($.i18n("$1 has $2 {{plural:$2|kitten|kittens}}. {{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.", "ഹാരി", 2, "male"), "ഹാരിയ്ക്ക് 2 പൂച്ചക്കുട്ടികള്‍ ഉണ്ടു്. അവന്‍ അവറ്റകളുമായി കളിക്കാന്‍ ഇഷ്ടപ്പെടുന്നു.", "Plural and gender test" );
+		assert.strictEqual($.i18n("$1 has $2 {{plural:$2|kitten|kittens}}. {{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.", "മീര", 1, "female"), "മീരയ്ക്ക് ഒരു പൂച്ചക്കുട്ടി ഉണ്ടു്. അവള്‍ അതുമായി കളിക്കാന്‍ ഇഷ്ടപ്പെടുന്നു.", "Plural and gender test" ); // This line has ZWJ
+		assert.strictEqual($.i18n("$1 has $2 {{plural:$2|kitten|kittens}}. {{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.", "ഹാരി", 2, "male"), "ഹാരിയ്ക്ക് 2 പൂച്ചക്കുട്ടികള്‍ ഉണ്ടു്. അവന്‍ അവറ്റകളുമായി കളിക്കാന്‍ ഇഷ്ടപ്പെടുന്നു.", "Plural and gender test" ); // This line has ZWJ
 	});
 })(window.jQuery);
