@@ -3,19 +3,24 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>JQuery i18n Test Suite</title>
-		<!-- Libs -->
+
+		<!-- External libs -->
 		<script src="../libs/jquery.js"></script>
-		<!-- Source -->
+
+		<!-- Source of our libs -->
 		<script src="../src/jquery.i18n.js"></script>
 		<script src="../src/jquery.i18n.parser.js"></script>
 		<script src="../src/jquery.i18n.language.js"></script>
 		<script src="../src/languages/hi.js"></script>
-		<!-- Test Framework -->
+
+		<!-- Test framework -->
 		<link href="../libs/qunit/qunit/qunit.css" rel="stylesheet">
 		<script src="../libs/qunit/qunit/qunit.js"></script>
 
 		<!-- Test Suite -->
 		<script src="jquery.i18n.test.js"></script>
+
+		<!-- Localization files are loaded using <link> elements -->
 		<link rel="localization" hreflang="en" href="i18n/test-en.json" type="application/l10n+json"/>
 		<link rel="localization" hreflang="ml" href="i18n/test-ml.json" type="application/l10n+json"/>
 	</head>
