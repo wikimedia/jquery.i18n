@@ -1,4 +1,6 @@
-(function($) {"use strict";
+(function($) {
+	"use strict";
+
 	var language = {
 		/**
 		 * Pads an array to a specific length by copying the last one element.
@@ -13,6 +15,7 @@
 			}
 			return forms;
 		},
+
 		/**
 		 * Plural form transformations, needed for some languages.
 		 *
@@ -26,6 +29,7 @@
 			}
 			return (parseInt(count, 10) === 1 ) ? forms[0] : forms[1];
 		},
+
 		/**
 		 * Converts a number using digitTransformTable.
 		 *
@@ -36,15 +40,19 @@
 			if (!this.digitTransformTable) {
 				return num;
 			}
+
 			// Set the target Transform table:
-			var transformTable = this.digitTransformTable, numberString = '' + num, convertedNumber = '';
+			var transformTable = this.digitTransformTable,
+				numberString = '' + num,
+				convertedNumber = '';
+
 			// Check if the "restore" to Latin number flag is set:
 			if (integer) {
 				if (parseInt(num, 10) === num) {
 					return num;
 				}
 				var tmp = [];
-				for (var item in transformTable ) {
+				for (var item in transformTable) {
 					tmp[transformTable[i]] = item;
 				}
 				transformTable = tmp;
@@ -56,8 +64,10 @@
 					convertedNumber += numberString[i];
 				}
 			}
+
 			return integer ? parseInt(convertedNumber, 10) : convertedNumber;
 		},
+
 		/**
 		 * Provides an alternative text depending on specified gender.
 		 * Usage {{gender:[gender|user object]|masculine|feminine|neutral}}.
@@ -74,7 +84,7 @@
 			if (!forms || forms.length === 0) {
 				return '';
 			}
-			forms =this.preConvertPlural(forms, 2);
+			forms = this.preConvertPlural(forms, 2);
 			if (gender === 'male') {
 				return forms[0];
 			}
@@ -82,7 +92,7 @@
 				return forms[1];
 			}
 			return (forms.length === 3 ) ? forms[2] : forms[0];
-		},
+		}
 	};
 	$.extend($.i18n.language, {
 		'default' : language

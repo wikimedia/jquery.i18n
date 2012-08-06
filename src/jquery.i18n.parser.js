@@ -1,4 +1,6 @@
-;(function($) {"use strict";
+;(function($) {
+	"use strict";
+
 	var MessageParserEmitter = function(language) {
 		this.language = language;
 		var that = this;
@@ -12,7 +14,8 @@
 		this.emit = function(node, replacements) {
 			var ret = null;
 			var that = this;
-			switch( typeof node ) {
+
+			switch (typeof node) {
 				case 'string':
 				case 'number':
 					ret = node;
@@ -70,13 +73,14 @@
 			var index = parseInt(nodes[0], 10);
 
 			if (index < replacements.length) {
-				// replacement is no string, don't touch!
+				// replacement is not a string, don't touch!
 				return replacements[index];
 			} else {
 				// index not found, fallback to displaying variable
-				return '$' + (index + 1 );
+				return '$' + (index + 1);
 			}
 		};
+
 		/**
 		 * Transform parsed structure into pluralization
 		 * n.b. The first node may be a non-integer (for instance, a string representing an Arabic number).
@@ -84,7 +88,7 @@
 		 * @param {Array} of nodes, [ {String|Number}, {String}, {String} ... ]
 		 * @return {String} selected pluralized form according to current language
 		 */
-		this.plural  = function(nodes) {
+		this.plural = function(nodes) {
 			var count = parseInt(this.language.convertNumber(nodes[0], true), 10);
 			var forms = nodes.slice(1);
 			return forms.length ? this.language.convertPlural(count, forms) : '';
@@ -96,7 +100,7 @@
 		 * @param {Array} of nodes, [ {String|mw.User}, {String}, {String} , {String} ]
 		 * @return {String} selected gender form according to current language
 		 */
-		this.gender =function(nodes) {
+		this.gender = function(nodes) {
 			var gender = nodes[0];
 			var forms = nodes.slice(1);
 			return this.language.gender(gender, forms);
@@ -108,33 +112,39 @@
 		 * @param {Array} of nodes [{Grammar case eg: genitive}, {String word}]
 		 * @return {String} selected grammatical form according to current language
 		 */
-		this.grammar  = function(nodes) {
+		this.grammar = function(nodes) {
 			var form = nodes[0];
 			var word = nodes[1];
 			return word && form && this.language.convertGrammar(word, form);
-		}
+		};
 	};
+
 	var MessageParser = function(options) {
 		this.options = $.extend({}, $.i18n.parser.defaults, options);
 	};
+
 	$.i18n.parser.prototype = $.extend({}, $.i18n.parser.prototype, {
-		constructor: MessageParser,
-		emitter: function(){
+		constructor : MessageParser,
+
+		emitter : function() {
 			var language = $.i18n.language[String.locale] ||  $.i18n.language['default'] ;
 			return new MessageParserEmitter(language);
 		},
+
 		simpleParse : function(message, parameters) {
 			return message.replace(/\$(\d+)/g, function(str, match) {
 				var index = parseInt(match, 10) - 1;
 				return parameters[index] !== undefined ? parameters[index] : '$' + match;
 			});
 		},
+
 		parse : function(message, replacements) {
 			if (message.indexOf('{{') < 0) {
 				return this.simpleParse(message, replacements);
 			}
 			return this.emitter().emit(this.ast(message), replacements);
 		},
+
 		ast : function(message) {
 			var pos = 0;
 			var whitespace = makeRegexParser(/^\s+/);
@@ -144,9 +154,8 @@
 			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}[\]$\s]/);
 			var backslash = makeStringParser("\\");
 			var anyCharacter = makeRegexParser(/^./);
-			var whitespace = makeRegexParser(/^\s+/);
 			var dollar = makeStringParser('$');
-			var digits = makeRegexParser(/^\d+/);
+
 			// Try parsers until one works, if none work return null
 			function choice(parserSyntax) {
 				return function() {
@@ -269,11 +278,14 @@
 			}
 
 			var templateName = transform(
-			// see $wgLegalTitleChars
-			// not allowing : due to the need to catch "PLURAL:$1"
-			makeRegexParser(/^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+-]+/), function(result) {
-				return result.toString();
-			});
+				// see $wgLegalTitleChars
+				// not allowing : due to the need to catch "PLURAL:$1"
+				makeRegexParser(/^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+-]+/),
+				function(result) {
+					return result.toString();
+				}
+			);
+
 			function templateParam() {
 				var result = sequence([pipe, nOrMore(0, paramExpression)]);
 				if (result === null) {
@@ -297,25 +309,40 @@
 			}
 
 			var colon = makeStringParser(':');
+
 			var templateContents = choice([
-			function() {
-				var res = sequence([
-				// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
-				// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
-				choice([templateWithReplacement, templateWithOutReplacement]), nOrMore(0, templateParam)]);
-				return res === null ? null : res[0].concat(res[1]);
-			},
-			function() {
-				var res = sequence([templateName, nOrMore(0, templateParam)]);
-				if (res === null) {
-					return null;
+				function() {
+					var res = sequence([
+						// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
+						// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
+						choice([templateWithReplacement, templateWithOutReplacement]),
+						nOrMore(0, templateParam)
+					]);
+
+					return res === null ? null : res[0].concat(res[1]);
+				},
+				function() {
+					var res = sequence([
+						templateName,
+						nOrMore(0, templateParam)
+					]);
+
+					if (res === null) {
+						return null;
+					}
+
+					return [res[0]].concat(res[1]);
 				}
-				return [res[0]].concat(res[1]);
-			}]);
+			]);
+
 			var openTemplate = makeStringParser('{{');
+
 			var closeTemplate = makeStringParser('}}');
+
 			var paramExpression = choice([template, replacement, literalWithoutBar]);
+
 			var expression = choice([template, replacement, literal]);
+
 			function template() {
 				var result = sequence([openTemplate, templateContents, closeTemplate]);
 				return result === null ? null : result[1];
@@ -323,9 +350,11 @@
 
 			function start() {
 				var result = nOrMore( 0, expression )();
+
 				if (result === null) {
 					return null;
 				}
+
 				return ["CONCAT"].concat(result);
 			}
 

@@ -1,7 +1,8 @@
 ;(function($, window, document, undefined) {
 	"use strict";
+
 	var I18N = function(options) {
-		this.options = $.extend({}, $.i18n.defaults, options)
+		this.options = $.extend({}, $.i18n.defaults, options);
 		this.messages = {};
 		this.sources = {};
 		this.parser = this.options.parser;
@@ -9,7 +10,6 @@
 		this.locale = this.options.locale;
 		String.locale = this.locale;
 		this.init();
-
 	};
 
 	I18N.prototype = {
@@ -165,11 +165,13 @@
 
 	$.i18n = function(key, parameter_1 /* [, parameter_2] */ ) {
 		var parameters = [], i18n = $('body').data('i18n');
-		var options = typeof key == 'object' && key;
+		var options = typeof key === 'object' && key;
+
 		if( options && options.locale && i18n && i18n.locale !== options.locale ){
 			i18n.destroy();
 			i18n = null;
 		}
+
 		if (!i18n) {
 			$('body').data('i18n', ( i18n = new I18N(options)));
 			$('[data-i18n]').each(function(e) {
@@ -179,15 +181,18 @@
 				}
 			});
 		}
+
 		if (!key) {
 			return i18n;
 		}
+
 		// Support variadic arguments
 		if (parameter_1 !== undefined) {
 			parameters = $.makeArray(arguments);
 			parameters.shift();
 		}
-		if ( typeof key == 'string') {
+
+		if ( typeof key === 'string') {
 			return i18n.parse(key, parameters);
 		} else {
 			return i18n;
@@ -200,15 +205,16 @@
 		locale : String.locale,
 		fallbackLocale : "en",
 		parser : $.i18n.parser
-	}
+	};
+
 	$.i18n.Constructor = I18N;
 	/**
 	 * Convenient alias
 	 */
 	$._ = $.i18n;
+
 	$(document).ready(function() {
 		/* i18n DATA-API */
-
 	});
 
 } )(jQuery, window, document);
