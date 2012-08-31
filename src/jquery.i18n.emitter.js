@@ -13,7 +13,7 @@
  * @licence MIT License
  */
 
-(function ( $ ) {
+(function($) {
 	"use strict";
 	var MessageParserEmitter = function() {
 		this.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
@@ -43,7 +43,7 @@
 						return that.emit(n, replacements);
 					});
 					var operation = node[0].toLowerCase();
-					if ( typeof that[operation] === 'function') {
+					if (typeof that[operation] === 'function') {
 						ret = that[operation](subnodes, replacements);
 					} else {
 						throw new Error('unknown operation "' + operation + '"');
@@ -132,10 +132,10 @@
 		grammar: function(nodes) {
 			var form = nodes[0];
 			var word = nodes[1];
-			return word && form && this.language.convertGrammar( word, form );
+			return word && form && this.language.convertGrammar(word, form);
 		}
 	};
 
-	$.extend( $.i18n.parser.emitter, new MessageParserEmitter() );
+	$.extend($.i18n.parser.emitter, new MessageParserEmitter());
 
 } (jQuery) );

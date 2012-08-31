@@ -42,13 +42,6 @@
 
 		ast : function(message) {
 			var pos = 0;
-			var digits = makeRegexParser(/^\d+/);
-			var regularLiteral = makeRegexParser(/^[^{}[\]$\\]/);
-			var regularLiteralWithoutBar = makeRegexParser(/^[^{}[\]$\\|]/);
-			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}[\]$\s]/);
-			var backslash = makeStringParser("\\");
-			var anyCharacter = makeRegexParser(/^./);
-			var dollar = makeStringParser('$');
 
 			// Try parsers until one works, if none work return null
 			function choice(parserSyntax) {
@@ -113,9 +106,6 @@
 				};
 			}
 
-			var pipe = makeStringParser('|');
-			var colon = makeStringParser(':');
-
 			function makeRegexParser(regex) {
 				return function() {
 					var matches = message.substr(pos).match(regex);
@@ -127,6 +117,16 @@
 				};
 			}
 
+			var pipe = makeStringParser('|');
+			var colon = makeStringParser(':');
+			var backslash = makeStringParser("\\");
+			var anyCharacter = makeRegexParser(/^./);
+			var dollar = makeStringParser('$');
+			var digits = makeRegexParser(/^\d+/);
+			var regularLiteral = makeRegexParser(/^[^{}\[\]$\\]/);
+			var regularLiteralWithoutBar = makeRegexParser(/^[^{}\[\]$\\|]/);
+			var regularLiteralWithoutSpace = makeRegexParser(/^[^{}\[\]$\s]/);
+
 			// There is a general pattern -- parse a thing, if that worked, apply transform, otherwise return null.
 			// But using this as a combinator seems to cause problems when combined with nOrMore().
 			// May be some scoping issue
@@ -137,25 +137,22 @@
 				};
 			}
 
-			var escapedOrLiteralWithoutSpace = choice([escapedLiteral, regularLiteralWithoutSpace]);
-			var escapedOrLiteralWithoutBar = choice([escapedLiteral, regularLiteralWithoutBar]);
-			var escapedOrRegularLiteral = choice([escapedLiteral, regularLiteral]);
 
 			// Used to define "literals" without spaces, in space-delimited situations
 			function literalWithoutSpace() {
-				var result = nOrMore( 1, escapedOrLiteralWithoutSpace )();
+				var result = nOrMore(1, escapedOrLiteralWithoutSpace)();
 				return result === null ? null : result.join('');
 			}
 
 			// Used to define "literals" within template parameters. The pipe character is the parameter delimeter, so by default
 			// it is not a literal in the parameter
 			function literalWithoutBar() {
-				var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
+				var result = nOrMore(1, escapedOrLiteralWithoutBar)();
 				return result === null ? null : result.join('');
 			}
 
 			function literal() {
-				var result = nOrMore( 1, escapedOrRegularLiteral )();
+				var result = nOrMore(1, escapedOrRegularLiteral)();
 				return result === null ? null : result.join('');
 			}
 
@@ -164,7 +161,10 @@
 				return result === null ? null : result[1];
 			}
 
-			var paramExpression = choice([template, replacement, literalWithoutBar]);
+			var escapedOrLiteralWithoutSpace = choice([escapedLiteral, regularLiteralWithoutSpace]);
+			var escapedOrLiteralWithoutBar = choice([escapedLiteral, regularLiteralWithoutBar]);
+			var escapedOrRegularLiteral = choice([escapedLiteral, regularLiteral]);
+
 
 			function replacement() {
 				var result = sequence([dollar, digits]);
@@ -177,7 +177,7 @@
 			var templateName = transform(
 				// see $wgLegalTitleChars
 				// not allowing : due to the need to catch "PLURAL:$1"
-				makeRegexParser(/^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+-]+/),
+				makeRegexParser(/^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/),
 				function(result) {
 					return result.toString();
 				}
@@ -234,16 +234,16 @@
 
 			var closeTemplate = makeStringParser('}}');
 
-
-			var expression = choice([template, replacement, literal]);
-
 			function template() {
 				var result = sequence([openTemplate, templateContents, closeTemplate]);
 				return result === null ? null : result[1];
 			}
 
+			var expression = choice([template, replacement, literal]);
+			var paramExpression = choice([template, replacement, literalWithoutBar]);
+
 			function start() {
-				var result = nOrMore( 0, expression )();
+				var result = nOrMore(0, expression)();
 
 				if (result === null) {
 					return null;
@@ -258,6 +258,6 @@
 
 	};
 
-	$.extend( $.i18n.parser, new MessageParser() );
+	$.extend($.i18n.parser, new MessageParser());
 
-} )(jQuery);
+}(jQuery));

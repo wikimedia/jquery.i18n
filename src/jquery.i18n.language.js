@@ -11,9 +11,9 @@
 		 * Plural form transformations, needed for some languages.
 		 *
 		 * @param count
-		 *            integer Non-localized quantifier
+		 *      integer Non-localized quantifier
 		 * @param forms
-		 *            array List of plural forms
+		 *      array List of plural forms
 		 * @return string Correct form for quantifier in this language
 		 */
 		convertPlural: function( count, forms ) {
@@ -55,9 +55,9 @@
 		 * Converts a number using digitTransformTable.
 		 *
 		 * @param {num}
-		 *            number Value to be converted
+		 *      number Value to be converted
 		 * @param {boolean}
-		 *            integer Convert the return value to an integer
+		 *      integer Convert the return value to an integer
 		 */
 		'convertNumber' : function(num, integer) {
 			// Set the target Transform table:
@@ -110,9 +110,9 @@
 		 * These details may be overriden per language.
 		 *
 		 * @param gender
-		 *            string male, female, or anything else for neutral.
+		 *      string male, female, or anything else for neutral.
 		 * @param forms
-		 *            array List of gender forms
+		 *      array List of gender forms
 		 *
 		 * @return string
 		 */
@@ -143,17 +143,17 @@
 				ar: "۰۱۲۳۴۵۶۷۸۹",
 				ml: "൦൧൨൩൪൫൬൭൮൯",
 				kn: "೦೧೨೩೪೫೬೭೮೯",
-				lao: "໐໑໒໓໔໕໖໗໘໙", //XXX correct lang code?
+				lo: "໐໑໒໓໔໕໖໗໘໙",
 				or: "୦୧୨୩୪୫୬୭୮୯",
 				kh: "០១២៣៤៥៦៧៨៩",
-				pa:  "੦੧੨੩੪੫੬੭੮੯",
+				pa: "੦੧੨੩੪੫੬੭੮੯",
 				gu: "૦૧૨૩૪૫૬૭૮૯",
 				hi: "०१२३४५६७८९",
 				my: "၀၁၂၃၄၅၆၇၈၉",
 				ta: "௦௧௨௩௪௫௬௭௮௯",
 				te: "౦౧౨౩౪౫౬౭౮౯",
-				thai: "๐๑๒๓๔๕๖๗๘๙",  //FIXME use iso 639 codes
-				tibt: "༠༡༢༣༤༥༦༧༨༩" //FIXME use iso 639 codes
+				th: "๐๑๒๓๔๕๖๗๘๙", //FIXME use iso 639 codes
+				bo: "༠༡༢༣༤༥༦༧༨༩" //FIXME use iso 639 codes
 			};
 			if (!tables[language]) {
 				return null;

@@ -35,9 +35,9 @@
 			var that = this;
 			var $links = $("link");
 			var linksCount = $links.length;
-			this.log( "initializing for "+ this.locale );
+			this.log("initializing for " + this.locale);
 
-			// Check for <link rel="localization" hreflang="xyz"  elements
+			// Check for <link rel="localization" hreflang="xyz" elements
 			while (linksCount--) {
 				var $link = $($links[linksCount]);
 				var rel = ($link.attr("rel") || "").toLowerCase().split(/\s+/);
@@ -64,7 +64,7 @@
 					if (that.sources[locale]) {
 						that.loadFormQueue(locale);
 					}
-					if ( that.messages[locale] && that.messages[locale][value]) {
+					if (that.messages[locale] && that.messages[locale][value]) {
 						return that.messages[locale][value];
 					}
 				} while (i--);
@@ -82,15 +82,15 @@
 		 * General message loading API
 		 * This can take a URL string for the json formatted messages.
 		 * Eg:
-		 *    load( 'path/to/all_localizations.json );
+		 *  load('path/to/all_localizations.json');
 		 *
 		 * This can also load a localization file for a locale
 		 * Eg:
-		 *    load( 'path/to/de-messages.json', 'de' );
+		 *  load('path/to/de-messages.json', 'de' );
 		 *
 		 * A data object containing message key- message translation mappings can also be passed
 		 * Eg:
-		 *    load( { 'hello' : 'Hello' }, optionalLocale );
+		 *  load( { 'hello' : 'Hello' }, optionalLocale );
 		 * If the data argument is null/undefined/false, all cached messages for the i18n instance
 		 * will get reset.
 		 *
@@ -133,13 +133,14 @@
 						}
 						var messageKeyType = typeof messageKey;
 						if (messageKeyType === "string" && locale) {
-							that.log("["+locale+"][" + messageKey + "] : "+ localization[messageKey]);
+							that.log("[" + locale + "][" + messageKey + "] : "
+									+ localization[messageKey]);
 							that.messages[locale] = that.messages[locale] || [];
 							that.messages[locale][messageKey] = localization[messageKey];
 						} else{
-							var passedLocale =  messageKey;
+							var passedLocale = messageKey;
 							this.log("Loading locale: " + passedLocale );
-							that.load( localization[passedLocale], passedLocale );
+							that.load(localization[passedLocale], passedLocale);
 						}
 
 					}

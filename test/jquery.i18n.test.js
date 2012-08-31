@@ -189,7 +189,7 @@
 		$.i18n().destroy();
 
 		QUnit.test('Grammar test for language ' + langCode, function(assert) {
-			expect(test.length + 1);
+			QUnit.expect(test.length + 1);
 			var i18n = $.i18n({
 				locale : langCode
 			});
@@ -499,4 +499,4 @@
 	$.each(grammarTests, function(langCode, test) {
 		grammarTest(langCode, test);
 	});
-})(window.jQuery);
+}(window.jQuery));
