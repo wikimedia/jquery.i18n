@@ -2,10 +2,10 @@
  * Slovenian (Slovenščina) language functions
  */
 
-(function($) {
+( function ( $ ) {
 	"use strict";
-	var sl = $.extend({}, $.i18n.languages['default'], {
-		convertGrammar : function(word, form) {
+	var sl = $.extend( {}, $.i18n.languages['default'], {
+		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'mestnik': // locative
 				word = 'o ' + word;
@@ -17,8 +17,8 @@
 			return word;
 		}
 
-	});
-	$.extend($.i18n.languages, {
-		'sl' : sl
-	});
-}(jQuery));
+	} );
+	$.extend( $.i18n.languages, {
+		'sl': sl
+	} );
+}( jQuery ) );

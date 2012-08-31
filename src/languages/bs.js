@@ -1,10 +1,10 @@
 /**
  * Bosnian (bosanski) language functions
  */
-(function($) {
+( function ( $ ) {
 	"use strict";
-	var bosanski = $.extend({}, $.i18n.languages['default'], {
-		convertGrammar : function(word, form) {
+	var bosanski = $.extend( {}, $.i18n.languages['default'], {
+		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'instrumental': // instrumental
 				word = 's ' + word;
@@ -15,8 +15,8 @@
 			}
 			return word;
 		}
-	});
-	$.extend($.i18n.languages, {
-		'bs' : bosanski
-	});
-}(jQuery));
+	} );
+	$.extend( $.i18n.languages, {
+		'bs': bosanski
+	} );
+}( jQuery ) );

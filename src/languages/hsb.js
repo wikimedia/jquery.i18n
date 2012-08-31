@@ -2,10 +2,10 @@
  * Upper Sorbian (Hornjoserbsce) language functions
  */
 
-(function($) {
+( function ( $ ) {
 	"use strict";
-	var hsb = $.extend({}, $.i18n.languages['default'], {
-		convertGrammar : function(word, form) {
+	var hsb = $.extend( {}, $.i18n.languages['default'], {
+		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'instrumental': // instrumental
 				word = 'z ' + word;
@@ -16,8 +16,8 @@
 			}
 			return word;
 		}
-	});
-	$.extend($.i18n.languages, {
-		'hsb' : hsb
-	});
-}(jQuery));
+	} );
+	$.extend( $.i18n.languages, {
+		'hsb': hsb
+	} );
+}( jQuery ) );

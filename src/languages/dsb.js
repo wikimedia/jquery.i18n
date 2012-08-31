@@ -2,10 +2,10 @@
  * Lower Sorbian (Dolnoserbski) language functions
  */
 
-(function($) {
+( function ( $ ) {
 	"use strict";
-	var dsb = $.extend({}, $.i18n.languages['default'], {
-		convertGrammar : function(word, form) {
+	var dsb = $.extend( {}, $.i18n.languages['default'], {
+		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'instrumental': // instrumental
 				word = 'z ' + word;
@@ -16,8 +16,8 @@
 			}
 			return word;
 		}
-	});
-	$.extend($.i18n.languages, {
-		'dsb' : dsb
-	});
-}(jQuery));
+	} );
+	$.extend( $.i18n.languages, {
+		'dsb': dsb
+	} );
+}( jQuery ) );

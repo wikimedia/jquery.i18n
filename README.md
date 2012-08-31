@@ -40,6 +40,11 @@ To run tests locally, run `grunt`, and this will run the tests in PhantomJS.
 
 You can also run the tests in a browser by navigating to the `test/` directory, but first run `grunt` to install submodules.
 
+Coding style
+-------------
+
+Please follow (jQuery coding guidelines)[http://docs.jquery.com/JQuery_Core_Style_Guidelines]
+
 Versioning
 ----------
 

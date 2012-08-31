@@ -4,10 +4,10 @@
  * @author Santhosh Thottingal
  */
 
-(function($) {
+( function ( $ ) {
 	"use strict";
-	var hu = $.extend({}, $.i18n.languages['default'], {
-		convertGrammar : function(word, form) {
+	var hu = $.extend( {}, $.i18n.languages['default'], {
+		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'rol':
 				word += 'ról';
@@ -21,8 +21,8 @@
 			}
 			return word;
 		}
-	});
-	$.extend($.i18n.languages, {
-		'hu' : hu
-	});
-}(jQuery));
+	} );
+	$.extend( $.i18n.languages, {
+		'hu': hu
+	} );
+}( jQuery ) );

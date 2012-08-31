@@ -2,11 +2,11 @@
  * Irish (Gaeilge) language functions
  */
 
-(function($) {
+( function ( $ ) {
 	"use strict";
-	var ga = $.extend({}, $.i18n.languages['default'], {
-		convertGrammar : function(word, form) {
-			if (form === 'ainmlae') {
+	var ga = $.extend( {}, $.i18n.languages['default'], {
+		convertGrammar: function ( word, form ) {
+			if ( form === 'ainmlae' ) {
 				switch (word) {
 				case 'an Domhnach':
 					word = 'Dé Domhnaigh';
@@ -33,8 +33,8 @@
 			}
 			return word;
 		}
-	});
-	$.extend($.i18n.languages, {
-		'ga' : ga
-	});
-}(jQuery));
+	} );
+	$.extend( $.i18n.languages, {
+		'ga': ga
+	} );
+}( jQuery ) );

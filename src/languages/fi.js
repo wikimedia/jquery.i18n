@@ -4,18 +4,18 @@
  * @author Santhosh Thottingal
  */
 
-(function($) {
+( function ( $ ) {
 	"use strict";
-	var finnish = $.extend({}, $.i18n.languages['default'], {
-		convertGrammar : function(word, form) {
+	var finnish = $.extend( {}, $.i18n.languages['default'], {
+		convertGrammar: function ( word, form ) {
 			// vowel harmony flag
-			var aou = word.match(/[aou][^äöy]*$/i);
+			var aou = word.match( /[aou][^äöy]*$/i );
 			var origWord = word;
-			if (word.match(/wiki$/i)) {
+			if ( word.match( /wiki$/i ) ) {
 				aou = false;
 			}
 			// append i after final consonant
-			if (word.match(/[bcdfghjklmnpqrstvwxz]$/i)) {
+			if ( word.match( /[bcdfghjklmnpqrstvwxz]$/i ) ) {
 				word += 'i';
 			}
 
@@ -24,17 +24,17 @@
 				word += 'n';
 				break;
 			case 'elative':
-				word += (aou ? 'sta' : 'stä');
+				word += ( aou ? 'sta' : 'stä' );
 				break;
 			case 'partitive':
-				word += (aou ? 'a' : 'ä');
+				word += ( aou ? 'a' : 'ä' );
 				break;
 			case 'illative':
 				// Double the last letter and add 'n'
-				word += word.substr(word.length - 1) + 'n';
+				word += word.substr( word.length - 1 ) + 'n';
 				break;
 			case 'inessive':
-				word += (aou ? 'ssa' : 'ssä');
+				word += ( aou ? 'ssa' : 'ssä' );
 				break;
 			default:
 				word = origWord;
@@ -42,8 +42,8 @@
 			}
 			return word;
 		}
-	});
-	$.extend($.i18n.languages, {
-		'fi' : finnish
-	});
-}(jQuery));
+	} );
+	$.extend( $.i18n.languages, {
+		'fi': finnish
+	} );
+}( jQuery ) );
