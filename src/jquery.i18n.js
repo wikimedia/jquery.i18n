@@ -1,4 +1,19 @@
-;(function($, window, document, undefined) {
+/**
+ * jQuery Internationalization library
+ *
+ * Copyright (C) 2012 Santhosh Thottingal
+ *
+ * jquery.i18n is dual licensed GPLv2 or later and MIT. You don't
+ * have to do anything special to choose one license or the other and you don't
+ * have to notify anyone which license you are using. You are free to use
+ * UniversalLanguageSelector in commercial projects as long as the copyright
+ * header is left intact. See files GPL-LICENSE and MIT-LICENSE for details.
+ *
+ * @licence GNU General Public Licence 2.0 or later
+ * @licence MIT License
+ */
+
+(function($, window, document, undefined) {
 	"use strict";
 
 	var I18N = function(options) {
@@ -9,19 +24,20 @@
 		this.parser = this.options.parser;
 		this.languages = {};
 		this.locale = this.options.locale;
-		String.locale = this.locale;
 		this.init();
 	};
 
 	I18N.prototype = {
 		/**
-		 *
+		 * Initialize
 		 */
 		init : function() {
 			var that = this;
 			var $links = $("link");
 			var linksCount = $links.length;
+			this.log( "initializing for "+ this.locale );
 
+			// Check for <link rel="localization" hreflang="xyz"  elements
 			while (linksCount--) {
 				var $link = $($links[linksCount]);
 				var rel = ($link.attr("rel") || "").toLowerCase().split(/\s+/);
@@ -36,25 +52,26 @@
 				}
 			}
 
+			// Override String.localeString method
 			String.prototype.toLocaleString = function() {
 				var parts = that.locale.toLowerCase().split("-");
 				var i = parts.length;
-				var this_val = this.valueOf();
+				var value = this.valueOf();
 				// Iterate through locales starting at most-specific until localization is found
 				do {
 					var locale = parts.slice(0, i).join("-");
 					// load locale if not loaded
-					if (locale in that.sources) {
-						// Do this asynchronously.
-						that._process_load_queue(locale, true);
+					if (that.sources[locale]) {
+						that.loadFormQueue(locale);
 					}
-					if (locale in that.messages && this_val in that.messages[locale]) {
-						return that.messages[locale][this_val];
+					if ( that.messages[locale] && that.messages[locale][value]) {
+						return that.messages[locale][value];
 					}
 				} while (i--);
 
-				return this_val;
+				return value; // fallback the original string value
 			};
+			String.locale = this.locale;
 		},
 
 		destroy : function() {
@@ -62,118 +79,116 @@
 		},
 
 		/**
+		 * General message loading API
+		 * This can take a URL string for the json formatted messages.
+		 * Eg:
+		 *    load( 'path/to/all_localizations.json );
 		 *
+		 * This can also load a localization file for a locale
+		 * Eg:
+		 *    load( 'path/to/de-messages.json', 'de' );
+		 *
+		 * A data object containing message key- message translation mappings can also be passed
+		 * Eg:
+		 *    load( { 'hello' : 'Hello' }, optionalLocale );
+		 * If the data argument is null/undefined/false, all cached messages for the i18n instance
+		 * will get reset.
+		 *
+		 * @param data String|Object|null
+		 * @param locale String
 		 */
-		load : function(data, locale, async) {
+		load : function(data, locale) {
 			var that = this,
 				hasOwn = Object.prototype.hasOwnProperty;
-			async = async || false;
-			locale = locale || that.locale;
-
+			if (!data) {
+				// reset all localizations
+				this.log("Resetting for locale" + locale);
+				that.messages = {};
+				return;
+			}
 			var dataType = typeof data;
+			if (locale && this.locale !== locale) {
+				// queue loading locale if not needed
+				if (!(locale in this.sources)) {
+					this.sources[locale] = [];
+				}
+				this.log("Queueing: " + locale);
+				this.sources[locale].push(data);
+				return;
+			}
 			if (arguments.length > 0 && dataType !== "number") {
 				if (dataType === "string") {
-					var name = data;
-					that.log("Loading json " + name);
-					$.ajax({
-						url : name,
-						dataType : "json",
-						success : function(localization, textStatus) {
-							if (!locale) {
-								that.messages = localization;
-							} else {
-								for (var message in localization) {
-									that.messages[locale] = that.messages[locale] || [];
-									that.messages[locale][message] = localization[message];
-								}
-							}
-							that.loaded();
-						},
-						failure : function(jqxhr, settings, exception) {
-							that.log("Triggered ajaxError handler." + exception);
-						},
-						async : async
+					// This is a URL to the messages file.
+					this.log("Loading messages from: " + data);
+					jsonMessageLoader(data).done(function(localization, textStatus) {
+						that.load(localization, locale);
+						delete that.sources[locale];
 					});
-				} else if (!data) {
-					// reset all localizations
-					this.log("Resetting.");
-					that.messages = {};
 				} else { // data is Object
 					// Extend current localizations instead of completely overwriting them
-					for (var passedLocale in data) {
-						this.log("Loading locale: " + passedLocale);
-						if (hasOwn.call(data, passedLocale)) {
-							var localization = data[passedLocale];
-							var localizationType = typeof localization;
-							this.log("Localization type: " + localizationType);
-							passedLocale = passedLocale.toLowerCase();
-
-							if (!(passedLocale in that.messages) || !localization) {
-								// reset locale if not existing or reset flag is specified
-								that.messages[passedLocale] = {};
-							}
-
-							if (!localization) {
-								continue;
-							}
-
-							// URL specified
-							if (typeof localizationType === "string") {
-								if (that.options.locale.toLowerCase().indexOf(passedLocale) === 0) {
-									localization = that.load(localization, passedLocale);
-								} else {
-									// queue loading locale if not needed
-									if (!(passedLocale in this.sources)) {
-										this.sources[passedLocale] = [];
-									}
-									this.log("Queueing: " + localization);
-									this.sources[passedLocale].push(localization);
-									continue;
-								}
-							}
+					var localization = data;
+					for (var messageKey in localization) {
+						if (!hasOwn.call(localization, messageKey)) {
+							continue;
 						}
+						var messageKeyType = typeof messageKey;
+						if (messageKeyType === "string" && locale) {
+							that.log("["+locale+"][" + messageKey + "] : "+ localization[messageKey]);
+							that.messages[locale] = that.messages[locale] || [];
+							that.messages[locale][messageKey] = localization[messageKey];
+						} else{
+							var passedLocale =  messageKey;
+							this.log("Loading locale: " + passedLocale );
+							that.load( localization[passedLocale], passedLocale );
+						}
+
 					}
 				}
 			}
-			return Function.prototype.toLocaleString.apply(String, arguments);
 		},
 
 		log : function(/* arguments */) {
-			console.log.apply(console, arguments);
-		},
-
-		loaded : function() {
-
+			var hasConsole = window.console !== undefined ? true : false;
+			if (hasConsole) {
+				window.console.log.apply(window.console, arguments);
+			}
 		},
 
 		/**
-		 *
+		 * Load the messages from the source queue for the locale
+		 * @param locale String
 		 */
-		_process_load_queue : function(locale, now) {
+		loadFormQueue : function(locale) {
 			var that = this,
-				localization,
 				queue = that.sources[locale];
-
 			for (var i = 0; i < queue.length; i++) {
-				localization = {};
-				localization[locale] = that.load(queue[i], locale, now);
-				that.load(localization);
+				that.load(queue[i], locale);
 			}
-
 			delete that.sources[locale];
 		},
 
 		parse : function(key, parameters) {
 			var message = key.toLocaleString();
-			return this.parser.prototype.parse(message, parameters);
+			this.parser.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
+			return this.parser.parse(message, parameters);
 		}
+	};
+
+	var jsonMessageLoader = function(url) {
+		return $.ajax({
+			url : url,
+			dataType : "json",
+			async : false // that is unfortunate
+		}).fail(function(jqxhr, settings, exception) {
+			throw new Error("Error in loading messages from " + url + " Exception: "+ exception);
+		});
 	};
 
 	if (!String.locale) {
 		String.locale = $('html').attr('lang');
 		if (!String.locale) {
-			if (typeof navigator !== undefined) {
-				var nav = navigator;
+			if (typeof window.navigator !== undefined) {
+				var nav = window.navigator;
 				String.locale = nav.language || nav.userLanguage || "";
 			} else {
 				String.locale = "";
@@ -217,8 +232,19 @@
 		}
 	};
 
-	$.i18n.language = {};
-	$.i18n.parser = {};
+	var defaultParser = {
+		parse: function(message, parameters) {
+			return message.replace(/\$(\d+)/g, function(str, match) {
+				var index = parseInt(match, 10) - 1;
+				return parameters[index] !== undefined ? parameters[index] : '$' + match;
+			});
+		}
+	};
+
+	$.i18n.languages = {};
+
+	$.i18n.parser = defaultParser;
+	$.i18n.parser.emitter= {};
 	$.i18n.defaults = {
 		locale : String.locale,
 		fallbackLocale : "en",
@@ -226,13 +252,10 @@
 	};
 
 	$.i18n.Constructor = I18N;
+
 	/**
 	 * Convenient alias
 	 */
-	$._ = $.i18n;
+	window._ = $.i18n;
 
-	$(document).ready(function() {
-		/* i18n DATA-API */
-	});
-
-} )(jQuery, window, document);
+}(jQuery, window, document));

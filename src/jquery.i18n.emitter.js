@@ -16,7 +16,7 @@
 (function ( $ ) {
 	"use strict";
 	var MessageParserEmitter = function() {
-		this.language = $.i18n.languages[$.i18n().locale];
+		this.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
 	};
 
 	MessageParserEmitter.prototype = {

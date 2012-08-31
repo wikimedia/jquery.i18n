@@ -1,123 +1,19 @@
-;(function($) {
+/**
+ * jQuery Internationalization library
+ *
+ * Copyright (C) 2012 Santhosh Thottingal
+ *
+ * jquery.i18n is dual licensed GPLv2 or later and MIT. You don't
+ * have to do anything special to choose one license or the other and you don't
+ * have to notify anyone which license you are using. You are free to use
+ * UniversalLanguageSelector in commercial projects as long as the copyright
+ * header is left intact. See files GPL-LICENSE and MIT-LICENSE for details.
+ *
+ * @licence GNU General Public Licence 2.0 or later
+ * @licence MIT License
+ */
+(function($) {
 	"use strict";
-
-	var MessageParserEmitter = function(language) {
-		this.language = language;
-		var that = this;
-		/**
-		 * (We put this method definition here, and not in prototype, to make sure it's not overwritten by any magic.)
-		 * Walk entire node structure, applying replacements and template functions when appropriate
-		 * @param {Mixed} abstract syntax tree (top node or subnode)
-		 * @param {Array} replacements for $1, $2, ... $n
-		 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
-		 */
-		this.emit = function(node, replacements) {
-			var ret = null;
-			var that = this;
-
-			switch (typeof node) {
-				case 'string':
-				case 'number':
-					ret = node;
-					break;
-				case 'object':
-					// node is an array of nodes
-					var subnodes = $.map(node.slice(1), function(n) {
-						return that.emit(n, replacements);
-					});
-					var operation = node[0].toLowerCase();
-					if ( typeof that[operation] === 'function') {
-						ret = that[operation](subnodes, replacements);
-					} else {
-						throw new Error('unknown operation "' + operation + '"');
-					}
-					break;
-				case 'undefined':
-					// Parsing the empty string (as an entire expression, or as a paramExpression in a template) results in undefined
-					// Perhaps a more clever parser can detect this, and return the empty string? Or is that useful information?
-					// The logical thing is probably to return the empty string here when we encounter undefined.
-					ret = '';
-					break;
-				default:
-					throw new Error('unexpected type in AST: ' + typeof node);
-			}
-			return ret;
-		};
-
-		/**
-		 * Parsing has been applied depth-first we can assume that all nodes here are single nodes
-		 * Must return a single node to parents -- a jQuery with synthetic span
-		 * However, unwrap any other synthetic spans in our children and pass them upwards
-		 * @param {Array} nodes - mixed, some single nodes, some arrays of nodes
-		 * @return {jQuery}
-		 */
-		this.concat = function(nodes) {
-			var result = "";
-			$.each(nodes, function(i, node) {
-				// strings, integers, anything else
-				result += node;
-			});
-			return result;
-		};
-
-		/**
-		 * Return escaped replacement of correct index, or string if unavailable.
-		 * Note that we expect the parsed parameter to be zero-based. i.e. $1 should have become [ 0 ].
-		 * if the specified parameter is not found return the same string
-		 * (e.g. "$99" -> parameter 98 -> not found -> return "$99" )
-		 * TODO throw error if nodes.length > 1 ?
-		 * @param {Array} of one element, integer, n >= 0
-		 * @return {String} replacement
-		 */
-		this.replace  = function(nodes, replacements) {
-			var index = parseInt(nodes[0], 10);
-
-			if (index < replacements.length) {
-				// replacement is not a string, don't touch!
-				return replacements[index];
-			} else {
-				// index not found, fallback to displaying variable
-				return '$' + (index + 1);
-			}
-		};
-
-		/**
-		 * Transform parsed structure into pluralization
-		 * n.b. The first node may be a non-integer (for instance, a string representing an Arabic number).
-		 * So convert it back with the current language's convertNumber.
-		 * @param {Array} of nodes, [ {String|Number}, {String}, {String} ... ]
-		 * @return {String} selected pluralized form according to current language
-		 */
-		this.plural = function(nodes) {
-			var count = parseInt(this.language.convertNumber(nodes[0], true), 10);
-			var forms = nodes.slice(1);
-			return forms.length ? this.language.convertPlural(count, forms) : '';
-		};
-
-		/**
-		 * Transform parsed structure into gender
-		 * Usage {{gender:[gender| mw.user object ] | masculine|feminine|neutral}}.
-		 * @param {Array} of nodes, [ {String|mw.User}, {String}, {String} , {String} ]
-		 * @return {String} selected gender form according to current language
-		 */
-		this.gender = function(nodes) {
-			var gender = nodes[0];
-			var forms = nodes.slice(1);
-			return this.language.gender(gender, forms);
-		};
-
-		/**
-		 * Transform parsed structure into grammar conversion.
-		 * Invoked by putting {{grammar:form|word}} in a message
-		 * @param {Array} of nodes [{Grammar case eg: genitive}, {String word}]
-		 * @return {String} selected grammatical form according to current language
-		 */
-		this.grammar = function(nodes) {
-			var form = nodes[0];
-			var word = nodes[1];
-			return word && form && this.language.convertGrammar(word, form);
-		};
-	};
 
 	var MessageParser = function(options) {
 		this.options = $.extend({}, $.i18n.parser.defaults, options);
@@ -125,13 +21,9 @@
 		this.emitter = $.i18n.parser.emitter;
 	};
 
-	$.i18n.parser.prototype = $.extend({}, $.i18n.parser.prototype, {
-		constructor : MessageParser,
+	MessageParser.prototype = {
 
-		emitter : function() {
-			var language = $.i18n.language[String.locale] ||  $.i18n.language['default'] ;
-			return new MessageParserEmitter(language);
-		},
+		constructor : MessageParser,
 
 		simpleParse : function(message, parameters) {
 			return message.replace(/\$(\d+)/g, function(str, match) {
@@ -144,13 +36,12 @@
 			if (message.indexOf('{{') < 0) {
 				return this.simpleParse(message, replacements);
 			}
-			this.emitter.language =  $.i18n.languages[$.i18n().locale]|| $.i18n.languages['default']; //this.language;
+			this.emitter.language = $.i18n.languages[$.i18n().locale]|| $.i18n.languages['default'];
 			return this.emitter.emit(this.ast(message), replacements);
 		},
 
 		ast : function(message) {
 			var pos = 0;
-			var whitespace = makeRegexParser(/^\s+/);
 			var digits = makeRegexParser(/^\d+/);
 			var regularLiteral = makeRegexParser(/^[^{}[\]$\\]/);
 			var regularLiteralWithoutBar = makeRegexParser(/^[^{}[\]$\\|]/);
@@ -222,6 +113,9 @@
 				};
 			}
 
+			var pipe = makeStringParser('|');
+			var colon = makeStringParser(':');
+
 			function makeRegexParser(regex) {
 				return function() {
 					var matches = message.substr(pos).match(regex);
@@ -242,6 +136,10 @@
 					return result === null ? null : fn(result);
 				};
 			}
+
+			var escapedOrLiteralWithoutSpace = choice([escapedLiteral, regularLiteralWithoutSpace]);
+			var escapedOrLiteralWithoutBar = choice([escapedLiteral, regularLiteralWithoutBar]);
+			var escapedOrRegularLiteral = choice([escapedLiteral, regularLiteral]);
 
 			// Used to define "literals" without spaces, in space-delimited situations
 			function literalWithoutSpace() {
@@ -266,11 +164,7 @@
 				return result === null ? null : result[1];
 			}
 
-			var escapedOrLiteralWithoutSpace = choice([escapedLiteral, regularLiteralWithoutSpace]);
-
-			var escapedOrLiteralWithoutBar = choice([escapedLiteral, regularLiteralWithoutBar]);
-
-			var escapedOrRegularLiteral = choice([escapedLiteral, regularLiteral]);
+			var paramExpression = choice([template, replacement, literalWithoutBar]);
 
 			function replacement() {
 				var result = sequence([dollar, digits]);
@@ -299,8 +193,6 @@
 				return expr.length > 1 ? ["CONCAT"].concat(expr) : expr[0];
 			}
 
-			var pipe = makeStringParser('|');
-
 			function templateWithReplacement() {
 				var result = sequence([templateName, colon, replacement]);
 				return result === null ? null : [result[0], result[2]];
@@ -311,7 +203,7 @@
 				return result === null ? null : [result[0], result[2]];
 			}
 
-			var colon = makeStringParser(':');
+
 
 			var templateContents = choice([
 				function() {
@@ -342,7 +234,6 @@
 
 			var closeTemplate = makeStringParser('}}');
 
-			var paramExpression = choice([template, replacement, literalWithoutBar]);
 
 			var expression = choice([template, replacement, literal]);
 
@@ -364,6 +255,9 @@
 			var result = start();
 			return result;
 		}
-	} );
+
+	};
+
+	$.extend( $.i18n.parser, new MessageParser() );
 
 } )(jQuery);

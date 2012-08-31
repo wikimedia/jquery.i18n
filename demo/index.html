@@ -9,17 +9,18 @@
 		-->
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-		<title>Jquery i18n Demo</title>
+		<title>jQuery i18n Demo</title>
 		<!-- <link rel="shortcut icon" href="/favicon.ico"/> -->
 		<!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"/> -->
 		<!-- <meta name="description" content=""/> -->
 		<meta name="author" content="Santhosh Thottingal"/>
 		<!-- Libs -->
 		<script src="../libs/jquery.js"></script>
-
+		<script src="../libs/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js"></script>
 		<!-- Source -->
 		<script src="../src/jquery.i18n.js"></script>
 		<script src="../src/jquery.i18n.parser.js"></script>
+		<script src="../src/jquery.i18n.emitter.js"></script>
 		<script src="../src/jquery.i18n.language.js"></script>
 		<!-- Demo -->
 		<script src="js/bootstrap.min.js"></script>
@@ -33,25 +34,25 @@
 	<body>
 		<div class="container">
 			<header id="overview" class="subhead well">
-				<h1>Jquery i18n Demo</h1>
+				<h1>jQuery i18n Demo</h1>
 				<p class="lead">
-					Jquery i18n Demo
+					jQuery i18n Demo
 				</p>
 			</header>
-			<div class ="lead">
+			<div class="lead">
 				<select class="input-small person">
 					<option data-i18n='Meera' value="female">Meera</option>
 					<option data-i18n='Harry' value="male">Harry</option>
 				</select>
-				has <input class="input-mini kittens" value=1 size="3" type="number" /> kitten. She loves to play with it.
+				has <input class="input-mini kittens" value=1 size="3" type="number"/> kitten(s). He/She loves to play with it/them.
 			</div>
 			<div class="lead">
-				Translate the above sentence to <select class="language span3">
+				Display the above sentence in <select class="language span3">
 					<option value="en">English</option>
 					<option value="ml">Malayalam</option>
 				</select>
 			</div>
-			<div class="result lead alert alert alert-success" >Meera has 1 kitten. She loves to play with it.</div>
+			<div class="result lead alert alert alert-success"><!--The message will be filled here automatically.--></div>
 			<hr/>
 			<footer>
 				<p>
