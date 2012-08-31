@@ -43,7 +43,7 @@ You can also run the tests in a browser by navigating to the `test/` directory, 
 Coding style
 -------------
 
-Please follow (jQuery coding guidelines)[http://docs.jquery.com/JQuery_Core_Style_Guidelines]
+Please follow [jQuery coding guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)
 
 Versioning
 ----------
