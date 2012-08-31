@@ -15,6 +15,7 @@
 
 (function($) {
 	"use strict";
+
 	var MessageParserEmitter = function() {
 		this.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
 	};
@@ -28,7 +29,7 @@
 		 * @param {Array} replacements for $1, $2, ... $n
 		 * @return {Mixed} single-string node or array of nodes suitable for jQuery appending
 		 */
-		emit: function(node, replacements) {
+		emit : function(node, replacements) {
 			var ret = null;
 			var that = this;
 
@@ -68,7 +69,7 @@
 		 * @param {Array} nodes - mixed, some single nodes, some arrays of nodes
 		 * @return String
 		 */
-		concat: function(nodes) {
+		concat : function(nodes) {
 			var result = "";
 			$.each(nodes, function(i, node) {
 				// strings, integers, anything else
@@ -86,7 +87,7 @@
 		 * @param {Array} of one element, integer, n >= 0
 		 * @return {String} replacement
 		 */
-		replace: function(nodes, replacements) {
+		replace : function(nodes, replacements) {
 			var index = parseInt(nodes[0], 10);
 
 			if (index < replacements.length) {
@@ -105,7 +106,7 @@
 		 * @param {Array} of nodes, [ {String|Number}, {String}, {String} ... ]
 		 * @return {String} selected pluralized form according to current language
 		 */
-		plural: function(nodes) {
+		plural : function(nodes) {
 			var count = parseFloat(this.language.convertNumber(nodes[0], 10));
 			var forms = nodes.slice(1);
 			return forms.length ? this.language.convertPlural(count, forms) : '';
@@ -113,11 +114,11 @@
 
 		/**
 		 * Transform parsed structure into gender
-		 * Usage {{gender:[gender| mw.user object ] | masculine|feminine|neutral}}.
-		 * @param {Array} of nodes, [ {String|mw.User}, {String}, {String} , {String} ]
+		 * Usage {{gender:gender|masculine|feminine|neutral}}.
+		 * @param {Array} of nodes, [ {String}, {String}, {String} , {String} ]
 		 * @return {String} selected gender form according to current language
 		 */
-		gender: function(nodes) {
+		gender : function(nodes) {
 			var gender = nodes[0];
 			var forms = nodes.slice(1);
 			return this.language.gender(gender, forms);
@@ -129,7 +130,7 @@
 		 * @param {Array} of nodes [{Grammar case eg: genitive}, {String word}]
 		 * @return {String} selected grammatical form according to current language
 		 */
-		grammar: function(nodes) {
+		grammar : function(nodes) {
 			var form = nodes[0];
 			var word = nodes[1];
 			return word && form && this.language.convertGrammar(word, form);
@@ -138,4 +139,4 @@
 
 	$.extend($.i18n.parser.emitter, new MessageParserEmitter());
 
-} (jQuery) );
+}(jQuery));

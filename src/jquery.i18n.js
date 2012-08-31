@@ -13,7 +13,7 @@
  * @licence MIT License
  */
 
-(function($, window, document, undefined) {
+(function($, window, undefined) {
 	"use strict";
 
 	var I18N = function(options) {
@@ -29,7 +29,7 @@
 
 	I18N.prototype = {
 		/**
-		 * Initialize
+		 * Initialize by loading locales and setting up toLocaleString
 		 */
 		init : function() {
 			var that = this;
@@ -57,12 +57,13 @@
 				var parts = that.locale.toLowerCase().split("-");
 				var i = parts.length;
 				var value = this.valueOf();
-				// Iterate through locales starting at most-specific until localization is found
+				// Iterate through locales starting at most-specific until
+				// localization is found. As in fi-Latn-FI, fi-Latn and fi.
 				do {
 					var locale = parts.slice(0, i).join("-");
 					// load locale if not loaded
 					if (that.sources[locale]) {
-						that.loadFormQueue(locale);
+						that.loadFromQueue(locale);
 					}
 					if (that.messages[locale] && that.messages[locale][value]) {
 						return that.messages[locale][value];
@@ -94,8 +95,8 @@
 		 * If the data argument is null/undefined/false, all cached messages for the i18n instance
 		 * will get reset.
 		 *
-		 * @param data String|Object|null
-		 * @param locale String
+		 * @param {String|Object|null} data 
+		 * @param {String} locale Language tag
 		 */
 		load : function(data, locale) {
 			var that = this,
@@ -149,7 +150,7 @@
 		},
 
 		log : function(/* arguments */) {
-			var hasConsole = window.console !== undefined ? true : false;
+			var hasConsole = window.console !== undefined;
 			if (hasConsole) {
 				window.console.log.apply(window.console, arguments);
 			}
@@ -157,9 +158,9 @@
 
 		/**
 		 * Load the messages from the source queue for the locale
-		 * @param locale String
+		 * @param {String} locale
 		 */
-		loadFormQueue : function(locale) {
+		loadFromQueue : function(locale) {
 			var that = this,
 				queue = that.sources[locale];
 			for (var i = 0; i < queue.length; i++) {
@@ -168,6 +169,12 @@
 			delete that.sources[locale];
 		},
 
+		/**
+		 * Does parameter and magic word substitution.
+		 * @param {String} key Message key
+		 * @param {Array} parameters Message parameters
+		 * @return @string
+		 */
 		parse : function(key, parameters) {
 			var message = key.toLocaleString();
 			this.parser.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
@@ -185,15 +192,13 @@
 		});
 	};
 
+	String.locale = String.locale || $('html').attr('lang');
 	if (!String.locale) {
-		String.locale = $('html').attr('lang');
-		if (!String.locale) {
-			if (typeof window.navigator !== undefined) {
-				var nav = window.navigator;
-				String.locale = nav.language || nav.userLanguage || "";
-			} else {
-				String.locale = "";
-			}
+		if (typeof window.navigator !== undefined) {
+			var nav = window.navigator;
+			String.locale = nav.language || nav.userLanguage || "";
+		} else {
+			String.locale = "";
 		}
 	}
 
@@ -233,6 +238,7 @@
 		}
 	};
 
+	// The default parser only handles variable substitution
 	var defaultParser = {
 		parse: function(message, parameters) {
 			return message.replace(/\$(\d+)/g, function(str, match) {
@@ -243,7 +249,6 @@
 	};
 
 	$.i18n.languages = {};
-
 	$.i18n.parser = defaultParser;
 	$.i18n.parser.emitter= {};
 	$.i18n.defaults = {
@@ -257,6 +262,6 @@
 	/**
 	 * Convenient alias
 	 */
-	window._ = $.i18n;
+	window._ = window._ || $.i18n;
 
-}(jQuery, window, document));
+}(jQuery, window));

@@ -8,7 +8,7 @@
 			$.i18n({
 				locale : language
 			});
-			var person = $.i18n( $('.person option:selected').text());
+			var person = $.i18n($('.person option:selected').text());
 			var sex = $('.person option:selected').val();
 			var kittens = $('.kittens').val();
 			$('.result').text($.i18n(message, person, kittens, sex));
@@ -16,4 +16,4 @@
 		updateText();
 		$('.kittens, .person, .language').on('change', updateText);
 	});
-} )(jQuery);
+}(jQuery));
