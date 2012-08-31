@@ -121,6 +121,8 @@
 
 	var MessageParser = function(options) {
 		this.options = $.extend({}, $.i18n.parser.defaults, options);
+		this.language = $.i18n.languages[$.i18n().locale];
+		this.emitter = $.i18n.parser.emitter;
 	};
 
 	$.i18n.parser.prototype = $.extend({}, $.i18n.parser.prototype, {
@@ -142,7 +144,8 @@
 			if (message.indexOf('{{') < 0) {
 				return this.simpleParse(message, replacements);
 			}
-			return this.emitter().emit(this.ast(message), replacements);
+			this.emitter.language =  $.i18n.languages[$.i18n().locale]|| $.i18n.languages['default']; //this.language;
+			return this.emitter.emit(this.ast(message), replacements);
 		},
 
 		ast : function(message) {

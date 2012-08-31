@@ -187,8 +187,7 @@
 		var options = typeof key === 'object' && key;
 
 		if (options && options.locale && i18n && i18n.locale !== options.locale) {
-			i18n.destroy();
-			i18n = null;
+			String.locale = i18n.locale = options.locale;
 		}
 
 		if (!i18n) {

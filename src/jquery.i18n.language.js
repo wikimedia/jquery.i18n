@@ -92,6 +92,48 @@
 				return forms[1];
 			}
 			return (forms.length === 3 ) ? forms[2] : forms[0];
+		},
+
+		/**
+		 * Grammatical transformations, needed for inflected languages.
+		 * Invoked by putting {{grammar:form|word}} in a message.
+		 * forms can be computed dynamically by overriding this method per language
+		 *
+		 * @param word {String}
+		 * @param form {String}
+		 * @return {String}
+		 */
+		convertGrammar: function ( word, form ) {
+			return word+form;
+		},
+
+		/**
+		 * Get the digit transform table for the given language
+		 * See http://cldr.unicode.org/translation/numbering-systems
+		 * @param language
+		 * @returns Array of digits in the passed language representation
+		 */
+		digitTransformTable: function(language){
+			var tables = {
+				ar: "۰۱۲۳۴۵۶۷۸۹",
+				ml: "൦൧൨൩൪൫൬൭൮൯",
+				kn: "೦೧೨೩೪೫೬೭೮೯",
+				lao: "໐໑໒໓໔໕໖໗໘໙", //XXX correct lang code?
+				or: "୦୧୨୩୪୫୬୭୮୯",
+				kh: "០១២៣៤៥៦៧៨៩",
+				pa:  "੦੧੨੩੪੫੬੭੮੯",
+				gu: "૦૧૨૩૪૫૬૭૮૯",
+				hi: "०१२३४५६७८९",
+				my: "၀၁၂၃၄၅၆၇၈၉",
+				ta: "௦௧௨௩௪௫௬௭௮௯",
+				te: "౦౧౨౩౪౫౬౭౮౯",
+				thai: "๐๑๒๓๔๕๖๗๘๙",  //FIXME use iso 639 codes
+				tibt: "༠༡༢༣༤༥༦༧༨༩" //FIXME use iso 639 codes
+			};
+			if (!tables[language]) {
+				return null;
+			}
+			return tables[language].split("");
 		}
 	};
 	$.extend($.i18n.language, {
