@@ -2,7 +2,7 @@
 (function($) {
 	"use strict";
 
-	module('jquery.i18n en', {
+	module('jquery.i18n - Basic tests for English', {
 		setup : function() {
 			$.i18n({
 				locale : 'en'
@@ -37,7 +37,7 @@
 						"No parameter supplied, $1 appears as is");
 			});
 
-	module('jquery.i18n Malayalam', {
+	module('jquery.i18n - Basic tests for Malayalam', {
 		setup : function() {
 			$.i18n({
 				locale : 'ml'
@@ -70,7 +70,7 @@
 								"Plural and gender test - male, plural");
 			});
 
-	module('jquery.i18n Multiple locales', {
+	module('jquery.i18n - Locale switching', {
 		setup : function() {
 			$.i18n();
 		},
@@ -130,6 +130,15 @@
 				"Locale localeq is not in queue");
 	});
 
+	module('jquery.i18n - Plural rule tests', {
+		setup : function() {
+			$.i18n();
+		},
+		teardown : function() {
+			$.i18n().destroy();
+		}
+	});
+
 	test("Message parse plural tests for Arabic", function(assert) {
 		var i18n = $.i18n();
 		// Switch to locale localey
@@ -171,6 +180,16 @@
 				'۰۱۲۳۴۵۶۷۸۹'), "many", "Arabic plural test for ۰۱۲۳۴۵۶۷۸۹");
 	});
 
+	module('jquery.i18n - Digit transform tests', {
+		setup : function() {
+			$.i18n();
+		},
+		teardown : function() {
+			$.i18n().destroy();
+		}
+	});
+
+
 	test("Digit transform table tests", function(assert) {
 		var i18n = $.i18n();
 		// Switch to locale localey
@@ -183,6 +202,15 @@
 				"۰۱۲۳۴۵۶۷۸۹", "Arabic transform of 0123456789");
 		assert.strictEqual($.i18n.parser.language.convertNumber('۰۱۲۳۴۵۶۷۸۹',
 				true), 123456789, "Arabic transform of 0123456789");
+	});
+
+	module('jquery.i18n - Grammar tests', {
+		setup : function() {
+			$.i18n();
+		},
+		teardown : function() {
+			$.i18n().destroy();
+		}
 	});
 
 	function grammarTest(langCode, test) {
