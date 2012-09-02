@@ -202,19 +202,19 @@
 		$.i18n().destroy();
 
 		QUnit.test( 'Grammar test for language ' + langCode,
-				function ( assert ) {
-					QUnit.expect( test.length + 1 );
-					var i18n = $.i18n( {
-						locale: langCode
-					} );
-					assert.strictEqual( i18n.locale, langCode, "Locale is " + langCode );
-					for ( var i = 0; i < test.length; i++) {
-						var grammarMessage = "{{GRAMMAR:" + test[i].grammarForm + "|"
-								+ test[i].word + "}}";
-						assert.equal( i18n.parse( grammarMessage ), test[i].expected,
-								test[i].description );
-					}
+			function ( assert ) {
+				QUnit.expect( test.length + 1 );
+				var i18n = $.i18n( {
+					locale: langCode
 				} );
+				assert.strictEqual( i18n.locale, langCode, "Locale is " + langCode );
+				for ( var i = 0; i < test.length; i++) {
+					var grammarMessage = "{{GRAMMAR:" + test[i].grammarForm + "|"
+							+ test[i].word + "}}";
+					assert.equal( i18n.parse( grammarMessage ), test[i].expected,
+							test[i].description );
+				}
+			} );
 		$.i18n().destroy();
 	}
 
@@ -250,7 +250,7 @@
 			word: 'Wikipedia',
 			grammarForm: 'תחילית',
 			expected: '־Wikipedia',
-			description: 'GAdd a hyphen (maqaf) before non-Hebrew letters'
+			description: 'Add a hyphen (maqaf) before non-Hebrew letters'
 		}, {
 			word: '1995',
 			grammarForm: 'תחילית',
