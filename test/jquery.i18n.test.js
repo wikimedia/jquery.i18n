@@ -231,45 +231,6 @@
 			description: 'Grammar test for lokativ case'
 		} ],
 
-		he: [ {
-			word: "ויקיפדיה",
-			grammarForm: 'prefixed',
-			expected: "וויקיפדיה",
-			description: 'Duplicate the "Waw" if prefixed'
-		}, {
-			word: "וולפגנג",
-			grammarForm: 'prefixed',
-			expected: "וולפגנג",
-			description: 'Duplicate the "Waw" if prefixed, but not if it is already duplicated.'
-		}, {
-			word: "הקובץ",
-			grammarForm: 'prefixed',
-			expected: "קובץ",
-			description: 'Remove the "He" if prefixed'
-		}, {
-			word: 'Wikipedia',
-			grammarForm: 'תחילית',
-			expected: '־Wikipedia',
-			description: 'Add a hyphen (maqaf) before non-Hebrew letters'
-		}, {
-			word: '1995',
-			grammarForm: 'תחילית',
-			expected: '־1995',
-			description: 'Add a hyphen (maqaf) before numbers'
-		} ],
-
-		hsb: [ {
-			word: 'word',
-			grammarForm: 'instrumental',
-			expected: 'z word',
-			description: 'Grammar test for instrumental case'
-		}, {
-			word: 'word',
-			grammarForm: 'lokatiw',
-			expected: 'wo word',
-			description: 'Grammar test for lokatiw case'
-		} ],
-
 		dsb: [ {
 			word: 'word',
 			grammarForm: 'instrumental',
@@ -280,28 +241,6 @@
 			grammarForm: 'lokatiw',
 			expected: 'wo word',
 			description: 'Grammar test for lokatiw case'
-		} ],
-
-		hy: [ {
-			word: 'Մաունա',
-			grammarForm: 'genitive',
-			expected: 'Մաունայի',
-			description: 'Grammar test for genitive case'
-		}, {
-			word: 'հետո',
-			grammarForm: 'genitive',
-			expected: 'հետոյի',
-			description: 'Grammar test for genitive case'
-		}, {
-			word: 'գիրք',
-			grammarForm: 'genitive',
-			expected: 'գրքի',
-			description: 'Grammar test for genitive case'
-		}, {
-			word: 'ժամանակի',
-			grammarForm: 'genitive',
-			expected: 'ժամանակիի',
-			description: 'Grammar test for genitive case'
 		} ],
 
 		fi: [ {
@@ -341,6 +280,150 @@
 			description: 'Grammar test for inessive case'
 		} ],
 
+		ga: [ {
+			word: 'an Domhnach',
+			grammarForm: 'ainmlae',
+			expected: 'Dé Domhnaigh',
+			description: 'Grammar test for ainmlae case'
+		}, {
+			word: 'an Luan',
+			grammarForm: 'ainmlae',
+			expected: 'Dé Luain',
+			description: 'Grammar test for ainmlae case'
+		}, {
+			word: 'an Satharn',
+			grammarForm: 'ainmlae',
+			expected: 'Dé Sathairn',
+			description: 'Grammar test for ainmlae case'
+		} ],
+
+		he: [ {
+			word: "ויקיפדיה",
+			grammarForm: 'prefixed',
+			expected: "וויקיפדיה",
+			description: 'Duplicate the "Waw" if prefixed'
+		}, {
+			word: "וולפגנג",
+			grammarForm: 'prefixed',
+			expected: "וולפגנג",
+			description: 'Duplicate the "Waw" if prefixed, but not if it is already duplicated.'
+		}, {
+			word: "הקובץ",
+			grammarForm: 'prefixed',
+			expected: "קובץ",
+			description: 'Remove the "He" if prefixed'
+		}, {
+			word: 'Wikipedia',
+			grammarForm: 'תחילית',
+			expected: '־Wikipedia',
+			description: 'Add a hyphen (maqaf) before non-Hebrew letters'
+		}, {
+			word: '1995',
+			grammarForm: 'תחילית',
+			expected: '־1995',
+			description: 'Add a hyphen (maqaf) before numbers'
+		} ],
+
+		hsb: [ {
+			word: 'word',
+			grammarForm: 'instrumental',
+			expected: 'z word',
+			description: 'Grammar test for instrumental case'
+		}, {
+			word: 'word',
+			grammarForm: 'lokatiw',
+			expected: 'wo word',
+			description: 'Grammar test for lokatiw case'
+		} ],
+
+		hu: [ {
+			word: 'Wikipédiá',
+			grammarForm: 'rol',
+			expected: 'Wikipédiáról',
+			description: 'Grammar test for rol case'
+		}, {
+			word: 'Wikipédiá',
+			grammarForm: 'ba',
+			expected: 'Wikipédiába',
+			description: 'Grammar test for ba case'
+		}, {
+			word: 'Wikipédiá',
+			grammarForm: 'k',
+			expected: 'Wikipédiák',
+			description: 'Grammar test for k case'
+		} ],
+
+		hy: [ {
+			word: 'Մաունա',
+			grammarForm: 'genitive',
+			expected: 'Մաունայի',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'հետո',
+			grammarForm: 'genitive',
+			expected: 'հետոյի',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'գիրք',
+			grammarForm: 'genitive',
+			expected: 'գրքի',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'ժամանակի',
+			grammarForm: 'genitive',
+			expected: 'ժամանակիի',
+			description: 'Grammar test for genitive case'
+		} ],
+
+		la: [ {
+			word: 'Translatio',
+			grammarForm: 'genitive',
+			expected: 'Translationis',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'Translatio',
+			grammarForm: 'accusative',
+			expected: 'Translationem',
+			description: 'Grammar test for accusative case'
+		}, {
+			word: 'Translatio',
+			grammarForm: 'ablative',
+			expected: 'Translatione',
+			description: 'Grammar test for ablative case'
+		} ],
+
+		os: [ {
+			word: 'бæстæ',
+			grammarForm: 'genitive',
+			expected: 'бæсты',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'бæстæ',
+			grammarForm: 'allative',
+			expected: 'бæстæм',
+			description: 'Grammar test for allative case'
+		}, {
+			word: 'Тигр',
+			grammarForm: 'dative',
+			expected: 'Тигрæн',
+			description: 'Grammar test for dative case'
+		}, {
+			word: 'цъити',
+			grammarForm: 'dative',
+			expected: 'цъитийæн',
+			description: 'Grammar test for dative case'
+		}, {
+			word: 'лæппу',
+			grammarForm: 'genitive',
+			expected: 'лæппуйы',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: '2011',
+			grammarForm: 'equative',
+			expected: '2011-ау',
+			description: 'Grammar test for equative case'
+		} ],
+
 		ru: [ {
 			word: 'тесть',
 			grammarForm: 'genitive',
@@ -373,38 +456,16 @@
 			description: 'Grammar test for genitive case'
 		} ],
 
-		hu: [ {
-			word: 'Wikipédiá',
-			grammarForm: 'rol',
-			expected: 'Wikipédiáról',
-			description: 'Grammar test for rol case'
+		sl: [ {
+			word: 'word',
+			grammarForm: 'orodnik',
+			expected: 'z word',
+			description: 'Grammar test for orodnik case'
 		}, {
-			word: 'Wikipédiá',
-			grammarForm: 'ba',
-			expected: 'Wikipédiába',
-			description: 'Grammar test for ba case'
-		}, {
-			word: 'Wikipédiá',
-			grammarForm: 'k',
-			expected: 'Wikipédiák',
-			description: 'Grammar test for k case'
-		} ],
-
-		ga: [ {
-			word: 'an Domhnach',
-			grammarForm: 'ainmlae',
-			expected: 'Dé Domhnaigh',
-			description: 'Grammar test for ainmlae case'
-		}, {
-			word: 'an Luan',
-			grammarForm: 'ainmlae',
-			expected: 'Dé Luain',
-			description: 'Grammar test for ainmlae case'
-		}, {
-			word: 'an Satharn',
-			grammarForm: 'ainmlae',
-			expected: 'Dé Sathairn',
-			description: 'Grammar test for ainmlae case'
+			word: 'word',
+			grammarForm: 'mestnik',
+			expected: 'o word',
+			description: 'Grammar test for mestnik case'
 		} ],
 
 		uk: [ {
@@ -442,67 +503,6 @@
 			grammarForm: 'accusative',
 			expected: 'Вікіпедію',
 			description: 'Grammar test for accusative case'
-		} ],
-
-		sl: [ {
-			word: 'word',
-			grammarForm: 'orodnik',
-			expected: 'z word',
-			description: 'Grammar test for orodnik case'
-		}, {
-			word: 'word',
-			grammarForm: 'mestnik',
-			expected: 'o word',
-			description: 'Grammar test for mestnik case'
-		} ],
-
-		os: [ {
-			word: 'бæстæ',
-			grammarForm: 'genitive',
-			expected: 'бæсты',
-			description: 'Grammar test for genitive case'
-		}, {
-			word: 'бæстæ',
-			grammarForm: 'allative',
-			expected: 'бæстæм',
-			description: 'Grammar test for allative case'
-		}, {
-			word: 'Тигр',
-			grammarForm: 'dative',
-			expected: 'Тигрæн',
-			description: 'Grammar test for dative case'
-		}, {
-			word: 'цъити',
-			grammarForm: 'dative',
-			expected: 'цъитийæн',
-			description: 'Grammar test for dative case'
-		}, {
-			word: 'лæппу',
-			grammarForm: 'genitive',
-			expected: 'лæппуйы',
-			description: 'Grammar test for genitive case'
-		}, {
-			word: '2011',
-			grammarForm: 'equative',
-			expected: '2011-ау',
-			description: 'Grammar test for equative case'
-		} ],
-
-		la: [ {
-			word: 'Translatio',
-			grammarForm: 'genitive',
-			expected: 'Translationis',
-			description: 'Grammar test for genitive case'
-		}, {
-			word: 'Translatio',
-			grammarForm: 'accusative',
-			expected: 'Translationem',
-			description: 'Grammar test for accusative case'
-		}, {
-			word: 'Translatio',
-			grammarForm: 'ablative',
-			expected: 'Translatione',
-			description: 'Grammar test for ablative case'
 		} ]
 	};
 
