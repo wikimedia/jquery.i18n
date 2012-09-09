@@ -60,7 +60,8 @@ module.exports = function(grunt) {
 						eqnull : true,
 						browser : true,
 						smarttabs : true,
-						laxbreak : true
+						laxbreak : true,
+						white:true
 					},
 					globals : {
 						jQuery : true,
