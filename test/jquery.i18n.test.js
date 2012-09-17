@@ -176,7 +176,7 @@
 		assert.strictEqual( $.i18n().locale, "hi", "Locale is Hindi" );
 		assert.strictEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", 1 ), "one",
 				"Hindi plural test for one" );
-		assert.strictEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", १), "one",
+		assert.strictEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", '१'), "one",
 				"Hindi plural test for one" );
 		
 		i18n.locale = 'lv';
