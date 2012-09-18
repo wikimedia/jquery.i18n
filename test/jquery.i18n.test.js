@@ -107,14 +107,14 @@
 		i18n.load( {
 			'localeq': 'i18n/test-q.json'
 		} );
-		assert.strictEqual( $.i18n().sources['localeq'][0], 'i18n/test-q.json',
+		assert.strictEqual( i18n.messageStore.sources['localeq'][0], 'i18n/test-q.json',
 				"Locale localeq is queued" );
 		// Switch to locale localeq
 		i18n.locale = 'localeq';
-		assert.strictEqual( $.i18n().sources['localeq'][0], 'i18n/test-q.json',
+		assert.strictEqual( i18n.messageStore.sources['localeq'][0], 'i18n/test-q.json',
 				"Locale localeq is still in queue" );
 		assert.strictEqual( _( 'q' ), "Q", "Message loaded for localeq" );
-		assert.strictEqual( $.i18n().sources['localeq'], undefined,
+		assert.strictEqual( i18n.messageStore.sources['localeq'], undefined,
 				"Locale localeq is not in queue" );
 	} );
 
