@@ -141,16 +141,15 @@
 		},
 
 		jsonMessageLoader: function ( url ) {
+			var that = this;
 			return $.ajax( {
 				url: url,
 				dataType: "json",
 				async: false
 			// that is unfortunate
-			} ).fail(
-					function ( jqxhr, settings, exception ) {
-						throw new Error( "Error in loading messages from " + url + " Exception: "
-								+ exception );
-					} );
+			} ).fail( function ( jqxhr, settings, exception ) {
+				that.log( "Error in loading messages from " + url + " Exception: " + exception );
+			} );
 		},
 
 		/**
