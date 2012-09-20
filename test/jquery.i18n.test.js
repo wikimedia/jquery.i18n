@@ -2,6 +2,32 @@
 ( function ( $ ) {
 	"use strict";
 
+	module( 'jquery.i18n - $.fn.i18n Tests', {
+		setup: function () {
+			$.i18n( {
+				locale: 'localex'
+			} );
+		},
+		teardown: function () {
+			$.i18n().destroy();
+		}
+	} );
+
+
+	test( "Message parse tests", function ( assert ) {
+		var i18n = $.i18n();
+		var $fixture = $( '#qunit-fixture' );
+		// Load messages for localex
+		i18n.load( {
+			'x': 'X'
+		}, 'localex' );
+		$fixture.data( 'i18n', 'x' );
+		assert.strictEqual( $fixture.i18n().text(), "X", "Content of fixture localized" );
+		$fixture.text( "Original text" );
+		$fixture.data( 'i18n', 'y' );
+		assert.strictEqual( $fixture.i18n().text(), "Original text", "Content of fixture untouched" );
+	} );
+
 	module( 'jquery.i18n - Basic tests for English', {
 		setup: function () {
 			$.i18n( {

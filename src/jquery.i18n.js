@@ -123,7 +123,11 @@
 			$( '[data-i18n]' ).each( function ( e ) {
 				var $this = $( this );
 				if ( $this.data( 'i18n' ) ) {
-					$this.text( $.i18n( $this.data( 'i18n' ) ) );
+					var messageKey = $this.data( 'i18n' );
+					var message = $.i18n( messageKey );
+					if ( message !== messageKey ) {
+						$this.text( message );
+					}
 				}
 			} );
 		}
@@ -143,6 +147,20 @@
 		} else {
 			return i18n;
 		}
+	};
+
+
+	$.fn.i18n = function ( option ) {
+		return this.each( function () {
+			var $this = $( this );
+			if ( $this.data( 'i18n' ) ) {
+				var messageKey = $this.data( 'i18n' );
+				var message = $.i18n( messageKey );
+				if ( message !== messageKey ) {
+					$this.text( message );
+				}
+			}
+		} );
 	};
 
 	// The default parser only handles variable substitution
