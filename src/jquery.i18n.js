@@ -87,7 +87,7 @@
 
 		log: function (/* arguments */) {
 			var hasConsole = window.console !== undefined;
-			if ( hasConsole ) {
+			if ( hasConsole && $.i18n.debug ) {
 				window.console.log.apply( window.console, arguments );
 			}
 		},
@@ -187,6 +187,7 @@
 	$.i18n.messageStore = $.i18n.messageStore || {};
 	$.i18n.parser = defaultParser;
 	$.i18n.parser.emitter = {};
+	$.i18n.debug = false;
 	$.i18n.defaults = {
 		locale: String.locale,
 		fallbackLocale: "en",
