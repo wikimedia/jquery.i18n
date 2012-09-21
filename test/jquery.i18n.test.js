@@ -220,6 +220,28 @@
 				"Arabic plural test for other" );
 		assert.strictEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", '۰۱۲۳۴۵۶۷۸۹' ), "many",
 				"Arabic plural test for ۰۱۲۳۴۵۶۷۸۹" );
+		
+		// Switch to locale localey
+		i18n.locale = 'ta';
+		assert.strictEqual( $.i18n().locale, "ta", "Locale is Tamil" );
+		assert.strictEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", 1 ), "one",
+				"Tamil plural test for one" );
+		
+		// Switch to locale localey
+		i18n.locale = 'hi';
+		assert.strictEqual( $.i18n().locale, "hi", "Locale is Hindi" );
+		assert.strictEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", 1 ), "one",
+				"Hindi plural test for one" );
+		assert.strictEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", '१'), "one",
+				"Hindi plural test for one" );
+		
+		i18n.locale = 'lv';
+		assert.strictEqual( $.i18n().locale, "lv", "Locale is Latvian" );
+		assert.strictEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", 91 ), "one",
+				"Latvian plural test for one" );
+		assert.notEqual( _( "{{plural:$1|zero|one|two|few|many|other}}", 211), "one",
+				"Latvian plural negative test for one" );
+
 	} );
 
 	module( 'jquery.i18n - Digit transform tests', {
