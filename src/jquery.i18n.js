@@ -45,11 +45,18 @@
 					var localePartIndex = localeParts.length;
 					do {
 						var _locale = localeParts.slice( 0, localePartIndex ).join( "-" );
+						if ( !that.messageStore.messages[_locale] ) {
+							// FIXME If messageloading gives 404, it keep on trying to
+							// load the file again and again
+							that.messageStore.load(
+									that.options.messageLocationResolver( _locale ), _locale );
+						}
 						var message = that.messageStore.get( _locale, value );
 						if ( message ) {
 							return message;
 						}
-					} while (localePartIndex--);
+						localePartIndex--;
+					} while (localePartIndex);
 					if ( locale === "en" ) {
 						break;
 					}
@@ -192,7 +199,10 @@
 		locale: String.locale,
 		fallbackLocale: "en",
 		parser: $.i18n.parser,
-		messageStore: $.i18n.messageStore
+		messageStore: $.i18n.messageStore,
+		messageLocationResolver: function( locale ) {
+			return 'i18n/' + locale + ".json";
+		}
 	};
 
 	$.i18n.Constructor = I18N;
