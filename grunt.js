@@ -14,8 +14,9 @@ module.exports = function(grunt) {
 				},
 				concat : {
 					dist : {
-						src : [ '<banner:meta.banner>', 'src/jquery.i18n.js',
+						src : [ 'src/jquery.i18n.js',
 								'src/jquery.i18n.messages.js',
+								'src/jquery.i18n.fallbacks.js',
 								'src/jquery.i18n.parser.js',
 								'src/jquery.i18n.emitter.js',
 								'src/jquery.i18n.language.js',

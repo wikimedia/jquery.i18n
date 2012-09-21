@@ -11,6 +11,7 @@
 <!-- Source of our libs -->
 <script src="../src/jquery.i18n.js"></script>
 <script src="../src/jquery.i18n.messages.js"></script>
+<script src="../src/jquery.i18n.fallbacks.js"></script>
 <script src="../src/jquery.i18n.parser.js"></script>
 <script src="../src/jquery.i18n.emitter.js"></script>
 <script src="../src/jquery.i18n.language.js"></script>
@@ -37,6 +38,9 @@
 <!-- Localization files are loaded using <link> elements -->
 <link rel="localization" hreflang="en" href="i18n/test-en.json" type="application/l10n+json" />
 <link rel="localization" hreflang="ml" href="i18n/test-ml.json" type="application/l10n+json" />
+<script>
+	$.i18n.debug = true;
+</script>
 </head>
 <body>
 	<div id="qunit"></div>

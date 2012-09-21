@@ -35,19 +35,29 @@
 			this.messageStore.init( this.locale );
 			// Override String.localeString method
 			String.prototype.toLocaleString = function () {
-				var parts = that.locale.toLowerCase().split( "-" );
-				var i = parts.length;
 				var value = this.valueOf();
-				// Iterate through locales starting at most-specific until
-				// localization is found. As in fi-Latn-FI, fi-Latn and fi.
-				do {
-					var locale = parts.slice( 0, i ).join( "-" );
-					var message = that.messageStore.get( locale, value );
-					if ( message ) {
-						return message;
+				var locale = that.locale;
+				var fallbackIndex = 0;
+				while ( locale ) {
+					// Iterate through locales starting at most-specific until
+					// localization is found. As in fi-Latn-FI, fi-Latn and fi.
+					var localeParts = locale.toLowerCase().split( "-" );
+					var localePartIndex = localeParts.length;
+					do {
+						var _locale = localeParts.slice( 0, localePartIndex ).join( "-" );
+						var message = that.messageStore.get( _locale, value );
+						if ( message ) {
+							return message;
+						}
+					} while (localePartIndex--);
+					if ( locale === "en" ) {
+						break;
 					}
-				} while (i--);
-
+					locale = ( $.i18n.fallbacks[that.locale] && $.i18n.fallbacks[that.locale][fallbackIndex] )
+							|| that.options.fallbackLocale;
+					that.log( "Trying fallback locale for " + that.locale + ": " + locale );
+					fallbackIndex++;
+				}
 				return value; // fallback the original string value
 			};
 			String.locale = this.locale;
@@ -77,7 +87,7 @@
 
 		log: function (/* arguments */) {
 			var hasConsole = window.console !== undefined;
-			if ( hasConsole ) {
+			if ( hasConsole && $.i18n.debug ) {
 				window.console.log.apply( window.console, arguments );
 			}
 		},
@@ -177,6 +187,7 @@
 	$.i18n.messageStore = $.i18n.messageStore || {};
 	$.i18n.parser = defaultParser;
 	$.i18n.parser.emitter = {};
+	$.i18n.debug = false;
 	$.i18n.defaults = {
 		locale: String.locale,
 		fallbackLocale: "en",

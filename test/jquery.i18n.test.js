@@ -144,6 +144,36 @@
 				"Locale localeq is not in queue" );
 	} );
 
+	module( 'jquery.i18n - Fallback test', {
+		setup: function () {
+			$.i18n();
+		},
+		teardown: function () {
+			$.i18n().destroy();
+		}
+	} );
+
+	test( "Locale Fallback test", function ( assert ) {
+		var i18n = $.i18n();
+		i18n.locale = 'sa';
+		i18n.load( {
+			"hindi": "हिन्दी"
+		}, "hi" );
+		assert.strictEqual( $.i18n().locale, "sa", "Locale is Sanscrit" );
+		assert.strictEqual( $.i18n( 'hindi' ), "हिन्दी", "Message got from fallback locale - Hindi" );
+		i18n.locale = 'tt-cyrl';
+		i18n.load( {
+			"tt": "russian-tt"
+		}, "ru" );
+		assert.strictEqual( $.i18n().locale, "tt-cyrl", "Locale is tt-cyrl" );
+		assert.strictEqual( $.i18n( 'tt' ), "russian-tt",
+				"Message is from fallback locale - Russian" );
+		i18n.locale = 'tt';
+		assert.strictEqual( $.i18n().locale, "tt", "Locale is tt" );
+		assert.strictEqual( $.i18n( 'tt' ), "russian-tt",
+				"Message is from fallback locale - Russian" );
+	} );
+
 	module( 'jquery.i18n - Plural rule tests', {
 		setup: function () {
 			$.i18n();
