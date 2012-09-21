@@ -121,7 +121,7 @@
 
 		log: function (/* arguments */) {
 			var hasConsole = window.console !== undefined;
-			if ( hasConsole ) {
+			if ( hasConsole && $.i18n.debug ) {
 				window.console.log.apply( window.console, arguments );
 			}
 		},
