@@ -45,7 +45,7 @@
 					var localePartIndex = localeParts.length;
 					do {
 						var _locale = localeParts.slice( 0, localePartIndex ).join( "-" );
-						if ( !that.messageStore.messages[_locale] ) {
+						if ( !that.messageStore.messages[_locale]  && that.options.messageLocationResolver ) {
 							// FIXME If messageloading gives 404, it keep on trying to
 							// load the file again and again
 							that.messageStore.load(
@@ -202,9 +202,10 @@
 		fallbackLocale: "en",
 		parser: $.i18n.parser,
 		messageStore: $.i18n.messageStore,
-		messageLocationResolver: function( locale ) {
-			return 'i18n/' + locale + ".json";
-		}
+		/* messageLocationResolver - should be a function taking language code as argument and
+		 * returning absolute/ relative path to the localization file
+		 */
+		messageLocationResolver: null
 	};
 
 	$.i18n.Constructor = I18N;
