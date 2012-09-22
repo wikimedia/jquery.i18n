@@ -176,6 +176,8 @@
 				if ( message !== messageKey ) {
 					$this.text( message );
 				}
+			} else {
+				$this.find( '[data-i18n]' ).i18n();
 			}
 		} );
 	};
