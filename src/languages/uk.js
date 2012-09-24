@@ -3,13 +3,16 @@
  */
 
 ( function ( $ ) {
-	"use strict";
-	var uk = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.uk = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'genitive': // родовий відмінок
-				if ( ( word.substr( word.length - 4 ) === 'вікі' )
-						|| ( word.substr( word.length - 4 ) === 'Вікі' ) ) {
+				if ( ( word.substr( word.length - 4 ) === 'вікі' ) ||
+					( word.substr( word.length - 4 ) === 'Вікі' )
+				) {
+					// ...
 				} else if ( word.substr( word.length - 1 ) === 'ь' ) {
 					word = word.substr( 0, word.length - 1 ) + 'я';
 				} else if ( word.substr( word.length - 2 ) === 'ія' ) {
@@ -25,8 +28,10 @@
 				}
 				break;
 			case 'accusative': // знахідний відмінок
-				if ( ( word.substr( word.length - 4 ) === 'вікі' )
-						|| ( word.substr( word.length - 4 ) === 'Вікі' ) ) {
+				if ( ( word.substr( word.length - 4 ) === 'вікі' ) ||
+					( word.substr( word.length - 4 ) === 'Вікі' )
+				) {
+					//	...
 				} else if ( word.substr( word.length - 2 ) === 'ія' ) {
 					word = word.substr( 0, word.length - 2 ) + 'ію';
 				}
@@ -35,7 +40,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'uk': uk
-	} );
+
 }( jQuery ) );

@@ -1,10 +1,10 @@
 /**
  * Irish (Gaeilge) language functions
  */
-
 ( function ( $ ) {
-	"use strict";
-	var ga = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.ga = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			if ( form === 'ainmlae' ) {
 				switch (word) {
@@ -34,7 +34,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'ga': ga
-	} );
+
 }( jQuery ) );

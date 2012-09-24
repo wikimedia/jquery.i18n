@@ -5,8 +5,9 @@
  */
 
 ( function ( $ ) {
-	"use strict";
-	var la = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.la = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'genitive':
@@ -49,7 +50,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'la': la
-	} );
+
 }( jQuery ) );

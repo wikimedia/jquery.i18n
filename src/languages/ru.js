@@ -3,12 +3,15 @@
  */
 
 ( function ( $ ) {
-	"use strict";
-	var ru = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.ru = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			if ( form === 'genitive' ) { // родительный падеж
-				if ( ( word.substr( word.length - 4 ) === 'вики' )
-						|| ( word.substr( word.length - 4 ) === 'Вики' ) ) {
+				if ( ( word.substr( word.length - 4 ) === 'вики' ) ||
+					( word.substr( word.length - 4 ) === 'Вики' )
+				) {
+					// ...
 				} else if ( word.substr( word.length - 1 ) === 'ь' ) {
 					word = word.substr( 0, word.length - 1 ) + 'я';
 				} else if ( word.substr( word.length - 2 ) === 'ия' ) {
@@ -26,7 +29,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'ru': ru
-	} );
+
 }( jQuery ) );

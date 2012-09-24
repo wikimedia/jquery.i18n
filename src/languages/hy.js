@@ -3,8 +3,9 @@
  */
 
 ( function ( $ ) {
-	"use strict";
-	var hy = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.hy = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			if ( form === 'genitive' ) {// սեռական հոլով
 				if ( word.substr( -1 ) === 'ա' ) {
@@ -20,7 +21,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'hy': hy
-	} );
+
 }( jQuery ) );
