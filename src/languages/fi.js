@@ -5,12 +5,13 @@
  */
 
 ( function ( $ ) {
-	"use strict";
-	var finnish = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.fi = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			// vowel harmony flag
-			var aou = word.match( /[aou][^äöy]*$/i );
-			var origWord = word;
+			var aou = word.match( /[aou][^äöy]*$/i ),
+				origWord = word;
 			if ( word.match( /wiki$/i ) ) {
 				aou = false;
 			}
@@ -43,7 +44,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'fi': finnish
-	} );
+
 }( jQuery ) );

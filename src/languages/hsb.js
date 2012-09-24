@@ -1,10 +1,10 @@
 /**
  * Upper Sorbian (Hornjoserbsce) language functions
  */
-
 ( function ( $ ) {
-	"use strict";
-	var hsb = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.hsb = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'instrumental': // instrumental
@@ -17,7 +17,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'hsb': hsb
-	} );
+
 }( jQuery ) );

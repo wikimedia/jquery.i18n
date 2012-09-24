@@ -1,20 +1,20 @@
 /**
  * jQuery Internationalization library
- * 
+ *
  * Copyright (C) 2012 Santhosh Thottingal
- * 
+ *
  * jquery.i18n is dual licensed GPLv2 or later and MIT. You don't have to do
  * anything special to choose one license or the other and you don't have to
  * notify anyone which license you are using. You are free to use
  * UniversalLanguageSelector in commercial projects as long as the copyright
  * header is left intact. See files GPL-LICENSE and MIT-LICENSE for details.
- * 
+ *
  * @licence GNU General Public Licence 2.0 or later
  * @licence MIT License
  */
 
 ( function ( $ ) {
-	"use strict";
+	'use strict';
 
 	var MessageParserEmitter = function () {
 		this.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
@@ -22,21 +22,20 @@
 
 	MessageParserEmitter.prototype = {
 		constructor: MessageParserEmitter,
+
 		/**
 		 * (We put this method definition here, and not in prototype, to make
 		 * sure it's not overwritten by any magic.) Walk entire node structure,
 		 * applying replacements and template functions when appropriate
-		 * 
-		 * @param {Mixed}
-		 *            abstract syntax tree (top node or subnode)
-		 * @param {Array}
-		 *            replacements for $1, $2, ... $n
+		 *
+		 * @param {Mixed} abstract syntax tree (top node or subnode)
+		 * @param {Array} replacements for $1, $2, ... $n
 		 * @return {Mixed} single-string node or array of nodes suitable for
-		 *         jQuery appending
+		 *  jQuery appending.
 		 */
 		emit: function ( node, replacements ) {
-			var ret = null;
-			var that = this;
+			var ret, subnodes, operation,
+				that = this;
 
 			switch (typeof node) {
 			case 'string':
@@ -45,10 +44,10 @@
 				break;
 			case 'object':
 				// node is an array of nodes
-				var subnodes = $.map( node.slice( 1 ), function ( n ) {
+				subnodes = $.map( node.slice( 1 ), function ( n ) {
 					return that.emit( n, replacements );
 				} );
-				var operation = node[0].toLowerCase();
+				operation = node[0].toLowerCase();
 				if ( typeof that[operation] === 'function' ) {
 					ret = that[operation]( subnodes, replacements );
 				} else {
@@ -67,6 +66,7 @@
 			default:
 				throw new Error( 'unexpected type in AST: ' + typeof node );
 			}
+
 			return ret;
 		},
 
@@ -75,13 +75,12 @@
 		 * here are single nodes Must return a single node to parents -- a
 		 * jQuery with synthetic span However, unwrap any other synthetic spans
 		 * in our children and pass them upwards
-		 * 
-		 * @param {Array}
-		 *            nodes - mixed, some single nodes, some arrays of nodes
+		 *
+		 * @param {Array} nodes Mixed, some single nodes, some arrays of nodes.
 		 * @return String
 		 */
 		concat: function ( nodes ) {
-			var result = "";
+			var result = '';
 			$.each( nodes, function ( i, node ) {
 				// strings, integers, anything else
 				result += node;
@@ -96,10 +95,9 @@
 		 * parameter is not found return the same string (e.g. "$99" ->
 		 * parameter 98 -> not found -> return "$99" ) TODO throw error if
 		 * nodes.length > 1 ?
-		 * 
-		 * @param {Array}
-		 *            of one element, integer, n >= 0
-		 * @return {String} replacement
+		 *
+		 * @param {Array} nodes One element, integer, n >= 0
+		 * @return {string} replacement
 		 */
 		replace: function ( nodes, replacements ) {
 			var index = parseInt( nodes[0], 10 );
@@ -118,44 +116,41 @@
 		 * be a non-integer (for instance, a string representing an Arabic
 		 * number). So convert it back with the current language's
 		 * convertNumber.
-		 * 
-		 * @param {Array}
-		 *            of nodes, [ {String|Number}, {String}, {String} ... ]
+		 *
+		 * @param {Array} nodes List [ {String|Number}, {String}, {String} ... ]
 		 * @return {String} selected pluralized form according to current
-		 *         language
+		 *  language.
 		 */
 		plural: function ( nodes ) {
-			var count = parseFloat( this.language.convertNumber( nodes[0], 10 ) );
-			var forms = nodes.slice( 1 );
+			var count = parseFloat( this.language.convertNumber( nodes[0], 10 ) ),
+				forms = nodes.slice( 1 );
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},
 
 		/**
 		 * Transform parsed structure into gender Usage
 		 * {{gender:gender|masculine|feminine|neutral}}.
-		 * 
-		 * @param {Array}
-		 *            of nodes, [ {String}, {String}, {String} , {String} ]
+		 *
+		 * @param {Array} nodes List [ {String}, {String}, {String} , {String} ]
 		 * @return {String} selected gender form according to current language
 		 */
 		gender: function ( nodes ) {
-			var gender = nodes[0];
-			var forms = nodes.slice( 1 );
+			var gender = nodes[0],
+				forms = nodes.slice( 1 );
 			return this.language.gender( gender, forms );
 		},
 
 		/**
 		 * Transform parsed structure into grammar conversion. Invoked by
 		 * putting {{grammar:form|word}} in a message
-		 * 
-		 * @param {Array}
-		 *            of nodes [{Grammar case eg: genitive}, {String word}]
+		 *
+		 * @param {Array} nodes List [{Grammar case eg: genitive}, {String word}]
 		 * @return {String} selected grammatical form according to current
-		 *         language
+		 *  language.
 		 */
 		grammar: function ( nodes ) {
-			var form = nodes[0];
-			var word = nodes[1];
+			var form = nodes[0],
+				word = nodes[1];
 			return word && form && this.language.convertGrammar( word, form );
 		}
 	};

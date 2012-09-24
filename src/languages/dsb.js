@@ -1,10 +1,10 @@
 /**
  * Lower Sorbian (Dolnoserbski) language functions
  */
-
 ( function ( $ ) {
-	"use strict";
-	var dsb = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.dsb = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'instrumental': // instrumental
@@ -17,7 +17,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'dsb': dsb
-	} );
+
 }( jQuery ) );

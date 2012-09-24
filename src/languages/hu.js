@@ -3,10 +3,10 @@
  *
  * @author Santhosh Thottingal
  */
-
 ( function ( $ ) {
-	"use strict";
-	var hu = $.extend( {}, $.i18n.languages['default'], {
+	'use strict';
+
+	$.i18n.languages.hu = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			switch (form) {
 			case 'rol':
@@ -22,7 +22,5 @@
 			return word;
 		}
 	} );
-	$.extend( $.i18n.languages, {
-		'hu': hu
-	} );
+
 }( jQuery ) );
