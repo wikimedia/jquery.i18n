@@ -1,0 +1,3 @@
+{
+	"$1 has $2 {{plural:$2|kitten|kittens}}. {{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}." : "Käyttäjällä $1 on $2 {{PLURAL:$2|kissanpentu|kissanpentua}}. {{GENDER:$3|Hän}} rakastaa leikkimistä {{PLURAL:$2|sen|niiden}} kanssa."
+}
