@@ -1,0 +1,7 @@
+{
+	"one": "אחד",
+	"two": "שני",
+	"Meera": "מירה",
+	"Harry": "הארי",
+	"$1 has $2 {{plural:$2|kitten|kittens}}. {{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}." : "ל{{GRAMMAR:תחילית|$1}} יש {{PLURAL:$2|חתול אחד|$2 חתולים}}. {{GENDER:$3|הוא אוהב|היא אוהבת}} לשחק {{PLURAL:$2|אתו|אתם}}."
+}
