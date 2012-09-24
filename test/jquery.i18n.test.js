@@ -255,8 +255,6 @@
 	} );
 
 	function grammarTest ( langCode, test ) {
-		$.i18n().destroy();
-
 		QUnit.test( 'Grammar test for language ' + langCode,
 			function ( assert ) {
 				QUnit.expect( test.length + 1 );
@@ -267,11 +265,10 @@
 				for ( var i = 0; i < test.length; i++) {
 					var grammarMessage = "{{GRAMMAR:" + test[i].grammarForm + "|"
 							+ test[i].word + "}}";
-					assert.equal( i18n.parse( grammarMessage ), test[i].expected,
-							test[i].description );
+					assert.equal( $.i18n( grammarMessage ), test[i].expected,
+							test[i].description + ". "+ grammarMessage + " gives " + test[i].expected );
 				}
 			} );
-		$.i18n().destroy();
 	}
 
 	var grammarTests = {

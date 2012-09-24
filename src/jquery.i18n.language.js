@@ -603,7 +603,7 @@
 		 * @return {String}
 		 */
 		convertGrammar: function ( word, form ) {
-			return word + form;
+			return word;
 		},
 
 		/**
