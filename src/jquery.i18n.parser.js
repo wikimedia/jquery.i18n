@@ -18,7 +18,7 @@
 
 	var MessageParser = function ( options ) {
 		this.options = $.extend( {}, $.i18n.parser.defaults, options );
-		this.language = $.i18n.languages[$.i18n().locale];
+		this.language = $.i18n.languages[String.locale];
 		this.emitter = $.i18n.parser.emitter;
 	};
 

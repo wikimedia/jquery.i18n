@@ -95,7 +95,8 @@
 
 	test( "Message load tests", function ( assert ) {
 		var i18n = $.i18n();
-		assert.strictEqual( $.i18n().locale, "en", "Locale is English - fallback locale" );
+		i18n.locale = "en";
+		assert.strictEqual( i18n.locale, "en", "Locale is English - fallback locale" );
 		i18n.locale = 'localex';
 		assert.strictEqual( $.i18n().locale, "localex", "Locale is localex" );
 		// Load messages for localez
