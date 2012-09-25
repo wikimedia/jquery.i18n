@@ -14,11 +14,11 @@
  */
 
 ( function ( $ ) {
-	"use strict";
+	'use strict';
 
 	var MessageParser = function ( options ) {
 		this.options = $.extend( {}, $.i18n.parser.defaults, options );
-		this.language = $.i18n.languages[String.locale];
+		this.language = $.i18n.languages[String.locale] || $.i18n.languages['default'];
 		this.emitter = $.i18n.parser.emitter;
 	};
 
@@ -37,8 +37,9 @@
 			if ( message.indexOf( '{{' ) < 0 ) {
 				return this.simpleParse( message, replacements );
 			}
-			this.emitter.language = $.i18n.languages[$.i18n().locale]
-					|| $.i18n.languages['default'];
+			this.emitter.language = $.i18n.languages[$.i18n().locale] ||
+				$.i18n.languages['default'];
+
 			return this.emitter.emit( this.ast( message ), replacements );
 		},
 
@@ -62,10 +63,11 @@
 			// All must succeed; otherwise, return null.
 			// This is the only eager one.
 			function sequence ( parserSyntax ) {
-				var originalPos = pos;
-				var result = [];
-				for ( var i = 0; i < parserSyntax.length; i++) {
-					var res = parserSyntax[i]();
+				var i, res,
+					originalPos = pos,
+					result = [];
+				for ( i = 0; i < parserSyntax.length; i++) {
+					res = parserSyntax[i]();
 					if ( res === null ) {
 						pos = originalPos;
 						return null;
@@ -121,7 +123,7 @@
 
 			var pipe = makeStringParser( '|' );
 			var colon = makeStringParser( ':' );
-			var backslash = makeStringParser( "\\" );
+			var backslash = makeStringParser( '\\' );
 			var anyCharacter = makeRegexParser( /^./ );
 			var dollar = makeStringParser( '$' );
 			var digits = makeRegexParser( /^\d+/ );
@@ -139,13 +141,6 @@
 					var result = p();
 					return result === null ? null : fn( result );
 				};
-			}
-
-			// Used to define "literals" without spaces, in space-delimited
-			// situations
-			function literalWithoutSpace () {
-				var result = nOrMore( 1, escapedOrLiteralWithoutSpace )();
-				return result === null ? null : result.join( '' );
 			}
 
 			// Used to define "literals" within template parameters. The pipe
@@ -166,7 +161,7 @@
 				return result === null ? null : result[1];
 			}
 
-			var escapedOrLiteralWithoutSpace = choice( [ escapedLiteral, regularLiteralWithoutSpace ] );
+			choice( [ escapedLiteral, regularLiteralWithoutSpace ] );
 			var escapedOrLiteralWithoutBar = choice( [ escapedLiteral, regularLiteralWithoutBar ] );
 			var escapedOrRegularLiteral = choice( [ escapedLiteral, regularLiteral ] );
 
@@ -194,7 +189,7 @@
 				var expr = result[1];
 				// use a "CONCAT" operator if there are multiple nodes,
 				// otherwise return the first node, raw.
-				return expr.length > 1 ? [ "CONCAT" ].concat( expr ) : expr[0];
+				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
 			}
 
 			function templateWithReplacement () {
@@ -247,7 +242,7 @@
 					return null;
 				}
 
-				return [ "CONCAT" ].concat( result );
+				return [ 'CONCAT' ].concat( result );
 			}
 
 			var result = start();
