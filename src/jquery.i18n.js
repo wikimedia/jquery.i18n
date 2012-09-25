@@ -248,7 +248,4 @@
 
 	// Expose constructor
 	$.I18N = I18N;
-	// Convenient alias (TODO: Deprecate this)
-	window._ = window._ || $.i18n;
-
 }( jQuery ) );
