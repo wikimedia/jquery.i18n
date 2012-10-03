@@ -665,7 +665,8 @@
 				ta: '௦௧௨௩௪௫௬௭௮௯',
 				te: '౦౧౨౩౪౫౬౭౮౯',
 				th: '๐๑๒๓๔๕๖๗๘๙', //FIXME use iso 639 codes
-				bo: '༠༡༢༣༤༥༦༧༨༩' //FIXME use iso 639 codes
+				bo: '༠༡༢༣༤༥༦༧༨༩', //FIXME use iso 639 codes
+				fa: '۰۱۲۳۴۵۶۷۸۹'
 			};
 			if ( !tables[language] ) {
 				return false;
