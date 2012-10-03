@@ -652,7 +652,7 @@
 		 */
 		digitTransformTable: function ( language ) {
 			var tables = {
-				ar: '۰۱۲۳۴۵۶۷۸۹',
+				fa: '۰۱۲۳۴۵۶۷۸۹',
 				ml: '൦൧൨൩൪൫൬൭൮൯',
 				kn: '೦೧೨೩೪೫೬೭೮೯',
 				lo: '໐໑໒໓໔໕໖໗໘໙',
@@ -665,7 +665,8 @@
 				ta: '௦௧௨௩௪௫௬௭௮௯',
 				te: '౦౧౨౩౪౫౬౭౮౯',
 				th: '๐๑๒๓๔๕๖๗๘๙', //FIXME use iso 639 codes
-				bo: '༠༡༢༣༤༥༦༧༨༩' //FIXME use iso 639 codes
+				bo: '༠༡༢༣༤༥༦༧༨༩', //FIXME use iso 639 codes
+				ar: '٠١٢٣٤٥٦٧٨٩'
 			};
 			if ( !tables[language] ) {
 				return false;
