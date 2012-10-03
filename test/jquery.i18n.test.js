@@ -230,8 +230,8 @@
 				'Arabic plural test for other' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1.7 ), 'other',
 				'Arabic plural test for other' );
-		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '۰۱۲۳۴۵۶۷۸۹' ), 'many',
-				'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
+		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٠١٢٣٤٥٦٧٨٩' ), 'many',
+				'Arabic plural test for ٠١٢٣٤٥٦٧٨٩' );
 	} );
 
 	QUnit.test( 'Digit transform table tests', 4, function ( assert ) {
@@ -243,9 +243,9 @@
 				'Arabic transform of 8' );
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8', true ), 8,
 				'Arabic transform of 8' );
-		assert.strictEqual( $.i18n.parser.language.convertNumber( '0123456789' ), '۰۱۲۳۴۵۶۷۸۹',
+		assert.strictEqual( $.i18n.parser.language.convertNumber( '0123456789' ), '٠١٢٣٤٥٦٧٨٩',
 				'Arabic transform of 0123456789' );
-		assert.strictEqual( $.i18n.parser.language.convertNumber( '۰۱۲۳۴۵۶۷۸۹', true ), 123456789,
+		assert.strictEqual( $.i18n.parser.language.convertNumber( '٠١٢٣٤٥٦٧٨٩', true ), 123456789,
 				'Arabic transform of 0123456789' );
 	} );
 
