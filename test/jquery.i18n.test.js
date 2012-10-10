@@ -1,4 +1,3 @@
-/* global pluralRuleParser */
 ( function ( $ ) {
 	'use strict';
 
@@ -70,7 +69,7 @@
 		);
 	} );
 
-	QUnit.test( 'Message parse tests (ml)', 6, function ( assert ) {
+	QUnit.test( 'Message parse tests (ml, fr)', 8, function ( assert ) {
 		$.i18n( {
 			locale: 'ml'
 		} );
@@ -88,6 +87,11 @@
 		assert.strictEqual( $.i18n( pluralAndGenderMessage, 'ഹാരി', 2, 'male' ),
 				'ഹാരിയ്ക്കു് 2 പൂച്ചക്കുട്ടികൾ ഉണ്ടു്. അവൻ അവറ്റകളുമായി കളിക്കാൻ ഇഷ്ടപ്പെടുന്നു.',
 				'Plural and gender test - male, plural' );
+		i18n.locale = 'fr';
+		assert.strictEqual( $.i18n( 'Restaurer $1 modification{{PLURAL:$1||s}}', 1 ),
+				'Restaurer 1 modification', 'Plural rule parsed correctly for French' );
+		assert.strictEqual( $.i18n( 'Restaurer $1 modification{{PLURAL:$1||s}}', 2 ),
+				'Restaurer 2 modifications', 'Plural rule parsed correctly for French' );
 	} );
 
 	QUnit.test( 'Message load tests', 13, function ( assert ) {
