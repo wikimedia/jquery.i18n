@@ -206,13 +206,13 @@
 		assert.strictEqual( i18n.locale, 'ar', 'Locale is Arabic' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1 ), 'one',
 				'Arabic plural test for one' );
-		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '۰' ), 'zero',
+		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٠' ), 'zero',
 				'Arabic plural test for arabic digit zero' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 2 ), 'two',
 				'Arabic plural test for two' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 3 ), 'few',
 				'Arabic plural test for few' );
-		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '۸' ), 'few',
+		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٨' ), 'few',
 				'Arabic plural test for few' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 9 ), 'few',
 				'Arabic plural test for few' );
@@ -234,7 +234,7 @@
 				'Arabic plural test for other' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1.7 ), 'other',
 				'Arabic plural test for other' );
-		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '۰۱۲۳۴۵۶۷۸۹' ), 'many',
+		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٠١٢٣٤٥٦٧٨٩' ), 'many',
 				'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
 	} );
 
@@ -242,14 +242,29 @@
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
 		// Switch to locale localy
-		i18n.locale = 'ar';
+		i18n.locale = 'fa';
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8' ), '۸',
+				'Persian transform of 8' );
+		assert.strictEqual( $.i18n.parser.language.convertNumber( '8', true ), 8,
+				'Persian transform of 8' );
+		assert.strictEqual( $.i18n.parser.language.convertNumber( '0123456789' ), '۰۱۲۳۴۵۶۷۸۹',
+				'Persian transform of 0123456789' );
+		assert.strictEqual( $.i18n.parser.language.convertNumber( '۰۱۲۳۴۵۶۷۸۹', true ), 123456789,
+				'Persian transform of 0123456789' );
+	} );
+
+	QUnit.test( 'Digit transform table tests', 4, function ( assert ) {
+		$.i18n();
+		var i18n = $( document ).data( 'i18n' );
+		// Switch to locale localy
+		i18n.locale = 'ar';
+		assert.strictEqual( $.i18n.parser.language.convertNumber( '8' ), '٨',
 				'Arabic transform of 8' );
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8', true ), 8,
 				'Arabic transform of 8' );
-		assert.strictEqual( $.i18n.parser.language.convertNumber( '0123456789' ), '۰۱۲۳۴۵۶۷۸۹',
+		assert.strictEqual( $.i18n.parser.language.convertNumber( '0123456789' ), '٠١٢٣٤٥٦٧٨٩',
 				'Arabic transform of 0123456789' );
-		assert.strictEqual( $.i18n.parser.language.convertNumber( '۰۱۲۳۴۵۶۷۸۹', true ), 123456789,
+		assert.strictEqual( $.i18n.parser.language.convertNumber( '٠١٢٣٤٥٦٧٨٩', true ), 123456789,
 				'Arabic transform of 0123456789' );
 	} );
 

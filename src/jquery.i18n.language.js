@@ -652,7 +652,8 @@
 		 */
 		digitTransformTable: function ( language ) {
 			var tables = {
-				ar: '۰۱۲۳۴۵۶۷۸۹',
+				ar: '٠١٢٣٤٥٦٧٨٩',
+				fa: '۰۱۲۳۴۵۶۷۸۹',
 				ml: '൦൧൨൩൪൫൬൭൮൯',
 				kn: '೦೧೨೩೪೫೬೭೮೯',
 				lo: '໐໑໒໓໔໕໖໗໘໙',
