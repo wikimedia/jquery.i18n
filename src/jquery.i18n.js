@@ -49,7 +49,7 @@
 
 			// Override String.localeString method
 			String.prototype.toLocaleString = function () {
-				var localeParts, localePartIndex, value, locale, fallbackIndex;
+				var localeParts, messages, localePartIndex, value, locale, fallbackIndex;
 
 				value = this.valueOf();
 				locale = i18n.locale;
@@ -65,12 +65,11 @@
 						var _locale = localeParts.slice( 0, localePartIndex ).join( "-" );
 
 						if ( !i18n.messageStore.messages[_locale]  && i18n.options.messageLocationResolver ) {
-							// FIXME If messageloading gives 404, it keep on trying to
-							// load the file again and again
-							i18n.messageStore.load(
-									i18n.options.messageLocationResolver( _locale ),
-									_locale
-								);
+							messages = i18n.options.messageLocationResolver( _locale, value );
+
+							if ( messages ) {
+								i18n.messageStore.load( messages, _locale );
+							}
 						}
 
 						var message = i18n.messageStore.get( _locale, value );
