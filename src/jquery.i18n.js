@@ -49,7 +49,7 @@
 
 			// Override String.localeString method
 			String.prototype.toLocaleString = function () {
-				var localeParts, messages, localePartIndex, value, locale, fallbackIndex;
+				var localeParts, messageLocation, localePartIndex, value, locale, fallbackIndex;
 
 				value = this.valueOf();
 				locale = i18n.locale;
@@ -64,22 +64,25 @@
 					do {
 						var _locale = localeParts.slice( 0, localePartIndex ).join( "-" );
 
-						if ( !i18n.messageStore.messages[_locale]  && i18n.options.messageLocationResolver ) {
-							messages = i18n.options.messageLocationResolver( _locale, value );
+						if ( i18n.options.messageLocationResolver ) {
+							messageLocation = i18n.options.messageLocationResolver( _locale, value );
 
-							if ( messages ) {
-								i18n.messageStore.load( messages, _locale );
+							if ( messageLocation
+									&& ( !i18n.messageStore.isLoaded(_locale ,messageLocation ) ) )
+								 {
+								i18n.messageStore.load( messageLocation, _locale );
 							}
 						}
 
 						var message = i18n.messageStore.get( _locale, value );
+
 						if ( message ) {
 							return message;
 						}
 						localePartIndex--;
 					} while (localePartIndex);
 
-					if ( locale === "en" ) {
+					if ( locale === 'en' ) {
 						break;
 					}
 

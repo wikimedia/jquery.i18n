@@ -35,7 +35,7 @@
 			var $links = $( "link" );
 			var linksCount = $links.length;
 			// Check for <link rel="localization" hreflang="xyz" elements
-			while (linksCount--) {
+			while ( linksCount-- ) {
 				var $link = $( $links[linksCount] );
 				var rel = ( $link.attr( "rel" ) || "" ).toLowerCase().split( /\s+/ );
 				if ( $.inArray( "localizations", rel ) !== -1 ) {
@@ -43,10 +43,8 @@
 					messageStore.load( $link.attr( "href" ) );
 				} else if ( $.inArray( "localization", rel ) !== -1 ) {
 					// single localization
-					var localization = {};
-					localization[ ( $link.attr( "hreflang" ) || "" ).toLowerCase()] = $link
-							.attr( "href" );
-					messageStore.load( localization );
+					messageStore.queue( ( $link.attr( "hreflang" ) || "" ).toLowerCase(),
+						$link.attr( "href" ) );
 				}
 			}
 		},
@@ -81,7 +79,7 @@
 				messageStore.messages = {};
 				return;
 			}
-
+			/*
 			// Only process this data load if the locale is our current
 			// locale. Otherwise, put in the source queue for later.
 			if ( locale && messageStore.locale !== locale ) {
@@ -89,17 +87,17 @@
 				if ( ! ( locale in messageStore.sources ) ) {
 					messageStore.sources[locale] = [];
 				}
-				messageStore.log( "Queueing: " + locale + " Current locale " + messageStore.locale );
-				messageStore.sources[locale].push( data );
+				this.queue( locale, data );
 				return;
-			}
+			}*/
 
 			if ( typeof data === 'string' ) {
 				// This is a URL to the messages file.
 				messageStore.log( "Loading messages from: " + data );
 				messageStore.jsonMessageLoader( data ).done( function ( localization, textStatus ) {
 					messageStore.load( localization, locale );
-					delete messageStore.sources[locale];
+					messageStore.queue( locale, data );
+					messageStore.markLoaded( locale, data );
 				} );
 			} else {
 				// Data is either a group of messages for {locale},
@@ -137,6 +135,58 @@
 		},
 
 		/**
+		 * Mark a message Location for a locale loaded
+		 *
+		 * @param locale
+		 * @param messageLocation
+		 */
+		markLoaded: function ( locale, messageLocation ) {
+			var i, queue = this.sources[locale];
+
+			if ( !queue ) {
+				this.queue( locale, messageLocation );
+				queue = this.sources[locale];
+			}
+
+			this.sources[locale] = this.sources[locale] || [];
+
+			for (i = 0; i < queue.length; i++) {
+				if ( queue[i].source.url === messageLocation ) {
+					queue[i].source.loaded = true;
+					return;
+				}
+			}
+		},
+
+		/**
+		 * Register the message location for a locale, will be loaded when required
+		 *
+		 * @param locale
+		 * @param messageLocation
+		 */
+		queue: function ( locale, messageLocation ) {
+			var i, queue = this.sources[locale];
+
+			this.sources[locale] = this.sources[locale] || [];
+
+			if ( queue ) {
+				for (i = 0; i < queue.length; i++) {
+					if ( queue[i].source.url === messageLocation ) {
+						return;
+					}
+				}
+			}
+
+			this.log( 'Source for: ' + locale + ' is ' + messageLocation + ' registered' );
+			this.sources[locale].push( {
+				source: {
+					url: messageLocation,
+					loaded: false
+				}
+			} );
+		},
+
+		/**
 		 * Load the messages from the source queue for the locale
 		 *
 		 * @param {String} locale
@@ -144,10 +194,29 @@
 		loadFromQueue: function ( locale ) {
 			var i,
 				queue = this.sources[locale];
-			for ( i = 0; i < queue.length; i++ ) {
-				this.load( queue[i], locale );
+
+			if ( queue ) {
+				for (i = 0; i < queue.length; i++) {
+					if ( !queue[i].source.loaded ) {
+						this.load( queue[i].source.url, locale );
+						this.sources[locale][i].source.loaded = true;
+					}
+				}
 			}
-			delete this.sources[locale];
+		},
+
+		isLoaded: function ( locale, messageLocation ) {
+			var i, sources = this.sources[locale], result = false;
+
+			if ( sources ) {
+				for (i = 0; i < sources.length; i++) {
+					if ( sources[i].source.url === messageLocation ) {
+						result = true;
+					}
+				}
+			}
+
+			return result;
 		},
 
 		jsonMessageLoader: function ( url ) {
@@ -170,9 +239,7 @@
 		 */
 		get: function ( locale, messageKey ) {
 			// load locale if not loaded
-			if ( this.sources[locale] ) {
-				// We need to switch to this locale
-				this.locale = locale;
+			if ( !this.messages[locale] ) {
 				this.loadFromQueue( locale );
 			}
 			return this.messages[locale] && this.messages[locale][messageKey];

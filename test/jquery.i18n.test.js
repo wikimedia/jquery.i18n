@@ -149,18 +149,18 @@
 			'localeq': 'i18n/test-q.json'
 		} );
 		assert.strictEqual(
-			i18n.messageStore.sources.localeq[0],
-			'i18n/test-q.json',
+			i18n.messageStore.isLoaded( 'localeq', 'i18n/test-q.json' ),
+			true,
 			'Locale localeq is queued'
 		);
 
 		// Switch to locale localeq
 		i18n.locale = 'localeq';
-		assert.strictEqual( i18n.messageStore.sources.localeq[0], 'i18n/test-q.json',
+		assert.strictEqual( i18n.messageStore.isLoaded( 'localeq', 'i18n/test-q.json' ), true,
 			'Locale localeq is still in queue' );
 		assert.strictEqual( $.i18n( 'q' ), 'Q', 'Message loaded for localeq' );
-		assert.strictEqual( i18n.messageStore.sources.localeq, undefined,
-			'Locale localeq is not in queue' );
+		assert.strictEqual( i18n.messageStore.sources['localeq'][0].source.loaded, true,
+			'Locale localeq is loaded' );
 	} );
 
 	module( 'jquery.i18n - Fallback test', {
