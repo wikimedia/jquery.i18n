@@ -19,5 +19,5 @@ jQuery( document ).ready( function ( $ ) {
 			.prop( 'title', message.toLocaleString() );
 	}
 	updateText();
-	$( '.kittens, .person, .language' ).on( 'change', updateText );
+	$( '.kittens, .person, .language' ).on( 'change keyup', updateText );
 } );
