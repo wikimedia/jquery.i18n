@@ -246,6 +246,16 @@
 			}
 
 			var result = start();
+
+			/*
+			 * For success, the pos must have gotten to the end of the input
+			 * and returned a non-null.
+			 * n.b. This is part of language infrastructure, so we do not throw an internationalizable message.
+			 */
+			if ( result === null || pos !== message.length ) {
+				throw new Error( 'Parse error at position ' + pos.toString() + ' in input: ' + message );
+			}
+
 			return result;
 		}
 
