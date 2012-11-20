@@ -1,7 +1,6 @@
 ( function ( $ ) {
 	'use strict';
 
-
 	module( 'jquery.i18n - $.fn.i18n Tests', {
 		setup: function () {
 			$.i18n( {
@@ -37,7 +36,7 @@
 		}
 	} );
 
-	QUnit.test( 'Message parse tests (en)', 10, function ( assert ) {
+	QUnit.test( 'Message parse tests (en)', 14, function ( assert ) {
 		$.i18n( {
 			locale: 'en'
 		} );
@@ -51,11 +50,43 @@
 		);
 		assert.strictEqual( $.i18n( 'Hello $1', 'Bob' ), 'Hello Bob', 'Parameter replacement' );
 		var pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
-			'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
+				'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.',
+			pluralAndGenderMessageWithLessParaMS ='$1 has $2 {{plural:$2|kitten}}. ' +
+				'{{gender:$3|He|She}} loves to play with {{plural:$2|it}}.',
+			pluralAndGenderMessageWithCase ='$1 has $2 {{plURAl:$2|kitten}}. ' +
+				'{{genDER:$3|He|She}} loves to play with {{pLural:$2|it}}.',
+			pluralAndGenderMessageWithSyntaxError ='$1 has $2 {{plural:$2|kitten}. ' +
+				'{{gender:$3|He|She}} loves to play with {plural:$2|it}}.',
+			pluralAndGenderMessageWithSyntaxError2 ='$1 has $2 {{plural:$2|kitten}}. ' +
+				'{gender:$3|He|She}} loves to play with {plural:$2|it}}.';
 		assert.strictEqual(
 			$.i18n( pluralAndGenderMessage, 'Meera', 1, 'female' ),
 			'Meera has 1 kitten. She loves to play with it.',
 			'Plural and gender test - female, singular'
+		);
+		assert.throws(
+			function() {
+				$.i18n( pluralAndGenderMessageWithSyntaxError, 'Meera', 1, 'female' );
+			},
+			/Parse error at position 10/,
+			'Message has syntax error'
+		);
+		assert.throws(
+			function() {
+				$.i18n( pluralAndGenderMessageWithSyntaxError2, 'Meera', 1, 'female' );
+			},
+			/Parse error at position 32/,
+			'Message has syntax error'
+		);
+		assert.strictEqual(
+			$.i18n( pluralAndGenderMessageWithLessParaMS, 'Meera', 1, 'female' ),
+			'Meera has 1 kitten. She loves to play with it.',
+			'Plural and gender test - female, singular, but will less parameters in message'
+		);
+		assert.strictEqual(
+			$.i18n( pluralAndGenderMessageWithCase, 'Meera', 1, 'female' ),
+			'Meera has 1 kitten. She loves to play with it.',
+			'Plural and gender test - female, singular. Plural, gender keywords with upper and lower case'
 		);
 		assert.strictEqual(
 			$.i18n( pluralAndGenderMessage, 'Meera', 1, 'randomtext' ),
@@ -63,10 +94,10 @@
 			'Plural and gender test - wrong gender- fallback to fist gender'
 		);
 		assert.strictEqual(
-				$.i18n( pluralAndGenderMessage),
-				'$1 has $2 kittens. He loves to play with them.',
-				'Plural and gender test - no params passed. Should not fail'
-			);
+			$.i18n( pluralAndGenderMessage),
+			'$1 has $2 kittens. He loves to play with them.',
+			'Plural and gender test - no params passed. Should not fail'
+		);
 		assert.strictEqual(
 			$.i18n( pluralAndGenderMessage,'Meera', 1, 'randomtext', 'extraparam' ),
 			'Meera has 1 kitten. He loves to play with it.',
