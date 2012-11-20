@@ -37,7 +37,7 @@
 		}
 	} );
 
-	QUnit.test( 'Message parse tests (en)', 7, function ( assert ) {
+	QUnit.test( 'Message parse tests (en)', 10, function ( assert ) {
 		$.i18n( {
 			locale: 'en'
 		} );
@@ -58,6 +58,21 @@
 			'Plural and gender test - female, singular'
 		);
 		assert.strictEqual(
+			$.i18n( pluralAndGenderMessage, 'Meera', 1, 'randomtext' ),
+			'Meera has 1 kitten. He loves to play with it.',
+			'Plural and gender test - wrong gender- fallback to fist gender'
+		);
+		assert.strictEqual(
+				$.i18n( pluralAndGenderMessage),
+				'$1 has $2 kittens. He loves to play with them.',
+				'Plural and gender test - no params passed. Should not fail'
+			);
+		assert.strictEqual(
+			$.i18n( pluralAndGenderMessage,'Meera', 1, 'randomtext', 'extraparam' ),
+			'Meera has 1 kitten. He loves to play with it.',
+			'Plural and gender test - more params passed. Should not fail'
+		);
+		assert.strictEqual(
 			$.i18n( pluralAndGenderMessage, 'Harry', 2, 'male' ),
 			'Harry has 2 kittens. He loves to play with them.',
 			'Plural and gender test - male, plural'
@@ -67,6 +82,7 @@
 			'This costs $1.',
 			'No parameter supplied, $1 appears as is'
 		);
+
 	} );
 
 	QUnit.test( 'Message parse tests (ml, fr)', 8, function ( assert ) {
@@ -145,18 +161,18 @@
 			'Message loaded for localez, message key "z" is present'
 		);
 
-		i18n.load( {
-			'localeq': 'i18n/test-q.json'
-		} );
+		i18n.messageStore.queue( 'localeq', 'i18n/test-q.json' );
 		assert.strictEqual(
-			i18n.messageStore.isLoaded( 'localeq', 'i18n/test-q.json' ),
-			true,
+			i18n.messageStore.sources['localeq'][0].source.loaded,
+			false,
 			'Locale localeq is queued'
 		);
 
 		// Switch to locale localeq
 		i18n.locale = 'localeq';
-		assert.strictEqual( i18n.messageStore.isLoaded( 'localeq', 'i18n/test-q.json' ), true,
+		assert.strictEqual(
+			i18n.messageStore.sources['localeq'][0].source.loaded,
+			false,
 			'Locale localeq is still in queue' );
 		assert.strictEqual( $.i18n( 'q' ), 'Q', 'Message loaded for localeq' );
 		assert.strictEqual( i18n.messageStore.sources['localeq'][0].source.loaded, true,
