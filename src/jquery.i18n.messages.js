@@ -220,14 +220,14 @@
 		},
 
 		jsonMessageLoader: function ( url ) {
-			var that = this;
+			var messageStore = this;
 			return $.ajax( {
 				url: url,
 				dataType: "json",
 				async: false
-			// that is unfortunate
+			// This is unfortunate.
 			} ).fail( function ( jqxhr, settings, exception ) {
-				that.log( "Error in loading messages from " + url + " Exception: " + exception );
+				messageStore.log( "Error in loading messages from " + url + " Exception: " + exception );
 			} );
 		},
 
