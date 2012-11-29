@@ -131,11 +131,13 @@
 			var regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
 			var regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
 
-			// There is a general pattern -- parse a thing, if that worked,
-			// apply transform, otherwise return null.
-			// But using this as a combinator seems to cause problems when
-			// combined with nOrMore().
-			// May be some scoping issue
+			// There is a general pattern:
+			// parse a thing;
+			// if it worked, apply transform,
+			// otherwise return null.
+			// But using this as a combinator seems to cause problems
+			// when combined with nOrMore().
+			// May be some scoping issue.
 			function transform ( p, fn ) {
 				return function () {
 					var result = p();
