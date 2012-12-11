@@ -35,7 +35,7 @@
 		 */
 		emit: function ( node, replacements ) {
 			var ret, subnodes, operation,
-				that = this;
+				messageParserEmitter = this;
 
 			switch (typeof node) {
 			case 'string':
@@ -45,11 +45,11 @@
 			case 'object':
 				// node is an array of nodes
 				subnodes = $.map( node.slice( 1 ), function ( n ) {
-					return that.emit( n, replacements );
+					return messageParserEmitter.emit( n, replacements );
 				} );
 				operation = node[0].toLowerCase();
-				if ( typeof that[operation] === 'function' ) {
-					ret = that[operation]( subnodes, replacements );
+				if ( typeof messageParserEmitter[operation] === 'function' ) {
+					ret = messageParserEmitter[operation]( subnodes, replacements );
 				} else {
 					throw new Error( 'unknown operation "' + operation + '"' );
 				}
