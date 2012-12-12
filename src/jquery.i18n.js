@@ -202,7 +202,8 @@
 			if ( $this.data( 'i18n' ) ) {
 				var messageKey = $this.data( 'i18n' );
 				var message = $.i18n( messageKey );
-				if ( message !== messageKey ) {
+				var currentMessage = $this.text();
+				if ( message !== currentMessage ) {
 					$this.text( message );
 				}
 			} else {
