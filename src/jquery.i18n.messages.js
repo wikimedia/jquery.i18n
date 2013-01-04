@@ -32,7 +32,7 @@
 			this.locale = locale;
 			var messageStore = this;
 			messageStore.log( "initializing for " + locale );
-			$( "link" ).each(function(index,element){
+			$( "link" ).each( function ( index, element ) {
 				var $link = $( element );
 				var rel = ( $link.attr( "rel" ) || "" ).toLowerCase().split( /\s+/ );
 				if ( $.inArray( "localizations", rel ) !== -1 ) {
