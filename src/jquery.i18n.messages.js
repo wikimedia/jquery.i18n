@@ -32,11 +32,8 @@
 			this.locale = locale;
 			var messageStore = this;
 			messageStore.log( "initializing for " + locale );
-			var $links = $( "link" );
-			var linksCount = $links.length;
-			// Check for <link rel="localization" hreflang="xyz" elements
-			while ( linksCount-- ) {
-				var $link = $( $links[linksCount] );
+			$( "link" ).each( function ( index, element ) {
+				var $link = $( element );
 				var rel = ( $link.attr( "rel" ) || "" ).toLowerCase().split( /\s+/ );
 				if ( $.inArray( "localizations", rel ) !== -1 ) {
 					// multiple localizations
@@ -46,7 +43,7 @@
 					messageStore.queue( ( $link.attr( "hreflang" ) || "" ).toLowerCase(),
 						$link.attr( "href" ) );
 				}
-			}
+			});
 		},
 
 		/**
