@@ -7,7 +7,7 @@
 
 	$.i18n.languages.uk = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
-			switch (form) {
+			switch ( form ) {
 			case 'genitive': // родовий відмінок
 				if ( ( word.substr( word.length - 4 ) === 'вікі' ) ||
 					( word.substr( word.length - 4 ) === 'Вікі' )
@@ -26,6 +26,7 @@
 				} else if ( word.substr( word.length - 3 ) === 'ник' ) {
 					word = word.substr( 0, word.length - 3 ) + 'ника';
 				}
+
 				break;
 			case 'accusative': // знахідний відмінок
 				if ( ( word.substr( word.length - 4 ) === 'вікі' ) ||
@@ -35,8 +36,10 @@
 				} else if ( word.substr( word.length - 2 ) === 'ія' ) {
 					word = word.substr( 0, word.length - 2 ) + 'ію';
 				}
+
 				break;
 			}
+
 			return word;
 		}
 	} );

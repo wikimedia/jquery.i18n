@@ -9,7 +9,7 @@
 
 	$.i18n.languages.la = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
-			switch (form) {
+			switch ( form ) {
 			case 'genitive':
 				// only a few declensions, and even for those mostly the singular only
 				word = word.replace( /u[ms]$/i, 'i' ); // 2nd declension singular
@@ -47,8 +47,8 @@
 				word = word.replace( /es$/i, 'e' ); // 5th declension singular
 				break;
 			}
+
 			return word;
 		}
 	} );
-
 }( jQuery ) );
