@@ -58,18 +58,18 @@
 				while ( locale ) {
 					// Iterate through locales starting at most-specific until
 					// localization is found. As in fi-Latn-FI, fi-Latn and fi.
-					localeParts = locale.toLowerCase().split( "-" );
+					localeParts = locale.toLowerCase().split( '-' );
 					localePartIndex = localeParts.length;
 
 					do {
-						var _locale = localeParts.slice( 0, localePartIndex ).join( "-" );
+						var _locale = localeParts.slice( 0, localePartIndex ).join( '-' );
 
 						if ( i18n.options.messageLocationResolver ) {
 							messageLocation = i18n.options.messageLocationResolver( _locale, value );
 
-							if ( messageLocation
-									&& ( !i18n.messageStore.isLoaded(_locale ,messageLocation ) ) )
-								 {
+							if ( messageLocation &&
+								( !i18n.messageStore.isLoaded( _locale ,messageLocation ) )
+							) {
 								i18n.messageStore.load( messageLocation, _locale );
 							}
 						}
@@ -79,16 +79,17 @@
 						if ( message ) {
 							return message;
 						}
+
 						localePartIndex--;
-					} while (localePartIndex);
+					} while ( localePartIndex );
 
 					if ( locale === 'en' ) {
 						break;
 					}
 
-					locale = ( $.i18n.fallbacks[i18n.locale] && $.i18n.fallbacks[i18n.locale][fallbackIndex] )
-							|| i18n.options.fallbackLocale;
-					i18n.log( "Trying fallback locale for " + i18n.locale + ": " + locale );
+					locale = ( $.i18n.fallbacks[i18n.locale] && $.i18n.fallbacks[i18n.locale][fallbackIndex] ) ||
+						i18n.options.fallbackLocale;
+					i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale );
 
 					fallbackIndex++;
 				}
@@ -128,7 +129,7 @@
 			this.messageStore.load( data, locale );
 		},
 
-		log: function (/* arguments */) {
+		log: function ( /* arguments */ ) {
 			if ( window.console && $.i18n.debug ) {
 				window.console.log.apply( window.console, arguments );
 			}
@@ -188,6 +189,7 @@
 			} else {
 				parameters = [];
 			}
+
 			return i18n.parse( key, parameters );
 		} else {
 			// FIXME: remove this feature/bug.
@@ -196,12 +198,14 @@
 	};
 
 
-	$.fn.i18n = function ( option ) {
+	$.fn.i18n = function () {
 		return this.each( function () {
 			var $this = $( this );
+
 			if ( $this.data( 'i18n' ) ) {
-				var messageKey = $this.data( 'i18n' );
-				var message = $.i18n( messageKey );
+				var messageKey = $this.data( 'i18n' ),
+					message = $.i18n( messageKey );
+
 				if ( message !== messageKey ) {
 					$this.text( message );
 				}
@@ -212,6 +216,7 @@
 	};
 
 	String.locale = String.locale || $( 'html' ).attr( 'lang' );
+
 	if ( !String.locale ) {
 		if ( typeof window.navigator !== undefined ) {
 			nav = window.navigator;
@@ -239,11 +244,11 @@
 	/* Static members */
 	I18N.defaults = {
 		locale: String.locale,
-		fallbackLocale: "en",
+		fallbackLocale: 'en',
 		parser: $.i18n.parser,
 		messageStore: $.i18n.messageStore,
 		/* messageLocationResolver - should be a function taking language code as argument and
-		 * returning absolute/ relative path to the localization file
+		 * returning absolute or relative path to the localization file
 		 */
 		messageLocationResolver: null
 	};

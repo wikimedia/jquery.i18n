@@ -6,7 +6,7 @@
 
 	$.i18n.languages.bs = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
-			switch (form) {
+			switch ( form ) {
 			case 'instrumental': // instrumental
 				word = 's ' + word;
 				break;
@@ -14,6 +14,7 @@
 				word = 'o ' + word;
 				break;
 			}
+
 			return word;
 		}
 	} );

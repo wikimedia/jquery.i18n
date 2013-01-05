@@ -65,14 +65,14 @@
 			'Plural and gender test - female, singular'
 		);
 		assert.throws(
-			function() {
+			function () {
 				$.i18n( pluralAndGenderMessageWithSyntaxError, 'Meera', 1, 'female' );
 			},
 			/Parse error at position 10/,
 			'Message has syntax error'
 		);
 		assert.throws(
-			function() {
+			function () {
 				$.i18n( pluralAndGenderMessageWithSyntaxError2, 'Meera', 1, 'female' );
 			},
 			/Parse error at position 32/,
@@ -94,7 +94,7 @@
 			'Plural and gender test - wrong gender- fallback to fist gender'
 		);
 		assert.strictEqual(
-			$.i18n( pluralAndGenderMessage),
+			$.i18n( pluralAndGenderMessage ),
 			'$1 has $2 kittens. He loves to play with them.',
 			'Plural and gender test - no params passed. Should not fail'
 		);
