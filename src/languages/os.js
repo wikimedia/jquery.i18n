@@ -33,15 +33,15 @@
 			// Examples: {{grammar:genitive|аунеу}} = аунеуы,
 			// {{grammar:genitive|лæппу}} = лæппуйы.
 			else if ( word.match( /у$/i ) ) {
-				if ( !word.substring( word.length - 2, word.length - 1 ).match(
-						/[аæеёиоыэюя]$/i ) ) {
+				if ( !word.substring( word.length - 2, word.length - 1 )
+						.match( /[аæеёиоыэюя]$/i ) ) {
 					jot = 'й';
 				}
 			} else if ( !word.match( /[бвгджзйклмнопрстфхцчшщьъ]$/i ) ) {
 				hyphen = '-';
 			}
 
-			switch (form) {
+			switch ( form ) {
 			case 'genitive':
 				ending = hyphen + jot + 'ы';
 				break;
@@ -68,8 +68,8 @@
 				ending = hyphen + 'имæ';
 				break;
 			}
+
 			return word + ending;
 		}
 	} );
-
 }( jQuery ) );

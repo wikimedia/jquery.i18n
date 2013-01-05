@@ -6,7 +6,7 @@
 
 	$.i18n.languages.hsb = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
-			switch (form) {
+			switch ( form ) {
 			case 'instrumental': // instrumental
 				word = 'z ' + word;
 				break;
@@ -14,8 +14,8 @@
 				word = 'wo ' + word;
 				break;
 			}
+
 			return word;
 		}
 	} );
-
 }( jQuery ) );

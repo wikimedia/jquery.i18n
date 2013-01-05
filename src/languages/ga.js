@@ -7,7 +7,7 @@
 	$.i18n.languages.ga = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
 			if ( form === 'ainmlae' ) {
-				switch (word) {
+				switch ( word ) {
 				case 'an Domhnach':
 					word = 'Dé Domhnaigh';
 					break;
@@ -31,8 +31,8 @@
 					break;
 				}
 			}
+
 			return word;
 		}
 	} );
-
 }( jQuery ) );

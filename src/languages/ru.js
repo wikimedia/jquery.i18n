@@ -26,8 +26,8 @@
 					word = word.substr( 0, word.length - 3 ) + 'ника';
 				}
 			}
+
 			return word;
 		}
 	} );
-
 }( jQuery ) );

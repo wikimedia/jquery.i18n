@@ -13,7 +13,7 @@
  */
 
 ( function ( $, window, undefined ) {
-	"use strict";
+	'use strict';
 
 	var MessageStore = function () {
 		this.messages = {};
@@ -29,21 +29,24 @@
 		 * @param locale
 		 */
 		init: function ( locale ) {
-			this.locale = locale;
 			var messageStore = this;
-			messageStore.log( "initializing for " + locale );
-			$( "link" ).each( function ( index, element ) {
-				var $link = $( element );
-				var rel = ( $link.attr( "rel" ) || "" ).toLowerCase().split( /\s+/ );
-				if ( $.inArray( "localizations", rel ) !== -1 ) {
+
+			messageStore.locale = locale;
+			messageStore.log( 'initializing for ' + locale );
+
+			$( 'link' ).each( function ( index, element ) {
+				var $link = $( element ),
+					rel = ( $link.attr( 'rel' ) || '' ).toLowerCase().split( /\s+/ );
+
+				if ( $.inArray( 'localizations', rel ) !== -1 ) {
 					// multiple localizations
-					messageStore.load( $link.attr( "href" ) );
-				} else if ( $.inArray( "localization", rel ) !== -1 ) {
+					messageStore.load( $link.attr( 'href' ) );
+				} else if ( $.inArray( 'localization', rel ) !== -1 ) {
 					// single localization
-					messageStore.queue( ( $link.attr( "hreflang" ) || "" ).toLowerCase(),
-						$link.attr( "href" ) );
+					messageStore.queue( ( $link.attr( 'hreflang' ) || '' ).toLowerCase(),
+						$link.attr( 'href' ) );
 				}
-			});
+			} );
 		},
 
 		/**
@@ -72,25 +75,16 @@
 
 			if ( !data ) {
 				// reset all localizations
-				messageStore.log( "Resetting for locale" + locale );
+				messageStore.log( 'Resetting for locale ' + locale );
 				messageStore.messages = {};
+
 				return;
 			}
-			/*
-			// Only process this data load if the locale is our current
-			// locale. Otherwise, put in the source queue for later.
-			if ( locale && messageStore.locale !== locale ) {
-				// queue loading locale if not needed
-				if ( ! ( locale in messageStore.sources ) ) {
-					messageStore.sources[locale] = [];
-				}
-				this.queue( locale, data );
-				return;
-			}*/
 
 			if ( typeof data === 'string' ) {
 				// This is a URL to the messages file.
-				messageStore.log( "Loading messages from: " + data );
+				messageStore.log( 'Loading messages from: ' + data );
+
 				messageStore.jsonMessageLoader( data ).done( function ( localization, textStatus ) {
 					messageStore.load( localization, locale );
 					messageStore.queue( locale, data );
@@ -99,7 +93,7 @@
 			} else {
 				// Data is either a group of messages for {locale},
 				// or a group of languages with groups of messages inside.
-				for ( key in data) {
+				for ( key in data ) {
 					if ( hasOwn.call( data, key ) ) {
 						if ( locale ) {
 
@@ -112,8 +106,9 @@
 							// don't overwrite the entire object.
 							messageStore.messages[locale][key] = data[key];
 
-							messageStore.log( "[" + locale + "][" + key + "] : "
-									+ data[key] );
+							messageStore.log(
+								'[' + locale + '][' + key + '] : ' + data[key]
+							);
 
 							// No {locale} given, assume data is a group of languages,
 							// call this function again for each langauge.
@@ -125,7 +120,7 @@
 			}
 		},
 
-		log: function (/* arguments */) {
+		log: function ( /* arguments */ ) {
 			if ( window.console && $.i18n.debug ) {
 				window.console.log.apply( window.console, arguments );
 			}
@@ -138,7 +133,8 @@
 		 * @param messageLocation
 		 */
 		markLoaded: function ( locale, messageLocation ) {
-			var i, queue = this.sources[locale];
+			var i,
+				queue = this.sources[locale];
 
 			if ( !queue ) {
 				this.queue( locale, messageLocation );
@@ -147,9 +143,10 @@
 
 			this.sources[locale] = this.sources[locale] || [];
 
-			for (i = 0; i < queue.length; i++) {
+			for ( i = 0; i < queue.length; i++ ) {
 				if ( queue[i].source.url === messageLocation ) {
 					queue[i].source.loaded = true;
+
 					return;
 				}
 			}
@@ -162,12 +159,13 @@
 		 * @param messageLocation
 		 */
 		queue: function ( locale, messageLocation ) {
-			var i, queue = this.sources[locale];
+			var i,
+				queue = this.sources[locale];
 
 			this.sources[locale] = this.sources[locale] || [];
 
 			if ( queue ) {
-				for (i = 0; i < queue.length; i++) {
+				for ( i = 0; i < queue.length; i++ ) {
 					if ( queue[i].source.url === messageLocation ) {
 						return;
 					}
@@ -193,7 +191,7 @@
 				queue = this.sources[locale];
 
 			if ( queue ) {
-				for (i = 0; i < queue.length; i++) {
+				for ( i = 0; i < queue.length; i++ ) {
 					if ( !queue[i].source.loaded ) {
 						this.load( queue[i].source.url, locale );
 						this.sources[locale][i].source.loaded = true;
@@ -203,10 +201,12 @@
 		},
 
 		isLoaded: function ( locale, messageLocation ) {
-			var i, sources = this.sources[locale], result = false;
+			var i,
+				sources = this.sources[locale],
+				result = false;
 
 			if ( sources ) {
-				for (i = 0; i < sources.length; i++) {
+				for ( i = 0; i < sources.length; i++ ) {
 					if ( sources[i].source.url === messageLocation ) {
 						result = true;
 					}
@@ -218,13 +218,14 @@
 
 		jsonMessageLoader: function ( url ) {
 			var messageStore = this;
+
 			return $.ajax( {
 				url: url,
-				dataType: "json",
+				dataType: 'json',
 				async: false
 			// This is unfortunate.
 			} ).fail( function ( jqxhr, settings, exception ) {
-				messageStore.log( "Error in loading messages from " + url + " Exception: " + exception );
+				messageStore.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
 			} );
 		},
 
@@ -239,6 +240,7 @@
 			if ( !this.messages[locale] ) {
 				this.loadFromQueue( locale );
 			}
+
 			return this.messages[locale] && this.messages[locale][messageKey];
 		}
 	};

@@ -6,7 +6,7 @@
 
 	$.i18n.languages.he = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
-			switch (form) {
+			switch ( form ) {
 			case 'prefixed':
 			case 'תחילית': // the same word in Hebrew
 				// Duplicate prefixed "Waw", but only if it's not already double
@@ -24,8 +24,8 @@
 					word = '־' + word;
 				}
 			}
+
 			return word;
 		}
 	} );
-
 }( jQuery ) );
