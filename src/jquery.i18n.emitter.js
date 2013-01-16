@@ -28,7 +28,7 @@
 		 * sure it's not overwritten by any magic.) Walk entire node structure,
 		 * applying replacements and template functions when appropriate
 		 *
-		 * @param {Mixed} abstract syntax tree (top node or subnode)
+		 * @param {Mixed} node abstract syntax tree (top node or subnode)
 		 * @param {Array} replacements for $1, $2, ... $n
 		 * @return {Mixed} single-string node or array of nodes suitable for
 		 *  jQuery appending.
@@ -102,6 +102,7 @@
 		 * nodes.length > 1 ?
 		 *
 		 * @param {Array} nodes One element, integer, n >= 0
+		 * @param {Array} replacements for $1, $2, ... $n
 		 * @return {string} replacement
 		 */
 		replace: function ( nodes, replacements ) {
