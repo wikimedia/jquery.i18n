@@ -158,7 +158,7 @@
 	* for the current document, stored in jQuery.data(document).
 	*
 	* @param {string} key Key of the message.
-	* @param {string} [param...] Variadic list of parameters for {key}.
+	* @param {string} param1 [param...] Variadic list of parameters for {key}.
 	* @return {string|$.I18N} Parsed message, or if no key was given
 	* the instance of $.I18N is returned.
 	*/

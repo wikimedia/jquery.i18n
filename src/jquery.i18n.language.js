@@ -570,10 +570,8 @@
 		/**
 		 * Converts a number using digitTransformTable.
 		 *
-		 * @param {num}
-		 *            number Value to be converted
-		 * @param {boolean}
-		 *            integer Convert the return value to an integer
+		 * @param {number} num Value to be converted
+		 * @param {boolean} integer Convert the return value to an integer
 		 */
 		'convertNumber': function ( num, integer ) {
 			var tmp, item, i,
@@ -666,7 +664,7 @@
 		 * Get the digit transform table for the given language
 		 * See http://cldr.unicode.org/translation/numbering-systems
 		 * @param language
-		 * @returns {Array|false} List of digits in the passed language
+		 * @returns {Array|boolean} List of digits in the passed language or false
 		 * representation, or boolean false if there is no information.
 		 */
 		digitTransformTable: function ( language ) {
