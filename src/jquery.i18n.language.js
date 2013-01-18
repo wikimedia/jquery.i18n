@@ -529,6 +529,18 @@
 				return '';
 			}
 
+			
+			// Handle for Explicit 0= & 1= values
+			for( var index in forms ) {
+				var form = forms[index];
+				if( form[1] === "=" ) {
+					if( form[0] === count ) {
+						return form.substr( 2 );
+					}
+					forms.splice( index, 1 ); // Remove that element from array
+				}
+			}
+			
 			pluralRules = this.pluralRules[$.i18n().locale];
 
 			if ( !pluralRules ) {
