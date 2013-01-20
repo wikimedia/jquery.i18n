@@ -93,8 +93,8 @@
 					fallbackIndex++;
 				}
 
-				// fallback the original string value
-				return value;
+				// key not found
+				return '';
 			};
 		},
 
@@ -147,6 +147,9 @@
 			// should probably not change the 'this.parser' but just
 			// pass it to the parser.
 			this.parser.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
+			if( message === '' ) {
+				message = key;
+			}
 			return this.parser.parse( message, parameters );
 		}
 	};
@@ -197,13 +200,18 @@
 
 
 	$.fn.i18n = function ( option ) {
+		var messageKey, message, i18n = $.data( document, 'i18n' );
+		String.locale = i18n.locale;
+		if ( !i18n ) {
+			i18n = new I18N( option );
+			$.data( document, 'i18n', i18n );
+		}
 		return this.each( function () {
 			var $this = $( this );
 			if ( $this.data( 'i18n' ) ) {
-				var messageKey = $this.data( 'i18n' );
-				var message = $.i18n( messageKey );
-				var currentMessage = $this.text();
-				if ( message !== currentMessage ) {
+				messageKey = $this.data( 'i18n' );
+				message = messageKey.toLocaleString();
+				if ( message !== '' ) {
 					$this.text( message );
 				}
 			} else {
