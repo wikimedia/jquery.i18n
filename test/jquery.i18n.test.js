@@ -285,6 +285,22 @@
 				'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
 	} );
 
+	QUnit.test( 'Test Convert Plural',4,function( assert ){
+		$.i18n();
+		assert.strictEqual( $.i18n.languages['default'].convertPlural( 0, ["0=Explicit Zero", "Singular", "Plural"] ), 
+			"Explicit Zero", "Explicit Zero" );
+		
+		assert.strictEqual( $.i18n.languages['default'].convertPlural( 1, ["0=Explicit Zero", "Singular", "Plural", "1=Explicit One"] ), 
+			"Explicit One", "Explicit One" );
+
+		assert.strictEqual( $.i18n.languages['default'].convertPlural( 1, ["0=Explicit Zero", "Singular", "Plural"] ), 
+			"Singular", "Singular" );
+		
+		assert.strictEqual( $.i18n.languages['default'].convertPlural( 3, ["0=Explicit Zero", "1=Explicit One", "Singular", "Plural"] ), 
+			"Plural", "Plural" );
+
+	});
+
 	QUnit.test( 'Digit transform table tests', 4, function ( assert ) {
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
