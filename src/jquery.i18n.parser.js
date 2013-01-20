@@ -29,6 +29,7 @@
 		simpleParse: function ( message, parameters ) {
 			return message.replace( /\$(\d+)/g, function ( str, match ) {
 				var index = parseInt( match, 10 ) - 1;
+
 				return parameters[index] !== undefined ? parameters[index] : '$' + match;
 			} );
 		},
@@ -37,6 +38,7 @@
 			if ( message.indexOf( '{{' ) < 0 ) {
 				return this.simpleParse( message, replacements );
 			}
+
 			this.emitter.language = $.i18n.languages[$.i18n().locale] ||
 				$.i18n.languages['default'];
 
@@ -49,12 +51,16 @@
 			// Try parsers until one works, if none work return null
 			function choice ( parserSyntax ) {
 				return function () {
-					for ( var i = 0; i < parserSyntax.length; i++) {
-						var result = parserSyntax[i]();
+					var i, result;
+
+					for ( i = 0; i < parserSyntax.length; i++ ) {
+						result = parserSyntax[i]();
+
 						if ( result !== null ) {
 							return result;
 						}
 					}
+
 					return null;
 				};
 			}
@@ -66,14 +72,19 @@
 				var i, res,
 					originalPos = pos,
 					result = [];
-				for ( i = 0; i < parserSyntax.length; i++) {
+
+				for ( i = 0; i < parserSyntax.length; i++ ) {
 					res = parserSyntax[i]();
+
 					if ( res === null ) {
 						pos = originalPos;
+
 						return null;
 					}
+
 					result.push( res );
 				}
+
 				return result;
 			}
 
@@ -81,17 +92,21 @@
 			// Must succeed a minimum of n times; otherwise, return null.
 			function nOrMore ( n, p ) {
 				return function () {
-					var originalPos = pos;
-					var result = [];
-					var parsed = p();
-					while (parsed !== null) {
+					var originalPos = pos,
+						result = [],
+						parsed = p();
+
+					while ( parsed !== null ) {
 						result.push( parsed );
 						parsed = p();
 					}
+
 					if ( result.length < n ) {
 						pos = originalPos;
+
 						return null;
 					}
+
 					return result;
 				};
 			}
@@ -100,12 +115,15 @@
 
 			function makeStringParser ( s ) {
 				var len = s.length;
+
 				return function () {
 					var result = null;
+
 					if ( message.substr( pos, len ) === s ) {
 						result = s;
 						pos += len;
 					}
+
 					return result;
 				};
 			}
@@ -113,10 +131,13 @@
 			function makeRegexParser ( regex ) {
 				return function () {
 					var matches = message.substr( pos ).match( regex );
+
 					if ( matches === null ) {
 						return null;
 					}
+
 					pos += matches[0].length;
+
 					return matches[0];
 				};
 			}
@@ -141,6 +162,7 @@
 			function transform ( p, fn ) {
 				return function () {
 					var result = p();
+
 					return result === null ? null : fn( result );
 				};
 			}
@@ -150,16 +172,19 @@
 			// it is not a literal in the parameter
 			function literalWithoutBar () {
 				var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
+
 				return result === null ? null : result.join( '' );
 			}
 
 			function literal () {
 				var result = nOrMore( 1, escapedOrRegularLiteral )();
+
 				return result === null ? null : result.join( '' );
 			}
 
 			function escapedLiteral () {
 				var result = sequence( [ backslash, anyCharacter ] );
+
 				return result === null ? null : result[1];
 			}
 
@@ -169,26 +194,33 @@
 
 			function replacement () {
 				var result = sequence( [ dollar, digits ] );
+
 				if ( result === null ) {
 					return null;
 				}
+
 				return [ 'REPLACE', parseInt( result[1], 10 ) - 1 ];
 			}
 
 			var templateName = transform(
-			// see $wgLegalTitleChars
-			// not allowing : due to the need to catch "PLURAL:$1"
-			makeRegexParser( /^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/ ),
-					function ( result ) {
-						return result.toString();
-					} );
+				// see $wgLegalTitleChars
+				// not allowing : due to the need to catch "PLURAL:$1"
+				makeRegexParser( /^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/ ),
+
+				function ( result ) {
+					return result.toString();
+				}
+			);
 
 			function templateParam () {
 				var result = sequence( [ pipe, nOrMore( 0, paramExpression ) ] );
+
 				if ( result === null ) {
 					return null;
 				}
+
 				var expr = result[1];
+
 				// use a "CONCAT" operator if there are multiple nodes,
 				// otherwise return the first node, raw.
 				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
@@ -196,41 +228,46 @@
 
 			function templateWithReplacement () {
 				var result = sequence( [ templateName, colon, replacement ] );
+
 				return result === null ? null : [ result[0], result[2] ];
 			}
 
 			function templateWithOutReplacement () {
 				var result = sequence( [ templateName, colon, paramExpression ] );
+
 				return result === null ? null : [ result[0], result[2] ];
 			}
 
 			var templateContents = choice( [
-					function () {
-						var res = sequence( [
+				function () {
+					var res = sequence( [
 						// templates can have placeholders for dynamic
 						// replacement eg: {{PLURAL:$1|one car|$1 cars}}
 						// or no placeholders eg:
 						// {{GRAMMAR:genitive|{{SITENAME}}}
 						choice( [ templateWithReplacement, templateWithOutReplacement ] ),
-								nOrMore( 0, templateParam ) ] );
+						nOrMore( 0, templateParam )
+					] );
 
-						return res === null ? null : res[0].concat( res[1] );
-					}, function () {
-						var res = sequence( [ templateName, nOrMore( 0, templateParam ) ] );
+					return res === null ? null : res[0].concat( res[1] );
+				},
+				function () {
+					var res = sequence( [ templateName, nOrMore( 0, templateParam ) ] );
 
-						if ( res === null ) {
-							return null;
-						}
+					if ( res === null ) {
+						return null;
+					}
 
-						return [ res[0] ].concat( res[1] );
-					} ] );
+					return [ res[0] ].concat( res[1] );
+				}
+			] );
 
 			var openTemplate = makeStringParser( '{{' );
-
 			var closeTemplate = makeStringParser( '}}' );
 
 			function template () {
 				var result = sequence( [ openTemplate, templateContents, closeTemplate ] );
+
 				return result === null ? null : result[1];
 			}
 

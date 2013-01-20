@@ -28,7 +28,7 @@
 		 * sure it's not overwritten by any magic.) Walk entire node structure,
 		 * applying replacements and template functions when appropriate
 		 *
-		 * @param {Mixed} abstract syntax tree (top node or subnode)
+		 * @param {Mixed} node abstract syntax tree (top node or subnode)
 		 * @param {Array} replacements for $1, $2, ... $n
 		 * @return {Mixed} single-string node or array of nodes suitable for
 		 *  jQuery appending.
@@ -37,7 +37,7 @@
 			var ret, subnodes, operation,
 				messageParserEmitter = this;
 
-			switch (typeof node) {
+			switch ( typeof node ) {
 			case 'string':
 			case 'number':
 				ret = node;
@@ -47,12 +47,15 @@
 				subnodes = $.map( node.slice( 1 ), function ( n ) {
 					return messageParserEmitter.emit( n, replacements );
 				} );
+
 				operation = node[0].toLowerCase();
+
 				if ( typeof messageParserEmitter[operation] === 'function' ) {
 					ret = messageParserEmitter[operation]( subnodes, replacements );
 				} else {
 					throw new Error( 'unknown operation "' + operation + '"' );
 				}
+
 				break;
 			case 'undefined':
 				// Parsing the empty string (as an entire expression, or as a
@@ -81,10 +84,12 @@
 		 */
 		concat: function ( nodes ) {
 			var result = '';
+
 			$.each( nodes, function ( i, node ) {
 				// strings, integers, anything else
 				result += node;
 			} );
+
 			return result;
 		},
 
@@ -97,6 +102,7 @@
 		 * nodes.length > 1 ?
 		 *
 		 * @param {Array} nodes One element, integer, n >= 0
+		 * @param {Array} replacements for $1, $2, ... $n
 		 * @return {string} replacement
 		 */
 		replace: function ( nodes, replacements ) {
@@ -124,6 +130,7 @@
 		plural: function ( nodes ) {
 			var count = parseFloat( this.language.convertNumber( nodes[0], 10 ) ),
 				forms = nodes.slice( 1 );
+
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
 		},
 
@@ -137,6 +144,7 @@
 		gender: function ( nodes ) {
 			var gender = nodes[0],
 				forms = nodes.slice( 1 );
+
 			return this.language.gender( gender, forms );
 		},
 
@@ -151,6 +159,7 @@
 		grammar: function ( nodes ) {
 			var form = nodes[0],
 				word = nodes[1];
+
 			return word && form && this.language.convertGrammar( word, form );
 		}
 	};

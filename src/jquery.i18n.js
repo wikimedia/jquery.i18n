@@ -58,18 +58,18 @@
 				while ( locale ) {
 					// Iterate through locales starting at most-specific until
 					// localization is found. As in fi-Latn-FI, fi-Latn and fi.
-					localeParts = locale.toLowerCase().split( "-" );
+					localeParts = locale.toLowerCase().split( '-' );
 					localePartIndex = localeParts.length;
 
 					do {
-						var _locale = localeParts.slice( 0, localePartIndex ).join( "-" );
+						var _locale = localeParts.slice( 0, localePartIndex ).join( '-' );
 
 						if ( i18n.options.messageLocationResolver ) {
 							messageLocation = i18n.options.messageLocationResolver( _locale, value );
 
-							if ( messageLocation
-									&& ( !i18n.messageStore.isLoaded(_locale ,messageLocation ) ) )
-								 {
+							if ( messageLocation &&
+								( !i18n.messageStore.isLoaded( _locale ,messageLocation ) )
+							) {
 								i18n.messageStore.load( messageLocation, _locale );
 							}
 						}
@@ -79,16 +79,17 @@
 						if ( message ) {
 							return message;
 						}
+
 						localePartIndex--;
-					} while (localePartIndex);
+					} while ( localePartIndex );
 
 					if ( locale === 'en' ) {
 						break;
 					}
 
-					locale = ( $.i18n.fallbacks[i18n.locale] && $.i18n.fallbacks[i18n.locale][fallbackIndex] )
-							|| i18n.options.fallbackLocale;
-					i18n.log( "Trying fallback locale for " + i18n.locale + ": " + locale );
+					locale = ( $.i18n.fallbacks[i18n.locale] && $.i18n.fallbacks[i18n.locale][fallbackIndex] ) ||
+						i18n.options.fallbackLocale;
+					i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale );
 
 					fallbackIndex++;
 				}
@@ -128,7 +129,7 @@
 			this.messageStore.load( data, locale );
 		},
 
-		log: function (/* arguments */) {
+		log: function ( /* arguments */ ) {
 			if ( window.console && $.i18n.debug ) {
 				window.console.log.apply( window.console, arguments );
 			}
@@ -160,7 +161,7 @@
 	* for the current document, stored in jQuery.data(document).
 	*
 	* @param {string} key Key of the message.
-	* @param {string} [param...] Variadic list of parameters for {key}.
+	* @param {string} param1 [param...] Variadic list of parameters for {key}.
 	* @return {string|$.I18N} Parsed message, or if no key was given
 	* the instance of $.I18N is returned.
 	*/
@@ -191,6 +192,7 @@
 			} else {
 				parameters = [];
 			}
+
 			return i18n.parse( key, parameters );
 		} else {
 			// FIXME: remove this feature/bug.
@@ -198,19 +200,19 @@
 		}
 	};
 
-
-	$.fn.i18n = function ( option ) {
-		var messageKey, message, i18n = $.data( document, 'i18n' );
+	$.fn.i18n = function () {
+		var i18n = $.data( document, 'i18n' );
 		String.locale = i18n.locale;
 		if ( !i18n ) {
-			i18n = new I18N( option );
+			i18n = new I18N( );
 			$.data( document, 'i18n', i18n );
 		}
 		return this.each( function () {
 			var $this = $( this );
+
 			if ( $this.data( 'i18n' ) ) {
-				messageKey = $this.data( 'i18n' );
-				message = messageKey.toLocaleString();
+				var messageKey = $this.data( 'i18n' ),
+					message = messageKey.toLocaleString();
 				if ( message !== '' ) {
 					$this.text( message );
 				}
@@ -221,6 +223,7 @@
 	};
 
 	String.locale = String.locale || $( 'html' ).attr( 'lang' );
+
 	if ( !String.locale ) {
 		if ( typeof window.navigator !== undefined ) {
 			nav = window.navigator;
@@ -248,11 +251,11 @@
 	/* Static members */
 	I18N.defaults = {
 		locale: String.locale,
-		fallbackLocale: "en",
+		fallbackLocale: 'en',
 		parser: $.i18n.parser,
 		messageStore: $.i18n.messageStore,
 		/* messageLocationResolver - should be a function taking language code as argument and
-		 * returning absolute/ relative path to the localization file
+		 * returning absolute or relative path to the localization file
 		 */
 		messageLocationResolver: null
 	};

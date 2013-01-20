@@ -14,6 +14,7 @@
 					word = 'wo ' + word;
 					break;
 			}
+
 			return word;
 		}
 	} );

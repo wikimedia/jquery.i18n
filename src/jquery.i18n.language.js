@@ -524,16 +524,21 @@
 		convertPlural: function ( count, forms ) {
 			var pluralRules,
 				pluralFormIndex = 0;
+
 			if ( !forms || forms.length === 0 ) {
 				return '';
 			}
+
 			pluralRules = this.pluralRules[$.i18n().locale];
+
 			if ( !pluralRules ) {
 				// default fallback.
 				return ( count === 1 ) ? forms[0] : forms[1];
 			}
+
 			pluralFormIndex = this.getPluralForm( count, pluralRules );
 			pluralFormIndex = Math.min( pluralFormIndex, forms.length - 1 );
+
 			return forms[pluralFormIndex];
 		},
 
@@ -548,24 +553,25 @@
 			var i,
 				pluralForms = [ 'zero', 'one', 'two', 'few', 'many', 'other' ],
 				pluralFormIndex = 0;
-			for ( i = 0; i < pluralForms.length; i++) {
+
+			for ( i = 0; i < pluralForms.length; i++ ) {
 				if ( pluralRules[pluralForms[i]] ) {
 					if ( pluralRuleParser( pluralRules[pluralForms[i]], number ) ) {
 						return pluralFormIndex;
 					}
+
 					pluralFormIndex++;
 				}
 			}
+
 			return pluralFormIndex;
 		},
 
 		/**
 		 * Converts a number using digitTransformTable.
 		 *
-		 * @param {num}
-		 *            number Value to be converted
-		 * @param {boolean}
-		 *            integer Convert the return value to an integer
+		 * @param {number} num Value to be converted
+		 * @param {boolean} integer Convert the return value to an integer
 		 */
 		'convertNumber': function ( num, integer ) {
 			var tmp, item, i,
@@ -575,21 +581,27 @@
 			transformTable = this.digitTransformTable( $.i18n().locale );
 			numberString = '' + num;
 			convertedNumber = '';
+
 			if ( !transformTable ) {
 				return num;
 			}
+
 			// Check if the restore to Latin number flag is set:
 			if ( integer ) {
 				if ( parseFloat( num, 10 ) === num ) {
 					return num;
 				}
+
 				tmp = [];
-				for ( item in transformTable) {
+
+				for ( item in transformTable ) {
 					tmp[transformTable[item]] = item;
 				}
+
 				transformTable = tmp;
 			}
-			for ( i = 0; i < numberString.length; i++) {
+
+			for ( i = 0; i < numberString.length; i++ ) {
 				if ( transformTable[numberString[i]] ) {
 					convertedNumber += transformTable[numberString[i]];
 				} else {
@@ -603,7 +615,8 @@
 		/**
 		 * Grammatical transformations, needed for inflected languages.
 		 * Invoked by putting {{grammar:form|word}} in a message.
-		 * forms can be computed dynamically by overriding this method per language
+		 * Override this method for languages that need special grammar rules
+		 * applied dynamically.
 		 *
 		 * @param word {String}
 		 * @param form {String}
@@ -631,15 +644,19 @@
 			if ( !forms || forms.length === 0 ) {
 				return '';
 			}
-			while (forms.length < 2) {
+
+			while ( forms.length < 2 ) {
 				forms.push( forms[forms.length - 1] );
 			}
+
 			if ( gender === 'male' ) {
 				return forms[0];
 			}
+
 			if ( gender === 'female' ) {
 				return forms[1];
 			}
+
 			return ( forms.length === 3 ) ? forms[2] : forms[0];
 		},
 
@@ -647,7 +664,7 @@
 		 * Get the digit transform table for the given language
 		 * See http://cldr.unicode.org/translation/numbering-systems
 		 * @param language
-		 * @returns {Array|false} List of digits in the passed language
+		 * @returns {Array|boolean} List of digits in the passed language or false
 		 * representation, or boolean false if there is no information.
 		 */
 		digitTransformTable: function ( language ) {
@@ -668,9 +685,11 @@
 				th: '๐๑๒๓๔๕๖๗๘๙', //FIXME use iso 639 codes
 				bo: '༠༡༢༣༤༥༦༧༨༩' //FIXME use iso 639 codes
 			};
+
 			if ( !tables[language] ) {
 				return false;
 			}
+
 			return tables[language].split( '' );
 		}
 	};
@@ -678,5 +697,4 @@
 	$.extend( $.i18n.languages, {
 		'default': language
 	} );
-
 }( jQuery ) );
