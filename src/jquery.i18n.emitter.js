@@ -1,7 +1,7 @@
 /**
  * jQuery Internationalization library
  *
- * Copyright (C) 2012 Santhosh Thottingal
+ * Copyright (C) 2011-2013 Santhosh Thottingal, Neil Kandalgaonkar
  *
  * jquery.i18n is dual licensed GPLv2 or later and MIT. You don't have to do
  * anything special to choose one license or the other and you don't have to
