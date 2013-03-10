@@ -13,9 +13,13 @@
 			switch ( form ) {
 				case 'ഉദ്ദേശിക':
 				case 'dative':
-					if ( word.substr( -1 ) === 'ു' ) {
-						// പശു -> പശുവിന്
+					if ( word.substr( -1 ) === 'ു'
+						|| word.substr( -1 ) === 'ൂ'
+						|| word.substr( -1 ) === 'ൗ'
+						|| word.substr( -1 ) === 'ൌ' ) {
 						word += 'വിന്';
+					} else if ( word.substr( -1 ) === 'ം' ) {
+						word = word.substr( 0, word.length - 1 ) + 'ത്തിന്';
 					} else if ( word.substr( -1 ) === 'ൻ' ) {
 						// Atomic chillu n. അവൻ -> അവന്
 						word = word.substr( 0, word.length - 1 ) + 'ന്';
@@ -45,7 +49,10 @@
 						word = word.substr( 0, word.length - 1 ) + 'ത്തിന്റെ';
 					} else if ( word.substr( -1 ) === '്' ) {
 						word = word.substr( 0, word.length - 1 ) + 'ിന്റെ';
-					} else if ( word.substr( -1 ) === 'ു' ) {
+					} else if (  word.substr( -1 ) === 'ു'
+						|| word.substr( -1 ) === 'ൂ'
+						|| word.substr( -1 ) === 'ൗ'
+						|| word.substr( -1 ) === 'ൌ'  ) {
 						word += 'വിന്റെ';
 					} else if ( word.substr( -1 ) === 'ൻ' ) {
 						// Atomic chillu n. അവൻ -> അവന്റെ
