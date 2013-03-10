@@ -1,0 +1,5 @@
+{
+	"Meera": "মীরা",
+	"Harry": "হ্যারি",
+	"$1 has $2 {{plural:$2|kitten|kittens}}. {{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}." : "$1-র কাছে $2-টি {{plural:$2|বেড়ালছানা|বেড়ালছানা}} আছে। {{gender:$3|সে|সে}}  {{plural:$2|সেটির|সেগুলির}} সাথে খেলতে ভালোবাসে।" 
+}
