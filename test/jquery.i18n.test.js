@@ -617,7 +617,33 @@
 			grammarForm: 'accusative',
 			expected: 'Вікіпедію',
 			description: 'Grammar test for accusative case'
-		} ]
+		} ],
+		ml: [ {
+			word: 'കാവ്യ',
+			grammarForm: 'ഉദ്ദേശിക',
+			expected: 'കാവ്യയ്ക്ക്',
+			description: 'Grammar test for dative case'
+		}, {
+			word: 'പുലി',
+			grammarForm: 'dative',
+			expected: 'പുലിയ്ക്ക്',
+			description: 'Grammar test for dative case'
+		}, {
+			word: 'ഉപ്പ്',
+			grammarForm: 'dative',
+			expected: 'ഉപ്പിന്',
+			description: 'Grammar test for dative case'
+		}, {
+			word: 'മയില്‍',
+			grammarForm: 'dative',
+			expected: 'മയിലിന്',
+			description: 'Grammar test for dative case'
+		}, {
+			word: 'മാളു',
+			grammarForm: 'dative',
+			expected: 'മാളുവിന്',
+			description: 'Grammar test for dative case'
+		} ],
 	};
 
 	$.each( grammarTests, function ( langCode, test ) {
