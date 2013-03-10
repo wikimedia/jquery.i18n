@@ -645,10 +645,65 @@
 			expected: 'മയിലിന്',
 			description: 'Grammar test for dative case'
 		}, {
+			word: 'അവര്‍',
+			grammarForm: 'dative',
+			expected: 'അവര്‍ക്ക്',
+			description: 'Grammar test for dative case'
+		},{
+			word: 'അവന്‍',
+			grammarForm: 'dative',
+			expected: 'അവന്',
+			description: 'Grammar test for dative case'
+		}, {
 			word: 'മാളു',
 			grammarForm: 'dative',
 			expected: 'മാളുവിന്',
 			description: 'Grammar test for dative case'
+		}, {
+			word: 'മാളു',
+			grammarForm: 'genitive',
+			expected: 'മാളുവിന്റെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'മയില്‍',
+			grammarForm: 'genitive',
+			expected: 'മയിലിന്റെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'അവര്‍',
+			grammarForm: 'genitive',
+			expected: 'അവരുടെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'അവന്‍',
+			grammarForm: 'genitive',
+			expected: 'അവന്റെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'ഉപ്പ്',
+			grammarForm: 'genitive',
+			expected: 'ഉപ്പിന്റെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'പുലി',
+			grammarForm: 'genitive',
+			expected: 'പുലിയുടെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'ഇന്ത്യ',
+			grammarForm: 'genitive',
+			expected: 'ഇന്ത്യയുടെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'കേരളം',
+			grammarForm: 'genitive',
+			expected: 'കേരളത്തിന്റെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'യൂറോപ്പ്',
+			grammarForm: 'സംബന്ധിക',
+			expected: 'യൂറോപ്പിന്റെ',
+			description: 'Grammar test for genitive case'
 		} ]
 	};
 
