@@ -14,8 +14,8 @@
 
 
 	test( 'Message parse tests', 2, function ( assert ) {
-		var i18n = $( document ).data( 'i18n' );
-		var $fixture = $( '#qunit-fixture' );
+		var i18n = $( document ).data( 'i18n' ),
+			$fixture = $( '#qunit-fixture' );
 		// Load messages for localex
 		i18n.load( {
 			'x': 'X'
@@ -40,7 +40,12 @@
 		$.i18n( {
 			locale: 'en'
 		} );
-		var i18n = $( document ).data( 'i18n' );
+		var pluralAndGenderMessage,
+			pluralAndGenderMessageWithLessParaMS,
+			pluralAndGenderMessageWithCase,
+			pluralAndGenderMessageWithSyntaxError,
+			pluralAndGenderMessageWithSyntaxError2,
+			i18n = $( document ).data( 'i18n' );
 		assert.strictEqual( i18n.locale, 'en', 'Locale is English' );
 		assert.strictEqual( $.i18n( 'message_1' ), 'ONE', 'Simple message' );
 		assert.strictEqual(
@@ -49,16 +54,16 @@
 			'This message key does not exist'
 		);
 		assert.strictEqual( $.i18n( 'Hello $1', 'Bob' ), 'Hello Bob', 'Parameter replacement' );
-		var pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
-				'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.',
-			pluralAndGenderMessageWithLessParaMS ='$1 has $2 {{plural:$2|kitten}}. ' +
-				'{{gender:$3|He|She}} loves to play with {{plural:$2|it}}.',
-			pluralAndGenderMessageWithCase ='$1 has $2 {{plURAl:$2|kitten}}. ' +
-				'{{genDER:$3|He|She}} loves to play with {{pLural:$2|it}}.',
-			pluralAndGenderMessageWithSyntaxError ='$1 has $2 {{plural:$2|kitten}. ' +
-				'{{gender:$3|He|She}} loves to play with {plural:$2|it}}.',
-			pluralAndGenderMessageWithSyntaxError2 ='$1 has $2 {{plural:$2|kitten}}. ' +
-				'{gender:$3|He|She}} loves to play with {plural:$2|it}}.';
+		pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
+				'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
+		pluralAndGenderMessageWithLessParaMS ='$1 has $2 {{plural:$2|kitten}}. ' +
+			'{{gender:$3|He|She}} loves to play with {{plural:$2|it}}.';
+		pluralAndGenderMessageWithCase ='$1 has $2 {{plURAl:$2|kitten}}. ' +
+			'{{genDER:$3|He|She}} loves to play with {{pLural:$2|it}}.';
+		pluralAndGenderMessageWithSyntaxError ='$1 has $2 {{plural:$2|kitten}. ' +
+			'{{gender:$3|He|She}} loves to play with {plural:$2|it}}.';
+		pluralAndGenderMessageWithSyntaxError2 ='$1 has $2 {{plural:$2|kitten}}. ' +
+			'{gender:$3|He|She}} loves to play with {plural:$2|it}}.';
 		assert.strictEqual(
 			$.i18n( pluralAndGenderMessage, 'Meera', 1, 'female' ),
 			'Meera has 1 kitten. She loves to play with it.',
@@ -120,13 +125,14 @@
 		$.i18n( {
 			locale: 'ml'
 		} );
-		var i18n = $( document ).data( 'i18n' );
+		var i18n = $( document ).data( 'i18n' ),
+			pluralAndGenderMessage;
 		assert.strictEqual( i18n.locale, 'ml', 'Locale is Malayalam' );
 		assert.strictEqual( $.i18n( 'message_1' ), 'ഒന്ന്', 'Simple message' );
 		assert.strictEqual( $.i18n( 'This message key does not exist' ),
 				'This message key does not exist', 'This message key does not exist' );
 		assert.strictEqual( $.i18n( 'Hello $1', 'Bob' ), 'Hello Bob', 'Parameter replacement' );
-		var pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
+		pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
 			'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
 		assert.strictEqual( $.i18n( pluralAndGenderMessage, 'മീര', 1, 'female' ),
 				'മീരയ്ക്കു് ഒരു പൂച്ചക്കുട്ടി ഉണ്ടു്. അവൾ അതുമായി കളിക്കാൻ ഇഷ്ടപ്പെടുന്നു.',
@@ -194,7 +200,7 @@
 
 		i18n.messageStore.queue( 'localeq', 'i18n/test-q.json' );
 		assert.strictEqual(
-			i18n.messageStore.sources['localeq'][0].source.loaded,
+			i18n.messageStore.sources.localeq[0].source.loaded,
 			false,
 			'Locale localeq is queued'
 		);
@@ -202,11 +208,11 @@
 		// Switch to locale localeq
 		i18n.locale = 'localeq';
 		assert.strictEqual(
-			i18n.messageStore.sources['localeq'][0].source.loaded,
+			i18n.messageStore.sources.localeq[0].source.loaded,
 			false,
 			'Locale localeq is still in queue' );
 		assert.strictEqual( $.i18n( 'q' ), 'Q', 'Message loaded for localeq' );
-		assert.strictEqual( i18n.messageStore.sources['localeq'][0].source.loaded, true,
+		assert.strictEqual( i18n.messageStore.sources.localeq[0].source.loaded, true,
 			'Locale localeq is loaded' );
 	} );
 
@@ -224,7 +230,7 @@
 		var i18n = $( document ).data( 'i18n' );
 		i18n.locale = 'sa';
 		i18n.load( {
-			"hindi": 'हिन्दी'
+			'hindi': 'हिन्दी'
 		}, 'hi' );
 		i18n.load( {
 			'this-does-not-exist': 'This does not exist'
@@ -643,7 +649,7 @@
 			grammarForm: 'dative',
 			expected: 'മാളുവിന്',
 			description: 'Grammar test for dative case'
-		} ],
+		} ]
 	};
 
 	$.each( grammarTests, function ( langCode, test ) {
