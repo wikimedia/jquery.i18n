@@ -522,8 +522,7 @@
 		 * @return string Correct form for quantifier in this language
 		 */
 		convertPlural: function ( count, forms ) {
-			var pluralRules,
-				pluralFormIndex = 0;
+			var pluralRules, pluralFormIndex;
 
 			if ( !forms || forms.length === 0 ) {
 				return '';
