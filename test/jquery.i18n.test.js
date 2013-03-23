@@ -704,6 +704,16 @@
 			grammarForm: 'സംബന്ധിക',
 			expected: 'യൂറോപ്പിന്റെ',
 			description: 'Grammar test for genitive case'
+		}, {
+			word: 'വയറു്',
+			grammarForm: 'സംബന്ധിക',
+			expected: 'വയറിന്റെ',
+			description: 'Grammar test for genitive case'
+		}, {
+			word: 'കയറ്',
+			grammarForm: 'സംബന്ധിക',
+			expected: 'കയറിന്റെ',
+			description: 'Grammar test for genitive case'
 		} ]
 	};
 

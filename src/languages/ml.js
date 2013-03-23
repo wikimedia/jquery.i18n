@@ -36,6 +36,8 @@
 					} else if ( word.substr( -3 ) === 'ല്‍' ) {
 						// chillu ല്‍ , ഫയല്‍ -> ഫയലിന്
 						word = word.substr( 0, word.length - 2 ) + 'ിന്';
+					} else if ( word.substr( -2 ) === 'ു്' ) {
+						word = word.substr( 0, word.length - 2 ) + 'ിന്';
 					} else if ( word.substr( -1 ) === '്' ) {
 						word = word.substr( 0, word.length - 1 ) + 'ിന്';
 					} else {
@@ -47,6 +49,8 @@
 				case 'genitive':
 					if ( word.substr( -1 ) === 'ം' ) {
 						word = word.substr( 0, word.length - 1 ) + 'ത്തിന്റെ';
+					} else if ( word.substr( -2 ) === 'ു്' ) {
+						word = word.substr( 0, word.length - 2 ) + 'ിന്റെ';
 					} else if ( word.substr( -1 ) === '്' ) {
 						word = word.substr( 0, word.length - 1 ) + 'ിന്റെ';
 					} else if (  word.substr( -1 ) === 'ു'
