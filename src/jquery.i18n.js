@@ -16,7 +16,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	var nav,I18N,
+	var nav, I18N,
 		slice = Array.prototype.slice;
 	/**
 	 * @constructor
