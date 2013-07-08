@@ -16,13 +16,13 @@
 ( function ( $ ) {
 	'use strict';
 
-	var nav,
+	var nav,I18N,
 		slice = Array.prototype.slice;
 	/**
 	 * @constructor
 	 * @param {Object} options
 	 */
-	var I18N = function ( options ) {
+	I18N = function ( options ) {
 		// Load defaults
 		this.options = $.extend( {}, I18N.defaults, options );
 
@@ -49,7 +49,8 @@
 
 			// Override String.localeString method
 			String.prototype.toLocaleString = function () {
-				var localeParts, messageLocation, localePartIndex, value, locale, fallbackIndex;
+				var localeParts, messageLocation, localePartIndex, value, locale, fallbackIndex,
+					_locale, message;
 
 				value = this.valueOf();
 				locale = i18n.locale;
@@ -62,7 +63,7 @@
 					localePartIndex = localeParts.length;
 
 					do {
-						var _locale = localeParts.slice( 0, localePartIndex ).join( '-' );
+						_locale = localeParts.slice( 0, localePartIndex ).join( '-' );
 
 						if ( i18n.options.messageLocationResolver ) {
 							messageLocation = i18n.options.messageLocationResolver( _locale, value );
@@ -74,7 +75,7 @@
 							}
 						}
 
-						var message = i18n.messageStore.get( _locale, value );
+						message = i18n.messageStore.get( _locale, value );
 
 						if ( message ) {
 							return message;
@@ -208,11 +209,13 @@
 			$.data( document, 'i18n', i18n );
 		}
 		return this.each( function () {
-			var $this = $( this );
+			var messageKey, message,
+				$this = $( this );
 
 			if ( $this.data( 'i18n' ) ) {
-				var messageKey = $this.data( 'i18n' ),
-					message = messageKey.toLocaleString();
+				messageKey = $this.data( 'i18n' );
+				message = messageKey.toLocaleString();
+
 				if ( message !== '' ) {
 					$this.text( message );
 				}
