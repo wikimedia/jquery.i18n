@@ -9,14 +9,17 @@
 
 	$.i18n.languages.os = $.extend( {}, $.i18n.languages['default'], {
 		convertGrammar: function ( word, form ) {
+			var endAllative, jot, hyphen, ending;
+
 			// Ending for allative case
-			var endAllative = 'мæ';
+			endAllative = 'мæ';
 			// Variable for 'j' beetwen vowels
-			var jot = '';
+			jot = '';
 			// Variable for "-" for not Ossetic words
-			var hyphen = '';
+			hyphen = '';
 			// Variable for ending
-			var ending = '';
+			ending = '';
+
 			// Checking if the $word is in plural form
 			if ( word.match( /тæ$/i ) ) {
 				word = word.substring( 0, word.length - 1 );
