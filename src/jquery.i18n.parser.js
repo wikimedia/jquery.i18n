@@ -46,7 +46,11 @@
 		},
 
 		ast: function ( message ) {
-			var pos = 0;
+			var pipe, colon, backslash, anyCharacter, dollar, digits, regularLiteral,
+				regularLiteralWithoutBar, regularLiteralWithoutSpace, escapedOrLiteralWithoutBar,
+				escapedOrRegularLiteral, templateContents, templateName, openTemplate,
+				closeTemplate, expression, paramExpression, result,
+				pos = 0;
 
 			// Try parsers until one works, if none work return null
 			function choice ( parserSyntax ) {
@@ -142,15 +146,15 @@
 				};
 			}
 
-			var pipe = makeStringParser( '|' );
-			var colon = makeStringParser( ':' );
-			var backslash = makeStringParser( '\\' );
-			var anyCharacter = makeRegexParser( /^./ );
-			var dollar = makeStringParser( '$' );
-			var digits = makeRegexParser( /^\d+/ );
-			var regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
-			var regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
-			var regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
+			pipe = makeStringParser( '|' );
+			colon = makeStringParser( ':' );
+			backslash = makeStringParser( '\\' );
+			anyCharacter = makeRegexParser( /^./ );
+			dollar = makeStringParser( '$' );
+			digits = makeRegexParser( /^\d+/ );
+			regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
+			regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
+			regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
 
 			// There is a general pattern:
 			// parse a thing;
@@ -189,8 +193,8 @@
 			}
 
 			choice( [ escapedLiteral, regularLiteralWithoutSpace ] );
-			var escapedOrLiteralWithoutBar = choice( [ escapedLiteral, regularLiteralWithoutBar ] );
-			var escapedOrRegularLiteral = choice( [ escapedLiteral, regularLiteral ] );
+			escapedOrLiteralWithoutBar = choice( [ escapedLiteral, regularLiteralWithoutBar ] );
+			escapedOrRegularLiteral = choice( [ escapedLiteral, regularLiteral ] );
 
 			function replacement () {
 				var result = sequence( [ dollar, digits ] );
@@ -202,7 +206,7 @@
 				return [ 'REPLACE', parseInt( result[1], 10 ) - 1 ];
 			}
 
-			var templateName = transform(
+			templateName = transform(
 				// see $wgLegalTitleChars
 				// not allowing : due to the need to catch "PLURAL:$1"
 				makeRegexParser( /^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/ ),
@@ -213,13 +217,14 @@
 			);
 
 			function templateParam () {
-				var result = sequence( [ pipe, nOrMore( 0, paramExpression ) ] );
+				var expr,
+					result = sequence( [ pipe, nOrMore( 0, paramExpression ) ] );
 
 				if ( result === null ) {
 					return null;
 				}
 
-				var expr = result[1];
+				expr = result[1];
 
 				// use a "CONCAT" operator if there are multiple nodes,
 				// otherwise return the first node, raw.
@@ -238,7 +243,7 @@
 				return result === null ? null : [ result[0], result[2] ];
 			}
 
-			var templateContents = choice( [
+			templateContents = choice( [
 				function () {
 					var res = sequence( [
 						// templates can have placeholders for dynamic
@@ -262,8 +267,8 @@
 				}
 			] );
 
-			var openTemplate = makeStringParser( '{{' );
-			var closeTemplate = makeStringParser( '}}' );
+			openTemplate = makeStringParser( '{{' );
+			closeTemplate = makeStringParser( '}}' );
 
 			function template () {
 				var result = sequence( [ openTemplate, templateContents, closeTemplate ] );
@@ -271,8 +276,8 @@
 				return result === null ? null : result[1];
 			}
 
-			var expression = choice( [ template, replacement, literal ] );
-			var paramExpression = choice( [ template, replacement, literalWithoutBar ] );
+			expression = choice( [ template, replacement, literal ] );
+			paramExpression = choice( [ template, replacement, literalWithoutBar ] );
 
 			function start () {
 				var result = nOrMore( 0, expression )();
@@ -284,7 +289,7 @@
 				return [ 'CONCAT' ].concat( result );
 			}
 
-			var result = start();
+			result = start();
 
 			/*
 			 * For success, the pos must have gotten to the end of the input
@@ -301,5 +306,4 @@
 	};
 
 	$.extend( $.i18n.parser, new MessageParser() );
-
 }( jQuery ) );
