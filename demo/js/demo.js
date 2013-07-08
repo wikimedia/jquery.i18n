@@ -1,10 +1,9 @@
 jQuery( document ).ready( function ( $ ) {
 	'use strict';
 	$.i18n.debug = true;
-	var i18n = $.i18n();
-	//i18n.destroy();
-	var message = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
-		'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
+	var i18n = $.i18n(),
+		message = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
+			'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
 
 	function updateText() {
 		var language, person, sex, kittens;
