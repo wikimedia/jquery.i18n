@@ -546,7 +546,7 @@
 			}
 
 			forms = $.map( forms, function ( form ) {
-				if ( form ) {
+				if ( form !== undefined ) {
 					return form;
 				}
 			} );
