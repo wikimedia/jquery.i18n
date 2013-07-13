@@ -522,27 +522,34 @@
 		 * @return string Correct form for quantifier in this language
 		 */
 		convertPlural: function ( count, forms ) {
-			var pluralRules, pluralFormIndex, form;
+			var pluralRules,
+				pluralFormIndex,
+				index,
+				explicitPluralPattern = new RegExp('\\d+=', 'i'),
+				formCount,
+				form;
 
 			if ( !forms || forms.length === 0 ) {
 				return '';
 			}
 
-
 			// Handle for Explicit 0= & 1= values
-			for( var index = 0 ; index < forms.length ; index++ ) {
+			for ( index = 0; index < forms.length; index++ ) {
 				form = forms[index];
-				if( form[1] === "=" ) {
-					if( +form[0] === count ) { // Explicit comparision
-						return (form.substr( 2 ));
+				if ( explicitPluralPattern.test( form ) ) {
+					formCount = parseInt( form.substring( 0, form.indexOf( '=' ) ), 10 );
+					if ( formCount === count ) {
+						return ( form.substr( form.indexOf( '=' ) + 1 ) );
 					}
 					forms[index] = undefined;
 				}
 			}
 
-			forms = $.map ( forms, function( form ){
-				return form;
-			});
+			forms = $.map( forms, function ( form ) {
+				if ( form ) {
+					return form;
+				}
+			} );
 
 			pluralRules = this.pluralRules[$.i18n().locale];
 
