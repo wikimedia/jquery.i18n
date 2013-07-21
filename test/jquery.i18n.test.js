@@ -13,7 +13,7 @@
 	} );
 
 
-	test( 'Message parse tests', 2, function ( assert ) {
+	test( 'Message parse tests', 1, function ( assert ) {
 		var i18n = $( document ).data( 'i18n' ),
 			$fixture = $( '#qunit-fixture' );
 		// Load messages for localex
@@ -22,9 +22,6 @@
 		}, 'localex' );
 		$fixture.data( 'i18n', 'x' );
 		assert.strictEqual( $fixture.i18n().text(), 'X', 'Content of fixture localized' );
-		$fixture.text( 'Original text' );
-		$fixture.data( 'i18n', 'y' );
-		assert.strictEqual( $fixture.i18n().text(), 'Original text', 'Content of fixture untouched' );
 	} );
 
 	QUnit.module( 'jquery.i18n', {

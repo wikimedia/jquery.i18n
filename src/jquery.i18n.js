@@ -205,20 +205,16 @@
 		var i18n = $.data( document, 'i18n' );
 		String.locale = i18n.locale;
 		if ( !i18n ) {
-			i18n = new I18N( );
+			i18n = new I18N();
 			$.data( document, 'i18n', i18n );
 		}
+
 		return this.each( function () {
-			var messageKey, message,
-				$this = $( this );
-
-			if ( $this.data( 'i18n' ) ) {
+			var $this = $( this ),
 				messageKey = $this.data( 'i18n' );
-				message = messageKey.toLocaleString();
 
-				if ( message !== '' ) {
-					$this.text( message );
-				}
+			if ( messageKey ) {
+				$this.text( i18n.parse( messageKey ) );
 			} else {
 				$this.find( '[data-i18n]' ).i18n();
 			}
