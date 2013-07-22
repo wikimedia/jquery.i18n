@@ -43,13 +43,12 @@
 			var i18n;
 
 			i18n = this;
-			i18n.messageStore.init( i18n.locale );
 			// Set locale of String environment
 			String.locale = i18n.locale;
 
 			// Override String.localeString method
 			String.prototype.toLocaleString = function () {
-				var localeParts, messageLocation, localePartIndex, value, locale, fallbackIndex,
+				var localeParts, localePartIndex, value, locale, fallbackIndex,
 					_locale, message;
 
 				value = this.valueOf();
@@ -64,23 +63,10 @@
 
 					do {
 						_locale = localeParts.slice( 0, localePartIndex ).join( '-' );
-
-						if ( i18n.options.messageLocationResolver ) {
-							messageLocation = i18n.options.messageLocationResolver( _locale, value );
-
-							if ( messageLocation &&
-								( !i18n.messageStore.isLoaded( _locale ,messageLocation ) )
-							) {
-								i18n.messageStore.load( messageLocation, _locale );
-							}
-						}
-
 						message = i18n.messageStore.get( _locale, value );
-
 						if ( message ) {
 							return message;
 						}
-
 						localePartIndex--;
 					} while ( localePartIndex );
 
@@ -90,7 +76,7 @@
 
 					locale = ( $.i18n.fallbacks[i18n.locale] && $.i18n.fallbacks[i18n.locale][fallbackIndex] ) ||
 						i18n.options.fallbackLocale;
-					i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale );
+					$.i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale );
 
 					fallbackIndex++;
 				}
@@ -123,17 +109,12 @@
 		 * null/undefined/false,
 		 * all cached messages for the i18n instance will get reset.
 		 *
-		 * @param {String|Object|null} data
+		 * @param {String|Object} source
 		 * @param {String} locale Language tag
+		 * @returns {jQuery.Promise}
 		 */
-		load: function ( data, locale ) {
-			this.messageStore.load( data, locale );
-		},
-
-		log: function ( /* arguments */ ) {
-			if ( window.console && $.i18n.debug ) {
-				window.console.log.apply( window.console, arguments );
-			}
+		load: function ( source, locale ) {
+			return this.messageStore.load( source, locale );
 		},
 
 		/**
@@ -246,19 +227,19 @@
 	};
 
 	$.i18n.debug = false;
-
+	$.i18n.log = function ( /* arguments */ ) {
+		if ( window.console && $.i18n.debug ) {
+			window.console.log.apply( window.console, arguments );
+		}
+	};
 	/* Static members */
 	I18N.defaults = {
 		locale: String.locale,
 		fallbackLocale: 'en',
 		parser: $.i18n.parser,
-		messageStore: $.i18n.messageStore,
-		/* messageLocationResolver - should be a function taking language code as argument and
-		 * returning absolute or relative path to the localization file
-		 */
-		messageLocationResolver: null
+		messageStore: $.i18n.messageStore
 	};
 
 	// Expose constructor
-	$.I18N = I18N;
+	$.i18n.constructor = I18N;
 }( jQuery ) );
