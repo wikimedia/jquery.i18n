@@ -12,7 +12,6 @@
 		}
 	} );
 
-
 	test( 'Message parse tests', 1, function ( assert ) {
 		var i18n = $( document ).data( 'i18n' ),
 			$fixture = $( '#qunit-fixture' );
@@ -26,7 +25,9 @@
 
 	QUnit.module( 'jquery.i18n', {
 		setup: function () {
-			$.i18n().destroy();
+			$.i18n( {
+				locale: 'en'
+			} );
 		},
 		teardown: function () {
 			$.i18n().destroy();
@@ -34,17 +35,21 @@
 	} );
 
 	QUnit.test( 'Message parse tests (en)', 14, function ( assert ) {
-		$.i18n( {
-			locale: 'en'
-		} );
 		var pluralAndGenderMessage,
 			pluralAndGenderMessageWithLessParaMS,
 			pluralAndGenderMessageWithCase,
 			pluralAndGenderMessageWithSyntaxError,
 			pluralAndGenderMessageWithSyntaxError2,
 			i18n = $( document ).data( 'i18n' );
-		assert.strictEqual( i18n.locale, 'en', 'Locale is English' );
-		assert.strictEqual( $.i18n( 'message_1' ), 'ONE', 'Simple message' );
+
+		QUnit.stop();
+		$.when(
+			i18n.load( 'i18n/test-en.json', 'en' )
+		).then( function () {
+			QUnit.start();
+			assert.strictEqual( i18n.locale, 'en', 'Locale is English' );
+			assert.strictEqual( $.i18n( 'message_1' ), 'ONE', 'Simple message' );
+		} );
 		assert.strictEqual(
 			$.i18n( 'This message key does not exist' ),
 			'This message key does not exist',
@@ -118,12 +123,16 @@
 
 	} );
 
-	QUnit.test( 'Message parse tests (ml, fr)', 8, function ( assert ) {
+	$.when(
+		$.i18n().load( 'i18n/test-ml.json', 'ml' )
+	).then( function () {
+		QUnit.start();
+		QUnit.test( 'Message parse tests (ml, fr)', 8, function ( assert ) {
+			var i18n = $( document ).data( 'i18n' ),
+				pluralAndGenderMessage;
 		$.i18n( {
 			locale: 'ml'
 		} );
-		var i18n = $( document ).data( 'i18n' ),
-			pluralAndGenderMessage;
 		assert.strictEqual( i18n.locale, 'ml', 'Locale is Malayalam' );
 		assert.strictEqual( $.i18n( 'message_1' ), 'ഒന്ന്', 'Simple message' );
 		assert.strictEqual( $.i18n( 'This message key does not exist' ),
@@ -142,9 +151,11 @@
 				'Restaurer 1 modification', 'Plural rule parsed correctly for French' );
 		assert.strictEqual( $.i18n( 'Restaurer $1 modification{{PLURAL:$1||s}}', 2 ),
 				'Restaurer 2 modifications', 'Plural rule parsed correctly for French' );
+		} );
 	} );
 
-	QUnit.test( 'Message load tests', 13, function ( assert ) {
+
+	QUnit.test( 'Message load tests', 9, function ( assert ) {
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
 		assert.strictEqual( i18n.locale, 'en', 'Locale is English - fallback locale' );
@@ -194,23 +205,6 @@
 			'Z',
 			'Message loaded for localez, message key "z" is present'
 		);
-
-		i18n.messageStore.queue( 'localeq', 'i18n/test-q.json' );
-		assert.strictEqual(
-			i18n.messageStore.sources.localeq[0].source.loaded,
-			false,
-			'Locale localeq is queued'
-		);
-
-		// Switch to locale localeq
-		i18n.locale = 'localeq';
-		assert.strictEqual(
-			i18n.messageStore.sources.localeq[0].source.loaded,
-			false,
-			'Locale localeq is still in queue' );
-		assert.strictEqual( $.i18n( 'q' ), 'Q', 'Message loaded for localeq' );
-		assert.strictEqual( i18n.messageStore.sources.localeq[0].source.loaded, true,
-			'Locale localeq is loaded' );
 	} );
 
 	module( 'jquery.i18n - Fallback test', {
