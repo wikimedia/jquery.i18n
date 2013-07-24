@@ -15,7 +15,7 @@
 	'use strict';
 
 	$.i18n = $.i18n || {};
-	$.i18n.fallbacks = {
+	$.extend( $.i18n.fallbacks, {
 		'ab': ['ru'],
 		'ace': ['id'],
 		'aln': ['sq'],
@@ -182,5 +182,5 @@
 		'zh-sg': ['zh-hans'],
 		'zh-tw': ['zh-hant', 'zh-hans'],
 		'zh-yue': ['yue']
-	};
+	} );
 }( jQuery ) );

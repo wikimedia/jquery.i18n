@@ -225,7 +225,7 @@
 		},
 		emitter: {}
 	};
-
+	$.i18n.fallbacks = {};
 	$.i18n.debug = false;
 	$.i18n.log = function ( /* arguments */ ) {
 		if ( window.console && $.i18n.debug ) {
