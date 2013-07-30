@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery i18n Demo</title>
+	<!-- Libs -->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+	<script src="../libs/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js"></script>
+	<!-- Source -->
+	<script src="../src/jquery.i18n.js"></script>
+	<script src="../src/jquery.i18n.messages.js"></script>
+	<script src="../src/jquery.i18n.fallbacks.js"></script>
+	<script src="../src/jquery.i18n.parser.js"></script>
+	<script src="../src/jquery.i18n.emitter.js"></script>
+	<script src="../src/jquery.i18n.language.js"></script>
+	<script src="../src/languages/bs.js"></script>
+	<script src="../src/languages/dsb.js"></script>
+	<script src="../src/languages/fi.js"></script>
+	<script src="../src/languages/ga.js"></script>
+	<script src="../src/languages/he.js"></script>
+	<script src="../src/languages/hsb.js"></script>
+	<script src="../src/languages/hu.js"></script>
+	<script src="../src/languages/hy.js"></script>
+	<script src="../src/languages/la.js"></script>
+	<script src="../src/languages/ml.js"></script>
+	<script src="../src/languages/os.js"></script>
+	<script src="../src/languages/ru.js"></script>
+	<script src="../src/languages/sl.js"></script>
+	<script src="../src/languages/uk.js"></script>
+
+	<!-- Demo -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+	
+	function updateText() {
+		var i18n = $.i18n(),
+			language, message, placeholder;
+		
+		message = $( '.message' ).val();
+		language = $( '.language' ).val();
+		placeholder = $( '.placeholder' ).val();
+		i18n.locale = language;
+		$( '.result' )
+			.text( $.i18n( message, placeholder ) );
+	}
+	
+	jQuery( document ).ready( function ( $ ) {
+		$.i18n.debug = true;
+		updateText();
+		$( '.message, .language, .placeholder' ).on( 'input', updateText );
+	} );
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<header id="overview" class="subhead well">
+			<h1>jQuery i18n Demo</h1>
+			<p class="lead">
+				jQuery i18n Demo
+			</p>
+		</header>
+		<div class="lead">
+		<form class="form-horizontal">
+			 <div class="controls">
+				<label class="control-label" >Message: </label>
+				<textarea class="span8 message input-large " >There {{plural:$1|is one car|are $1 cars|0=are no cars|12=is a dozen cars}}
+			</textarea>
+				</div>
+				 <div class="controls">
+					<label class="control-label" >Language: </label> <input type=text class="input-large language" value=en size="3"/>
+				</div>
+				 <div class="controls">
+					<label class="control-label" >Placeholder values: </label><input type=text class="input-large placeholder" value=1 size="3"/>
+				 </div>
+		</form>
+		</div>
+		<div class="result lead alert alert-success"><!-- The message will be filled here automatically. --></div>
+		<hr/>
+		<footer>
+			<p>(♥) Copyheart by Santhosh Thottingal</p>
+		</footer>
+	</div>
+</body>
+</html>
