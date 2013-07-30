@@ -16,14 +16,15 @@
   },
   "contributors": [
     "Amir Aharoni <amir.aharoni@mail.huji.ac.il>",
+    "Niklas Laxström <nlaxstrom@wikimedia.org>",
     "Neil Kandalgaonkar <neilk@brevity.org>"
   ],
-  "dependencies": {
-   "jQuery": "~1.7.3"
-  },
   "devDependencies": {
-    "grunt": "~0.3.9",
-    "grunt-compare-size": ">=0.1.4"
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1",
+    "grunt-contrib-jshint": "~0.5.4",
+    "grunt-contrib-qunit": "~0.2.1",
+    "grunt-contrib-jasmine": "~0.4"
   },
   "repository": {
     "type": "git",
@@ -33,7 +34,7 @@
 	    "url" : "http://github.com/wikimedia/jquery.i18n/issues"
 	  },
   "engine": {
-    "node": ">=0.6.x"
+    "node": ">=0.8.x"
   },
   "licenses": [
     {
