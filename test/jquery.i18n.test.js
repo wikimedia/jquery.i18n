@@ -57,14 +57,14 @@
 		);
 		assert.strictEqual( $.i18n( 'Hello $1', 'Bob' ), 'Hello Bob', 'Parameter replacement' );
 		pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
-				'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
-		pluralAndGenderMessageWithLessParaMS ='$1 has $2 {{plural:$2|kitten}}. ' +
+			'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
+		pluralAndGenderMessageWithLessParaMS = '$1 has $2 {{plural:$2|kitten}}. ' +
 			'{{gender:$3|He|She}} loves to play with {{plural:$2|it}}.';
-		pluralAndGenderMessageWithCase ='$1 has $2 {{plURAl:$2|kitten}}. ' +
+		pluralAndGenderMessageWithCase = '$1 has $2 {{plURAl:$2|kitten}}. ' +
 			'{{genDER:$3|He|She}} loves to play with {{pLural:$2|it}}.';
-		pluralAndGenderMessageWithSyntaxError ='$1 has $2 {{plural:$2|kitten}. ' +
+		pluralAndGenderMessageWithSyntaxError = '$1 has $2 {{plural:$2|kitten}. ' +
 			'{{gender:$3|He|She}} loves to play with {plural:$2|it}}.';
-		pluralAndGenderMessageWithSyntaxError2 ='$1 has $2 {{plural:$2|kitten}}. ' +
+		pluralAndGenderMessageWithSyntaxError2 = '$1 has $2 {{plural:$2|kitten}}. ' +
 			'{gender:$3|He|She}} loves to play with {plural:$2|it}}.';
 		assert.strictEqual(
 			$.i18n( pluralAndGenderMessage, 'Meera', 1, 'female' ),
@@ -153,7 +153,6 @@
 				'Restaurer 2 modifications', 'Plural rule parsed correctly for French' );
 		} );
 	} );
-
 
 	QUnit.test( 'Message load tests', 9, function ( assert ) {
 		$.i18n();

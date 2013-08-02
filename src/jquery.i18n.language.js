@@ -3,7 +3,6 @@
 	'use strict';
 
 	var language = {
-
 		// CLDR plural rules generated using
 		// http://i18ndata.appspot.com/cldr/tags/unconfirmed/supplemental/plurals?action=browse&depth=-1
 		// and compressed

@@ -165,5 +165,4 @@
 	};
 
 	$.extend( $.i18n.parser.emitter, new MessageParserEmitter() );
-
 }( jQuery ) );

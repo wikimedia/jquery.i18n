@@ -109,5 +109,4 @@
 	}
 
 	$.extend( $.i18n.messageStore, new MessageStore() );
-
 }( jQuery, window ) );
