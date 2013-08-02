@@ -118,12 +118,12 @@
 		},
 
 		/**
-		* Does parameter and magic word substitution.
-		*
-		* @param {string} key Message key
-		* @param {Array} parameters Message parameters
-		* @return {string}
-		*/
+		 * Does parameter and magic word substitution.
+		 *
+		 * @param {string} key Message key
+		 * @param {Array} parameters Message parameters
+		 * @return {string}
+		 */
 		parse: function ( key, parameters ) {
 			var message = key.toLocaleString();
 			// FIXME: This changes the state of the I18N object,
@@ -137,16 +137,15 @@
 		}
 	};
 
-
 	/**
-	* Process a message from the $.I18N instance
-	* for the current document, stored in jQuery.data(document).
-	*
-	* @param {string} key Key of the message.
-	* @param {string} param1 [param...] Variadic list of parameters for {key}.
-	* @return {string|$.I18N} Parsed message, or if no key was given
-	* the instance of $.I18N is returned.
-	*/
+	 * Process a message from the $.I18N instance
+	 * for the current document, stored in jQuery.data(document).
+	 *
+	 * @param {string} key Key of the message.
+	 * @param {string} param1 [param...] Variadic list of parameters for {key}.
+	 * @return {string|$.I18N} Parsed message, or if no key was given
+	 * the instance of $.I18N is returned.
+	 */
 	$.i18n = function ( key, param1 ) {
 		var parameters,
 			i18n = $.data( document, 'i18n' ),

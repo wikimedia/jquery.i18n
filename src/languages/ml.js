@@ -63,7 +63,7 @@
 						word = word.substr( 0, word.length - 1 ) + 'ന്റെ';
 					} else if ( word.substr( -3 ) === 'ന്‍' ) {
 						// chillu n. അവൻ -> അവന്റെ
-						word = word.substr( 0, word.length -1 ) + 'റെ';
+						word = word.substr( 0, word.length - 1 ) + 'റെ';
 					} else if ( word.substr( -3 ) === 'ള്‍' ) {
 						// chillu n. അവൾ -> അവളുടെ
 						word = word.substr( 0, word.length - 2 ) + 'ുടെ';
