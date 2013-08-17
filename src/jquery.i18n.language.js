@@ -643,7 +643,7 @@
 		 * @param form {String}
 		 * @return {String}
 		 */
-		convertGrammar: function ( word, form ) {
+		convertGrammar: function ( word, form ) { /*jshint unused: false */
 			return word;
 		},
 

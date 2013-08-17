@@ -40,16 +40,15 @@
 		 * String.prototype.toLocaleString and String.locale.
 		 */
 		init: function () {
-			var i18n;
+			var i18n = this;
 
-			i18n = this;
 			// Set locale of String environment
 			String.locale = i18n.locale;
 
 			// Override String.localeString method
 			String.prototype.toLocaleString = function () {
 				var localeParts, localePartIndex, value, locale, fallbackIndex,
-					_locale, message;
+					tryingLocale, message;
 
 				value = this.valueOf();
 				locale = i18n.locale;
@@ -62,11 +61,13 @@
 					localePartIndex = localeParts.length;
 
 					do {
-						_locale = localeParts.slice( 0, localePartIndex ).join( '-' );
-						message = i18n.messageStore.get( _locale, value );
+						tryingLocale = localeParts.slice( 0, localePartIndex ).join( '-' );
+						message = i18n.messageStore.get( tryingLocale, value );
+
 						if ( message ) {
 							return message;
 						}
+
 						localePartIndex--;
 					} while ( localePartIndex );
 

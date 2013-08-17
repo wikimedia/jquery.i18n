@@ -551,6 +551,11 @@
 		} ],
 
 		ru: [ {
+			word: 'транслэйтвики',
+			grammarForm: 'genitive',
+			expected: 'транслэйтвики',
+			description: 'Grammar test for genitive case'
+		}, {
 			word: 'тесть',
 			grammarForm: 'genitive',
 			expected: 'тестя',
@@ -595,6 +600,11 @@
 		} ],
 
 		uk: [ {
+			word: 'транслейтвікі',
+			grammarForm: 'genitive',
+			expected: 'транслейтвікі',
+			description: 'Grammar test for genitive case'
+		}, {
 			word: 'тесть',
 			grammarForm: 'genitive',
 			expected: 'тестя',
