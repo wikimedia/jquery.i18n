@@ -1,5 +1,6 @@
 function updateText() {
-	var i18n = $.i18n(), language, person, kittens, message;
+	'use strict';
+	var i18n = $.i18n(), language, person, kittens, message, gender;
 
 	message = '$1 has $2 {{plural:$2|kitten|kittens}}. '
 		+ '{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
@@ -20,6 +21,7 @@ function updateText() {
 $.i18n.debug = true;
 
 $( document ).ready( function( $ ) {
+	'use strict';
 	updateText();
 	$( '.kittens, .person, .language' ).on( 'change keyup', updateText );
 } );
