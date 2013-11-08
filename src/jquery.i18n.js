@@ -184,12 +184,12 @@
 
 	$.fn.i18n = function () {
 		var i18n = $.data( document, 'i18n' );
-		String.locale = i18n.locale;
+
 		if ( !i18n ) {
 			i18n = new I18N();
 			$.data( document, 'i18n', i18n );
 		}
-
+		String.locale = i18n.locale;
 		return this.each( function () {
 			var $this = $( this ),
 				messageKey = $this.data( 'i18n' );
