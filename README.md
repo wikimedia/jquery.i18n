@@ -9,11 +9,6 @@ Quick start
 git clone https://github.com/wikimedia/jquery.i18n.git
 ```
 
-Documentation
--------------
-
-For documentation and examples please visit the [wiki](https://github.com/wikimedia/jquery.i18n/wiki/_pages)
-
 
 How to build and test jQuery i18n
 ----------------------------------
