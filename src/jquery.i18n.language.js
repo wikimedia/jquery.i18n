@@ -6,508 +6,258 @@
 		// CLDR plural rules generated using
 		// http://i18ndata.appspot.com/cldr/tags/unconfirmed/supplemental/plurals?action=browse&depth=-1
 		// and compressed
-		pluralRules: {
-			gv: {
-				one: 'n mod 10 in 1..2 or n mod 20 is 0'
+		"pluralRules": {
+			"ar": {
+				"zero": "n = 0",
+				"one": "n = 1",
+				"two": "n = 2",
+				"few": "n % 100 = 3..10",
+				"many": "n % 100 = 11..99"
 			},
-			gu: {
-				one: 'n is 1'
+			"he": {
+				"one": "i = 1 and v = 0",
+				"two": "i = 2 and v = 0",
+				"many": "v = 0 and n != 0..10 and n % 10 = 0"
 			},
-			rof: {
-				one: 'n is 1'
+			"iw": {
+				"one": "i = 1 and v = 0",
+				"two": "i = 2 and v = 0",
+				"many": "v = 0 and n != 0..10 and n % 10 = 0"
 			},
-			ga: {
-				few: 'n in 3..6',
-				many: 'n in 7..10',
-				two: 'n is 2',
-				one: 'n is 1'
+			"ak": {
+				"one": "n = 0..1"
 			},
-			gl: {
-				one: 'n is 1'
+			"bh": {
+				"one": "n = 0..1"
 			},
-			lg: {
-				one: 'n is 1'
+			"guw": {
+				"one": "n = 0..1"
 			},
-			lb: {
-				one: 'n is 1'
+			"ln": {
+				"one": "n = 0..1"
+			},
+			"mg": {
+				"one": "n = 0..1"
 			},
-			xog: {
-				one: 'n is 1'
+			"nso": {
+				"one": "n = 0..1"
+			},
+			"pa": {
+				"one": "n = 0..1"
+			},
+			"ti": {
+				"one": "n = 0..1"
+			},
+			"wa": {
+				"one": "n = 0..1"
+			},
+			"ff": {
+				"one": "i = 0,1"
+			},
+			"fr": {
+				"one": "i = 0,1"
+			},
+			"hy": {
+				"one": "i = 0,1"
+			},
+			"kab": {
+				"one": "i = 0,1"
+			},
+			"lv": {
+				"zero": "n % 10 = 0 or n % 100 = 11..19 or v = 2 and f % 100 = 11..19",
+				"one": "n % 10 = 1 and n % 100 != 11 or v = 2 and f % 10 = 1 and f % 100 != 11 or v != 2 and f % 10 = 1"
+			},
+			"iu": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"kw": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"naq": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"se": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"sma": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"smi": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"smj": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"smn": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"sms": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"ga": {
+				"one": "n = 1",
+				"two": "n = 2",
+				"few": "n = 3..6",
+				"many": "n = 7..10"
+			},
+			"mo": {
+				"one": "i = 1 and v = 0",
+				"few": "v != 0 or n = 0 or n != 1 and n % 100 = 1..19"
+			},
+			"ro": {
+				"one": "i = 1 and v = 0",
+				"few": "v != 0 or n = 0 or n != 1 and n % 100 = 1..19"
+			},
+			"lt": {
+				"one": "n % 10 = 1 and n % 100 != 11..19",
+				"few": "n % 10 = 2..9 and n % 100 != 11..19",
+				"many": "f != 0"
+			},
+			"be": {
+				"one": "n % 10 = 1 and n % 100 != 11",
+				"few": "n % 10 = 2..4 and n % 100 != 12..14",
+				"many": "n % 10 = 0 or n % 10 = 5..9 or n % 100 = 11..14"
 			},
-			ln: {
-				one: 'n in 0..1'
+			"cs": {
+				"one": "i = 1 and v = 0",
+				"few": "i = 2..4 and v = 0",
+				"many": "v != 0"
 			},
-			lo: '',
-			brx: {
-				one: 'n is 1'
+			"sk": {
+				"one": "i = 1 and v = 0",
+				"few": "i = 2..4 and v = 0",
+				"many": "v != 0"
 			},
-			tr: '',
-			ts: {
-				one: 'n is 1'
+			"pl": {
+				"one": "i = 1 and v = 0",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14",
+				"many": "v = 0 and i != 1 and i % 10 = 0..1 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 12..14"
 			},
-			tn: {
-				one: 'n is 1'
+			"sl": {
+				"one": "v = 0 and i % 100 = 1",
+				"two": "v = 0 and i % 100 = 2",
+				"few": "v = 0 and i % 100 = 3..4 or v != 0"
 			},
-			to: '',
-			lt: {
-				few: 'n mod 10 in 2..9 and n mod 100 not in 11..19',
-				one: 'n mod 10 is 1 and n mod 100 not in 11..19'
+			"mt": {
+				"one": "n = 1",
+				"few": "n = 0 or n % 100 = 2..10",
+				"many": "n % 100 = 11..19"
 			},
-			tk: {
-				one: 'n is 1'
+			"mk": {
+				"one": "v = 0 and i % 10 = 1 or f % 10 = 1"
 			},
-			th: '',
-			ksb: {
-				one: 'n is 1'
+			"cy": {
+				"zero": "n = 0",
+				"one": "n = 1",
+				"two": "n = 2",
+				"few": "n = 3",
+				"many": "n = 6"
 			},
-			te: {
-				one: 'n is 1'
+			"lag": {
+				"zero": "n = 0",
+				"one": "i = 0,1 and n != 0"
 			},
-			ksh: {
-				zero: 'n is 0',
-				one: 'n is 1'
+			"shi": {
+				"one": "i = 0 or n = 1",
+				"few": "n = 2..10"
 			},
-			fil: {
-				one: 'n in 0..1'
+			"br": {
+				"one": "n % 10 = 1 and n % 100 != 11,71,91",
+				"two": "n % 10 = 2 and n % 100 != 12,72,92",
+				"few": "n % 10 = 3..4,9 and n % 100 != 10..19,70..79,90..99",
+				"many": "n != 0 and n % 1000000 = 0"
 			},
-			haw: {
-				one: 'n is 1'
+			"tzm": {
+				"one": "n = 0..1 or n = 11..99"
 			},
-			kcg: {
-				one: 'n is 1'
+			"gv": {
+				"one": "n % 10 = 1",
+				"two": "n % 10 = 2",
+				"few": "n % 100 = 0,20,40,60"
 			},
-			ssy: {
-				one: 'n is 1'
+			"gd": {
+				"one": "n = 1,11",
+				"two": "n = 2,12",
+				"few": "n = 3..10,13..19"
 			},
-			yo: '',
-			de: {
-				one: 'n is 1'
+			"fil": {
+				"one": "i = 0..1 and v = 0"
 			},
-			ko: '',
-			da: {
-				one: 'n is 1'
+			"tl": {
+				"one": "i = 0..1 and v = 0"
 			},
-			dz: '',
-			dv: {
-				one: 'n is 1'
+			"pt": {
+				"one": "i = 1 and v = 0 or i = 0 and t = 1"
 			},
-			guw: {
-				one: 'n in 0..1'
+			"da": {
+				"one": "n = 1 or t != 0 and i = 0,1"
 			},
-			shi: {
-				few: 'n in 2..10',
-				one: 'n within 0..1'
+			"pt_PT": {
+				"one": "n = 1 and v = 0"
 			},
-			el: {
-				one: 'n is 1'
+			"am": {
+				"one": "i = 0 or n = 1"
 			},
-			eo: {
-				one: 'n is 1'
+			"bn": {
+				"one": "i = 0 or n = 1"
 			},
-			en: {
-				one: 'n is 1'
+			"fa": {
+				"one": "i = 0 or n = 1"
 			},
-			ses: '',
-			teo: {
-				one: 'n is 1'
+			"gu": {
+				"one": "i = 0 or n = 1"
 			},
-			ee: {
-				one: 'n is 1'
+			"hi": {
+				"one": "i = 0 or n = 1"
 			},
-			kde: '',
-			fr: {
-				one: 'n within 0..2 and n is not 2'
+			"kn": {
+				"one": "i = 0 or n = 1"
 			},
-			eu: {
-				one: 'n is 1'
+			"mr": {
+				"one": "i = 0 or n = 1"
 			},
-			et: {
-				one: 'n is 1'
+			"zu": {
+				"one": "i = 0 or n = 1"
 			},
-			es: {
-				one: 'n is 1'
+			"is": {
+				"one": "t = 0 and i % 10 = 1 and i % 100 != 11 or t != 0"
 			},
-			seh: {
-				one: 'n is 1'
+			"si": {
+				"one": "n = 0,1 or i = 0 and f = 1"
 			},
-			ru: {
-				few: 'n mod 10 in 2..4 and n mod 100 not in 12..14',
-				many: 'n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14',
-				one: 'n mod 10 is 1 and n mod 100 is not 11'
+			"bs": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
 			},
-			kl: {
-				one: 'n is 1'
+			"hr": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
 			},
-			sms: {
-				two: 'n is 2',
-				one: 'n is 1'
+			"sh": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
 			},
-			smn: {
-				two: 'n is 2',
-				one: 'n is 1'
+			"sr": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
 			},
-			smj: {
-				two: 'n is 2',
-				one: 'n is 1'
+			"ru": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11",
+				"many": "v = 0 and i % 10 = 0 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 11..14"
 			},
-			smi: {
-				two: 'n is 2',
-				one: 'n is 1'
-			},
-			fy: {
-				one: 'n is 1'
-			},
-			rm: {
-				one: 'n is 1'
-			},
-			ro: {
-				few: 'n is 0 OR n is not 1 AND n mod 100 in 1..19',
-				one: 'n is 1'
-			},
-			bn: {
-				one: 'n is 1'
-			},
-			sma: {
-				two: 'n is 2',
-				one: 'n is 1'
-			},
-			be: {
-				few: 'n mod 10 in 2..4 and n mod 100 not in 12..14',
-				many: 'n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14',
-				one: 'n mod 10 is 1 and n mod 100 is not 11'
-			},
-			bg: {
-				one: 'n is 1'
-			},
-			ms: '',
-			wa: {
-				one: 'n in 0..1'
-			},
-			ps: {
-				one: 'n is 1'
-			},
-			wo: '',
-			bm: '',
-			jv: '',
-			bo: '',
-			bh: {
-				one: 'n in 0..1'
-			},
-			kea: '',
-			asa: {
-				one: 'n is 1'
-			},
-			cgg: {
-				one: 'n is 1'
-			},
-			br: {
-				few: 'n mod 10 in 3..4,9 and n mod 100 not in 10..19,70..79,90..99',
-				many: 'n mod 1000000 is 0 and n is not 0',
-				two: 'n mod 10 is 2 and n mod 100 not in 12,72,92',
-				one: 'n mod 10 is 1 and n mod 100 not in 11,71,91'
-			},
-			bs: {
-				few: 'n mod 10 in 2..4 and n mod 100 not in 12..14',
-				many: 'n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14',
-				one: 'n mod 10 is 1 and n mod 100 is not 11'
-			},
-			ja: '',
-			om: {
-				one: 'n is 1'
-			},
-			fa: '',
-			vun: {
-				one: 'n is 1'
-			},
-			or: {
-				one: 'n is 1'
-			},
-			xh: {
-				one: 'n is 1'
-			},
-			nso: {
-				one: 'n in 0..1'
-			},
-			ca: {
-				one: 'n is 1'
-			},
-			cy: {
-				few: 'n is 3',
-				zero: 'n is 0',
-				many: 'n is 6',
-				two: 'n is 2',
-				one: 'n is 1'
-			},
-			cs: {
-				few: 'n in 2..4',
-				one: 'n is 1'
-			},
-			zh: '',
-			lv: {
-				zero: 'n is 0',
-				one: 'n mod 10 is 1 and n mod 100 is not 11'
-			},
-			pt: {
-				one: 'n is 1'
-			},
-			wae: {
-				one: 'n is 1'
-			},
-			tl: {
-				one: 'n in 0..1'
-			},
-			chr: {
-				one: 'n is 1'
-			},
-			pa: {
-				one: 'n is 1'
-			},
-			ak: {
-				one: 'n in 0..1'
-			},
-			pl: {
-				few: 'n mod 10 in 2..4 and n mod 100 not in 12..14',
-				many: 'n is not 1 and n mod 10 in 0..1 or n mod 10 in 5..9 or n mod 100 in 12..14',
-				one: 'n is 1'
-			},
-			hr: {
-				few: 'n mod 10 in 2..4 and n mod 100 not in 12..14',
-				many: 'n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14',
-				one: 'n mod 10 is 1 and n mod 100 is not 11'
-			},
-			am: {
-				one: 'n in 0..1'
-			},
-			ti: {
-				one: 'n in 0..1'
-			},
-			hu: '',
-			hi: {
-				one: 'n in 0..1'
-			},
-			jmc: {
-				one: 'n is 1'
-			},
-			ha: {
-				one: 'n is 1'
-			},
-			he: {
-				one: 'n is 1'
-			},
-			mg: {
-				one: 'n in 0..1'
-			},
-			fur: {
-				one: 'n is 1'
-			},
-			bem: {
-				one: 'n is 1'
-			},
-			ml: {
-				one: 'n is 1'
-			},
-			mo: {
-				few: 'n is 0 OR n is not 1 AND n mod 100 in 1..19',
-				one: 'n is 1'
-			},
-			mn: {
-				one: 'n is 1'
-			},
-			mk: {
-				one: 'n mod 10 is 1 and n is not 11'
-			},
-			ur: {
-				one: 'n is 1'
-			},
-			bez: {
-				one: 'n is 1'
-			},
-			mt: {
-				few: 'n is 0 or n mod 100 in 2..10',
-				many: 'n mod 100 in 11..19',
-				one: 'n is 1'
-			},
-			uk: {
-				few: 'n mod 10 in 2..4 and n mod 100 not in 12..14',
-				many: 'n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14',
-				one: 'n mod 10 is 1 and n mod 100 is not 11'
-			},
-			mr: {
-				one: 'n is 1'
-			},
-			ta: {
-				one: 'n is 1'
-			},
-			my: '',
-			sah: '',
-			ve: {
-				one: 'n is 1'
-			},
-			af: {
-				one: 'n is 1'
-			},
-			vi: '',
-			is: {
-				one: 'n is 1'
-			},
-			iu: {
-				two: 'n is 2',
-				one: 'n is 1'
-			},
-			it: {
-				one: 'n is 1'
-			},
-			kn: '',
-			ii: '',
-			ar: {
-				few: 'n mod 100 in 3..10',
-				zero: 'n is 0',
-				many: 'n mod 100 in 11..99',
-				two: 'n is 2',
-				one: 'n is 1'
-			},
-			zu: {
-				one: 'n is 1'
-			},
-			saq: {
-				one: 'n is 1'
-			},
-			az: '',
-			tzm: {
-				one: 'n in 0..1 or n in 11..99'
-			},
-			id: '',
-			ig: '',
-			pap: {
-				one: 'n is 1'
-			},
-			nl: {
-				one: 'n is 1'
-			},
-			nn: {
-				one: 'n is 1'
-			},
-			no: {
-				one: 'n is 1'
-			},
-			nah: {
-				one: 'n is 1'
-			},
-			nd: {
-				one: 'n is 1'
-			},
-			ne: {
-				one: 'n is 1'
-			},
-			ny: {
-				one: 'n is 1'
-			},
-			naq: {
-				two: 'n is 2',
-				one: 'n is 1'
-			},
-			nyn: {
-				one: 'n is 1'
-			},
-			kw: {
-				two: 'n is 2',
-				one: 'n is 1'
-			},
-			nr: {
-				one: 'n is 1'
-			},
-			tig: {
-				one: 'n is 1'
-			},
-			kab: {
-				one: 'n within 0..2 and n is not 2'
-			},
-			mas: {
-				one: 'n is 1'
-			},
-			rwk: {
-				one: 'n is 1'
-			},
-			kaj: {
-				one: 'n is 1'
-			},
-			lag: {
-				zero: 'n is 0',
-				one: 'n within 0..2 and n is not 0 and n is not 2'
-			},
-			syr: {
-				one: 'n is 1'
-			},
-			kk: {
-				one: 'n is 1'
-			},
-			ff: {
-				one: 'n within 0..2 and n is not 2'
-			},
-			fi: {
-				one: 'n is 1'
-			},
-			fo: {
-				one: 'n is 1'
-			},
-			ka: '',
-			gsw: {
-				one: 'n is 1'
-			},
-			ckb: {
-				one: 'n is 1'
-			},
-			ss: {
-				one: 'n is 1'
-			},
-			sr: {
-				few: 'n mod 10 in 2..4 and n mod 100 not in 12..14',
-				many: 'n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14',
-				one: 'n mod 10 is 1 and n mod 100 is not 11'
-			},
-			sq: {
-				one: 'n is 1'
-			},
-			sw: {
-				one: 'n is 1'
-			},
-			sv: {
-				one: 'n is 1'
-			},
-			km: '',
-			st: {
-				one: 'n is 1'
-			},
-			sk: {
-				few: 'n in 2..4',
-				one: 'n is 1'
-			},
-			sh: {
-				few: 'n mod 10 in 2..4 and n mod 100 not in 12..14',
-				many: 'n mod 10 is 0 or n mod 10 in 5..9 or n mod 100 in 11..14',
-				one: 'n mod 10 is 1 and n mod 100 is not 11'
-			},
-			so: {
-				one: 'n is 1'
-			},
-			sn: {
-				one: 'n is 1'
-			},
-			ku: {
-				one: 'n is 1'
-			},
-			sl: {
-				few: 'n mod 100 in 3..4',
-				two: 'n mod 100 is 2',
-				one: 'n mod 100 is 1'
-			},
-			sg: '',
-			nb: {
-				one: 'n is 1'
-			},
-			se: {
-				two: 'n is 2',
-				one: 'n is 1'
+			"uk": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14",
+				"many": "v = 0 and i % 10 = 0 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 11..14"
 			}
 		},
 

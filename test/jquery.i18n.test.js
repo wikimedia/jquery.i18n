@@ -275,8 +275,8 @@
 				'Arabic plural test for other' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1000 ), 'other',
 				'Arabic plural test for other' );
-		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1.7 ), 'other',
-				'Arabic plural test for other' );
+		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1.7 ), 'one',
+				'Arabic decimal plural test for one' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٠١٢٣٤٥٦٧٨٩' ), 'many',
 				'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
 	} );
