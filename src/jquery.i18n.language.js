@@ -2,6 +2,7 @@
 ( function ( $ ) {
 	'use strict';
 
+	//noinspection JSHint
 	var language = {
 		// CLDR plural rules generated using
 		// libs/CLDRPluralRuleParser/tools/PluralXML2JSON.html
