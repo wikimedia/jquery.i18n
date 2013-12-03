@@ -2,6 +2,7 @@
 ( function ( $ ) {
 	'use strict';
 
+	//noinspection JSHint
 	var language = {
 		// CLDR plural rules generated using
 		// http://i18ndata.appspot.com/cldr/tags/unconfirmed/supplemental/plurals?action=browse&depth=-1
