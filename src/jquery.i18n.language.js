@@ -4,9 +4,14 @@
 
 	var language = {
 		// CLDR plural rules generated using
-		// http://i18ndata.appspot.com/cldr/tags/unconfirmed/supplemental/plurals?action=browse&depth=-1
-		// and compressed
+		// libs/CLDRPluralRuleParser/tools/PluralXML2JSON.html
 		"pluralRules": {
+			"ak": {
+				"one": "n = 0..1"
+			},
+			"am": {
+				"one": "i = 0 or n = 1"
+			},
 			"ar": {
 				"zero": "n = 0",
 				"one": "n = 1",
@@ -14,30 +19,150 @@
 				"few": "n % 100 = 3..10",
 				"many": "n % 100 = 11..99"
 			},
+			"be": {
+				"one": "n % 10 = 1 and n % 100 != 11",
+				"few": "n % 10 = 2..4 and n % 100 != 12..14",
+				"many": "n % 10 = 0 or n % 10 = 5..9 or n % 100 = 11..14"
+			},
+			"bh": {
+				"one": "n = 0..1"
+			},
+			"bn": {
+				"one": "i = 0 or n = 1"
+			},
+			"br": {
+				"one": "n % 10 = 1 and n % 100 != 11,71,91",
+				"two": "n % 10 = 2 and n % 100 != 12,72,92",
+				"few": "n % 10 = 3..4,9 and n % 100 != 10..19,70..79,90..99",
+				"many": "n != 0 and n % 1000000 = 0"
+			},
+			"bs": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
+			},
+			"cs": {
+				"one": "i = 1 and v = 0",
+				"few": "i = 2..4 and v = 0",
+				"many": "v != 0"
+			},
+			"cy": {
+				"zero": "n = 0",
+				"one": "n = 1",
+				"two": "n = 2",
+				"few": "n = 3",
+				"many": "n = 6"
+			},
+			"da": {
+				"one": "n = 1 or t != 0 and i = 0,1"
+			},
+			"fa": {
+				"one": "i = 0 or n = 1"
+			},
+			"ff": {
+				"one": "i = 0,1"
+			},
+			"fil": {
+				"one": "i = 0..1 and v = 0"
+			},
+			"fr": {
+				"one": "i = 0,1"
+			},
+			"ga": {
+				"one": "n = 1",
+				"two": "n = 2",
+				"few": "n = 3..6",
+				"many": "n = 7..10"
+			},
+			"gd": {
+				"one": "n = 1,11",
+				"two": "n = 2,12",
+				"few": "n = 3..10,13..19"
+			},
+			"gu": {
+				"one": "i = 0 or n = 1"
+			},
+			"guw": {
+				"one": "n = 0..1"
+			},
+			"gv": {
+				"one": "n % 10 = 1",
+				"two": "n % 10 = 2",
+				"few": "n % 100 = 0,20,40,60"
+			},
 			"he": {
 				"one": "i = 1 and v = 0",
 				"two": "i = 2 and v = 0",
 				"many": "v = 0 and n != 0..10 and n % 10 = 0"
+			},
+			"hi": {
+				"one": "i = 0 or n = 1"
+			},
+			"hr": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
+			},
+			"hy": {
+				"one": "i = 0,1"
+			},
+			"is": {
+				"one": "t = 0 and i % 10 = 1 and i % 100 != 11 or t != 0"
+			},
+			"iu": {
+				"one": "n = 1",
+				"two": "n = 2"
 			},
 			"iw": {
 				"one": "i = 1 and v = 0",
 				"two": "i = 2 and v = 0",
 				"many": "v = 0 and n != 0..10 and n % 10 = 0"
 			},
-			"ak": {
-				"one": "n = 0..1"
+			"kab": {
+				"one": "i = 0,1"
 			},
-			"bh": {
-				"one": "n = 0..1"
+			"kn": {
+				"one": "i = 0 or n = 1"
 			},
-			"guw": {
-				"one": "n = 0..1"
+			"kw": {
+				"one": "n = 1",
+				"two": "n = 2"
+			},
+			"lag": {
+				"zero": "n = 0",
+				"one": "i = 0,1 and n != 0"
 			},
 			"ln": {
 				"one": "n = 0..1"
 			},
+			"lt": {
+				"one": "n % 10 = 1 and n % 100 != 11..19",
+				"few": "n % 10 = 2..9 and n % 100 != 11..19",
+				"many": "f != 0"
+			},
+			"lv": {
+				"zero": "n % 10 = 0 or n % 100 = 11..19 or v = 2 and f % 100 = 11..19",
+				"one": "n % 10 = 1 and n % 100 != 11 or v = 2 and f % 10 = 1 and f % 100 != 11 or v != 2 and f % 10 = 1"
+			},
 			"mg": {
 				"one": "n = 0..1"
+			},
+			"mk": {
+				"one": "v = 0 and i % 10 = 1 or f % 10 = 1"
+			},
+			"mo": {
+				"one": "i = 1 and v = 0",
+				"few": "v != 0 or n = 0 or n != 1 and n % 100 = 1..19"
+			},
+			"mr": {
+				"one": "i = 0 or n = 1"
+			},
+			"mt": {
+				"one": "n = 1",
+				"few": "n = 0 or n % 100 = 2..10",
+				"many": "n % 100 = 11..19"
+			},
+			"naq": {
+				"one": "n = 1",
+				"two": "n = 2"
 			},
 			"nso": {
 				"one": "n = 0..1"
@@ -45,43 +170,49 @@
 			"pa": {
 				"one": "n = 0..1"
 			},
-			"ti": {
-				"one": "n = 0..1"
+			"pl": {
+				"one": "i = 1 and v = 0",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14",
+				"many": "v = 0 and i != 1 and i % 10 = 0..1 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 12..14"
 			},
-			"wa": {
-				"one": "n = 0..1"
+			"pt": {
+				"one": "i = 1 and v = 0 or i = 0 and t = 1"
 			},
-			"ff": {
-				"one": "i = 0,1"
+			"pt_PT": {
+				"one": "n = 1 and v = 0"
 			},
-			"fr": {
-				"one": "i = 0,1"
+			"ro": {
+				"one": "i = 1 and v = 0",
+				"few": "v != 0 or n = 0 or n != 1 and n % 100 = 1..19"
 			},
-			"hy": {
-				"one": "i = 0,1"
-			},
-			"kab": {
-				"one": "i = 0,1"
-			},
-			"lv": {
-				"zero": "n % 10 = 0 or n % 100 = 11..19 or v = 2 and f % 100 = 11..19",
-				"one": "n % 10 = 1 and n % 100 != 11 or v = 2 and f % 10 = 1 and f % 100 != 11 or v != 2 and f % 10 = 1"
-			},
-			"iu": {
-				"one": "n = 1",
-				"two": "n = 2"
-			},
-			"kw": {
-				"one": "n = 1",
-				"two": "n = 2"
-			},
-			"naq": {
-				"one": "n = 1",
-				"two": "n = 2"
+			"ru": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11",
+				"many": "v = 0 and i % 10 = 0 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 11..14"
 			},
 			"se": {
 				"one": "n = 1",
 				"two": "n = 2"
+			},
+			"sh": {
+				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
+				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
+			},
+			"shi": {
+				"one": "i = 0 or n = 1",
+				"few": "n = 2..10"
+			},
+			"si": {
+				"one": "n = 0,1 or i = 0 and f = 1"
+			},
+			"sk": {
+				"one": "i = 1 and v = 0",
+				"few": "i = 2..4 and v = 0",
+				"many": "v != 0"
+			},
+			"sl": {
+				"one": "v = 0 and i % 100 = 1",
+				"two": "v = 0 and i % 100 = 2",
+				"few": "v = 0 and i % 100 = 3..4 or v != 0"
 			},
 			"sma": {
 				"one": "n = 1",
@@ -103,163 +234,32 @@
 				"one": "n = 1",
 				"two": "n = 2"
 			},
-			"ga": {
-				"one": "n = 1",
-				"two": "n = 2",
-				"few": "n = 3..6",
-				"many": "n = 7..10"
-			},
-			"mo": {
-				"one": "i = 1 and v = 0",
-				"few": "v != 0 or n = 0 or n != 1 and n % 100 = 1..19"
-			},
-			"ro": {
-				"one": "i = 1 and v = 0",
-				"few": "v != 0 or n = 0 or n != 1 and n % 100 = 1..19"
-			},
-			"lt": {
-				"one": "n % 10 = 1 and n % 100 != 11..19",
-				"few": "n % 10 = 2..9 and n % 100 != 11..19",
-				"many": "f != 0"
-			},
-			"be": {
-				"one": "n % 10 = 1 and n % 100 != 11",
-				"few": "n % 10 = 2..4 and n % 100 != 12..14",
-				"many": "n % 10 = 0 or n % 10 = 5..9 or n % 100 = 11..14"
-			},
-			"cs": {
-				"one": "i = 1 and v = 0",
-				"few": "i = 2..4 and v = 0",
-				"many": "v != 0"
-			},
-			"sk": {
-				"one": "i = 1 and v = 0",
-				"few": "i = 2..4 and v = 0",
-				"many": "v != 0"
-			},
-			"pl": {
-				"one": "i = 1 and v = 0",
-				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14",
-				"many": "v = 0 and i != 1 and i % 10 = 0..1 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 12..14"
-			},
-			"sl": {
-				"one": "v = 0 and i % 100 = 1",
-				"two": "v = 0 and i % 100 = 2",
-				"few": "v = 0 and i % 100 = 3..4 or v != 0"
-			},
-			"mt": {
-				"one": "n = 1",
-				"few": "n = 0 or n % 100 = 2..10",
-				"many": "n % 100 = 11..19"
-			},
-			"mk": {
-				"one": "v = 0 and i % 10 = 1 or f % 10 = 1"
-			},
-			"cy": {
-				"zero": "n = 0",
-				"one": "n = 1",
-				"two": "n = 2",
-				"few": "n = 3",
-				"many": "n = 6"
-			},
-			"lag": {
-				"zero": "n = 0",
-				"one": "i = 0,1 and n != 0"
-			},
-			"shi": {
-				"one": "i = 0 or n = 1",
-				"few": "n = 2..10"
-			},
-			"br": {
-				"one": "n % 10 = 1 and n % 100 != 11,71,91",
-				"two": "n % 10 = 2 and n % 100 != 12,72,92",
-				"few": "n % 10 = 3..4,9 and n % 100 != 10..19,70..79,90..99",
-				"many": "n != 0 and n % 1000000 = 0"
-			},
-			"tzm": {
-				"one": "n = 0..1 or n = 11..99"
-			},
-			"gv": {
-				"one": "n % 10 = 1",
-				"two": "n % 10 = 2",
-				"few": "n % 100 = 0,20,40,60"
-			},
-			"gd": {
-				"one": "n = 1,11",
-				"two": "n = 2,12",
-				"few": "n = 3..10,13..19"
-			},
-			"fil": {
-				"one": "i = 0..1 and v = 0"
-			},
-			"tl": {
-				"one": "i = 0..1 and v = 0"
-			},
-			"pt": {
-				"one": "i = 1 and v = 0 or i = 0 and t = 1"
-			},
-			"da": {
-				"one": "n = 1 or t != 0 and i = 0,1"
-			},
-			"pt_PT": {
-				"one": "n = 1 and v = 0"
-			},
-			"am": {
-				"one": "i = 0 or n = 1"
-			},
-			"bn": {
-				"one": "i = 0 or n = 1"
-			},
-			"fa": {
-				"one": "i = 0 or n = 1"
-			},
-			"gu": {
-				"one": "i = 0 or n = 1"
-			},
-			"hi": {
-				"one": "i = 0 or n = 1"
-			},
-			"kn": {
-				"one": "i = 0 or n = 1"
-			},
-			"mr": {
-				"one": "i = 0 or n = 1"
-			},
-			"zu": {
-				"one": "i = 0 or n = 1"
-			},
-			"is": {
-				"one": "t = 0 and i % 10 = 1 and i % 100 != 11 or t != 0"
-			},
-			"si": {
-				"one": "n = 0,1 or i = 0 and f = 1"
-			},
-			"bs": {
-				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
-				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
-			},
-			"hr": {
-				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
-				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
-			},
-			"sh": {
-				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
-				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
-			},
 			"sr": {
 				"one": "v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11",
 				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14"
 			},
-			"ru": {
-				"one": "v = 0 and i % 10 = 1 and i % 100 != 11",
-				"many": "v = 0 and i % 10 = 0 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 11..14"
+			"ti": {
+				"one": "n = 0..1"
+			},
+			"tl": {
+				"one": "i = 0..1 and v = 0"
+			},
+			"tzm": {
+				"one": "n = 0..1 or n = 11..99"
 			},
 			"uk": {
 				"one": "v = 0 and i % 10 = 1 and i % 100 != 11",
 				"few": "v = 0 and i % 10 = 2..4 and i % 100 != 12..14",
 				"many": "v = 0 and i % 10 = 0 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 11..14"
+			},
+			"wa": {
+				"one": "n = 0..1"
+			},
+			"zu": {
+				"one": "i = 0 or n = 1"
 			}
 		},
+
 
 		/**
 		 * Plural form transformations, needed for some languages.
