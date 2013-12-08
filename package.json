@@ -20,11 +20,11 @@
     "Neil Kandalgaonkar <neilk@brevity.org>"
   ],
   "devDependencies": {
+   "qunit": "~0.5.16",
     "grunt": "~0.4.1",
-    "grunt-cli": "~0.1",
     "grunt-contrib-jshint": "~0.5.4",
     "grunt-contrib-qunit": "~0.2.1",
-    "grunt-contrib-jasmine": "~0.4"
+    "grunt-contrib-watch": "~0.4.3"
   },
   "repository": {
     "type": "git",
@@ -47,6 +47,6 @@
     }
   ],
   "scripts": {
-  "test": "grunt test --verbose"
+    "test": "grunt test --verbose"
   }
 }
