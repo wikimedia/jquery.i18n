@@ -57,7 +57,7 @@
 				while ( locale ) {
 					// Iterate through locales starting at most-specific until
 					// localization is found. As in fi-Latn-FI, fi-Latn and fi.
-					localeParts = locale.toLowerCase().split( '-' );
+					localeParts = locale.split( '-' );
 					localePartIndex = localeParts.length;
 
 					do {

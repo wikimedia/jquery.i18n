@@ -154,7 +154,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Message load tests', 9, function ( assert ) {
+	QUnit.test( 'Message load tests', 12, function ( assert ) {
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
 		assert.strictEqual( i18n.locale, 'en', 'Locale is English - fallback locale' );
@@ -203,6 +203,28 @@
 			$.i18n( 'z' ),
 			'Z',
 			'Message loaded for localez, message key "z" is present'
+		);
+
+		// Load messages for en - with and without contry code
+		i18n.load( {
+			'en-US': {
+				'english-us': 'English-US'
+			},
+			'en': {
+				'english': 'English'
+			}
+		} );
+		i18n.locale = 'en-US';
+		assert.strictEqual( i18n.locale, 'en-US', 'Locale is en-US' );
+		assert.strictEqual(
+			$.i18n( 'english-us' ),
+			'English-US',
+			'Message loaded for en-US, message key "english-us" is present'
+		);
+		assert.strictEqual(
+			$.i18n( 'english' ),
+			'English',
+			'Message was resolved from en even though current locale is en-US'
 		);
 	} );
 
