@@ -191,14 +191,14 @@
 		i18n.locale = 'localey';
 		assert.strictEqual( i18n.locale, 'localey', 'Locale switched to localey' );
 		assert.strictEqual(
-			$.i18n( 'y' ),
-			'Y',
-			'Message loaded for localey, message key "y" is present'
-		);
-		assert.strictEqual(
 			$.i18n( 'y1' ),
 			'Y1',
-			'Message loaded for localey, message key "y1" is present, preserving the messages set for localey earlier'
+			'Message loaded for localey, message key "y1" is present'
+		);
+		assert.strictEqual(
+			$.i18n( 'y' ),
+			'Y',
+			'Message loaded for localey, message key "y" is still present, not overwritten by second message load.'
 		);
 
 		// Switch back to locale localex
