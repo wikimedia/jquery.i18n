@@ -154,7 +154,7 @@
 		} );
 	} );
 
-	QUnit.test( 'Message load tests', 12, function ( assert ) {
+	QUnit.test( 'Message load tests', 13, function ( assert ) {
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
 		assert.strictEqual( i18n.locale, 'en', 'Locale is English - fallback locale' );
@@ -181,6 +181,11 @@
 				'z': 'Z'
 			}
 		} );
+		i18n.load( {
+			'localey': {
+				'y1': 'Y1'
+			},
+		} );
 
 		// Switch to locale localey
 		i18n.locale = 'localey';
@@ -189,6 +194,11 @@
 			$.i18n( 'y' ),
 			'Y',
 			'Message loaded for localey, message key "y" is present'
+		);
+		assert.strictEqual(
+			$.i18n( 'y1' ),
+			'Y1',
+			'Message loaded for localey, message key "y1" is present, preserving the messages set for localey earlier'
 		);
 
 		// Switch back to locale localex
