@@ -83,12 +83,17 @@
 		},
 
 		/**
-		 * Set messages
+		 * Set messages to the given locale.
+		 * If locale exists, add messages to the locale.
 		 * @param locale
 		 * @param messages
 		 */
 		set: function( locale, messages ) {
-			this.messages[locale] = messages;
+			if ( !this.messages[locale] ) {
+				this.messages[locale] = messages;
+			} else {
+				this.messages[locale] = $.extend( this.messages[locale], messages );
+			}
 		},
 
 		/**
