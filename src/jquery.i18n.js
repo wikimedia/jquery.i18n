@@ -96,18 +96,40 @@
 
 		/**
 		 * General message loading API This can take a URL string for
-		 * the json formatted messages.
+		 * the json formatted messages. Example:
 		 * <code>load('path/to/all_localizations.json');</code>
 		 *
-		 * This can also load a localization file for a locale <code>
+		 * To load a localization file for a locale:
+		 * <code>
 		 * load('path/to/de-messages.json', 'de' );
 		 * </code>
+		 *
+		 * To load a localization file from a directory:
+		 * <code>
+		 * load('path/to/i18n/directory', 'de' );
+		 * </code>
+		 * The above method has the advantage of fallback resolution.
+		 * ie, it will automatically load the fallback locales for de.
+		 * For most usecases, this is the recommended method.
+		 * It is optional to have trailing slash at end.
+		 *
 		 * A data object containing message key- message translation mappings
-		 * can also be passed Eg:
+		 * can also be passed. Example:
 		 * <code>
 		 * load( { 'hello' : 'Hello' }, optionalLocale );
-		 * </code> If the data argument is
-		 * null/undefined/false,
+		 * </code>
+		 *
+		 * A source map containing key-value pair of languagename and locations
+		 * can also be passed. Example:
+		 * <code>
+		 * load( {
+		 * 'bn': 'i18n/bn.json',
+		 * 'he': 'i18n/he.json',
+		 * 'en': 'i18n/en.json'
+		 * } )
+		 * </code>
+		 *
+		 * If the data argument is null/undefined/false,
 		 * all cached messages for the i18n instance will get reset.
 		 *
 		 * @param {String|Object} source
@@ -115,7 +137,22 @@
 		 * @returns {jQuery.Promise}
 		 */
 		load: function ( source, locale ) {
-			return this.messageStore.load( source, locale );
+			var fallbackLocales, locIndex, fallbackLocale, sourceMap = {};
+
+			if ( typeof source === 'string'	&&
+				source.split('.').pop() !== 'json'
+			) {
+				fallbackLocales = ( $.i18n.fallbacks[locale] || [] )
+					.concat( this.options.fallbackLocale );
+				for ( locIndex in fallbackLocales ) {
+					fallbackLocale = fallbackLocales[locIndex];
+					sourceMap[fallbackLocale] = source + '/' + fallbackLocale + '.json';
+				}
+				return this.load( sourceMap );
+			} else {
+				return this.messageStore.load( source, locale );
+			}
+
 		},
 
 		/**
