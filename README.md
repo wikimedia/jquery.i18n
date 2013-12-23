@@ -107,6 +107,25 @@ $.i18n().load({
 });
 ```
 
+Messages for a locale can be also loaded in parts. Example
+```javascript
+$.i18n().load({
+	'en' : {
+		'message_hello' : 'Hello World',
+    		'message_welcome' : 'Welcome'
+	}
+});
+$.i18n().load({
+    	// This does not remove the previous messages.
+	'en' : {
+		'message_header' : 'Header',
+    		'message_footer' : 'Footer',
+    		// This will overwrite message_welcome message
+    		'message_welcome' : 'Welcome back'
+	}
+});
+```
+
 Examples
 --------
 
