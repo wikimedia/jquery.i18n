@@ -1,6 +1,7 @@
-jQuery based Javascript internationalization library
-====================================================
+jQuery.i18n
+===========
 
+jQuery.i18n is a jQuery based Javascript internationalization library. This is a project by Wikimedia foundation's [Language Engineering team](http://wikimediafoundation.org/wiki/Language_Engineering_team)
 
 Quick start
 -----------
