@@ -184,7 +184,7 @@
 		i18n.load( {
 			'localey': {
 				'y1': 'Y1'
-			},
+			}
 		} );
 
 		// Switch to locale localey
@@ -215,7 +215,7 @@
 			'Message loaded for localez, message key "z" is present'
 		);
 
-		// Load messages for en - with and without contry code
+		// Load messages for en - with and without country code
 		i18n.load( {
 			'en-US': {
 				'english-us': 'English-US'
@@ -257,7 +257,7 @@
 		i18n.load( {
 			'this-does-not-exist': 'This does not exist'
 		}, 'en' );
-		assert.strictEqual( i18n.locale, 'sa', 'Locale is Sanscrit' );
+		assert.strictEqual( i18n.locale, 'sa', 'Locale is Sanskrit' );
 		assert.strictEqual( $.i18n( 'hindi' ), 'हिन्दी', 'Message got from fallback locale - Hindi' );
 		assert.strictEqual( $.i18n( 'this-does-not-exist' ), 'This does not exist', 'Message got from fallback locale - English' );
 		i18n.locale = 'tt-cyrl';
@@ -276,7 +276,7 @@
 	QUnit.test( 'Message parse plural tests for Arabic', 17, function ( assert ) {
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
-		// Switch to locale localy
+		// Switch to locale locally
 		i18n.locale = 'ar';
 		assert.strictEqual( i18n.locale, 'ar', 'Locale is Arabic' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1 ), 'one',
@@ -332,7 +332,7 @@
 	QUnit.test( 'Digit transform table tests', 4, function ( assert ) {
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
-		// Switch to locale localy
+		// Switch to locale locally
 		i18n.locale = 'fa';
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8' ), '۸',
 				'Persian transform of 8' );
@@ -347,7 +347,7 @@
 	QUnit.test( 'Digit transform table tests', 4, function ( assert ) {
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
-		// Switch to locale localy
+		// Switch to locale locally
 		i18n.locale = 'ar';
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8' ), '٨',
 				'Arabic transform of 8' );
