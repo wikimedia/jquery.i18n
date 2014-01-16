@@ -367,7 +367,8 @@
 				i18n.load( 'i18n/fallback', 'ru' )
 			).then( function () {
 				QUnit.start();
-				assert.strictEqual( i18n.locale, 'en', 'Locale is English' );
+				i18n.locale = 'ru';
+				assert.strictEqual( i18n.locale, 'ru', 'Locale is Russian' );
 				assert.strictEqual( $.i18n( 'message_1' ), 'ONE',
 					'Message loaded from fallback locale English' );
 			} );
