@@ -359,6 +359,21 @@
 				'Arabic transform of 0123456789' );
 	} );
 
+	QUnit.test( 'Support fallback loading from folder tests', 2, function ( assert ) {
+		var i18n = $( document ).data( 'i18n' );
+
+		QUnit.stop();
+		$.when(
+				i18n.load( 'i18n/fallback', 'ru' )
+			).then( function () {
+				QUnit.start();
+				i18n.locale = 'ru';
+				assert.strictEqual( i18n.locale, 'ru', 'Locale is Russian' );
+				assert.strictEqual( $.i18n( 'message_1' ), 'ONE',
+					'Message loaded from fallback locale English' );
+			} );
+	} );
+
 	function grammarTest ( langCode, test ) {
 		QUnit.test( 'Grammar test for language ' + langCode, function ( assert ) {
 			QUnit.expect( test.length + 1 );
