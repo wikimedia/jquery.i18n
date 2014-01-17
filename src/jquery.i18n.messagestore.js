@@ -107,10 +107,19 @@
 		}
 	};
 
+
 	function jsonMessageLoader( url ) {
-		return $.getJSON( url ).fail( function ( jqxhr, settings, exception ) {
-			$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
+		var deferred = $.Deferred();
+
+		$.getJSON( url )
+			.done( deferred.resolve )
+			.fail( function ( jqxhr, settings, exception ) {
+				$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
+				// Ignore 404 exception, because we are handling fallabacks explicitly
+				deferred.resolve();
 		} );
+
+		return deferred.promise();
 	}
 
 	$.extend( $.i18n.messageStore, new MessageStore() );
