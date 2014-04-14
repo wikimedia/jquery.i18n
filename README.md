@@ -78,7 +78,7 @@ A simple en.json file example is given below
 		],
 		"last-updated": "2012-09-21",
 		"locale": "en",
-		"message-documentation": "qqq"
+		"message-documentation": "qqq",
 		"AnotherMetadata": "AnotherMedatadataValue"
 	},
 	"appname-title": "Example Application",
