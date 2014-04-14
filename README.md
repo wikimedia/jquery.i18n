@@ -23,7 +23,7 @@ Features
 * Extensible message parser to add or customize magic words in the messages. Example: ```{sitename}``` or ```[[link]]``
 
 
-Quick startc
+Quick start
 -----------
 
 ```bash
