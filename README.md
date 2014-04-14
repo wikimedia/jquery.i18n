@@ -18,9 +18,9 @@ Features
 * Fallback chains for all languages.
 * Data api- the message key. Example: ```<li data-i18n="message-key"></li>```.
 * Dynamic change of interface language without refreshing a webpage.
-* Nestable grammar, plural, gender support. These constructs can be nested to any arbitray level for supporting sophisticated message localization
+* Nestable grammar, plural, gender support. These constructs can be nested to any arbitrary level for supporting sophisticated message localization
 * Message documentation through special language code ```qqq```
-* Extensible message parsor to add or customize magic words in the messages. Example: ```{sitename}``` or ```[[link]]``
+* Extensible message parser to add or customize magic words in the messages. Example: ```{sitename}``` or ```[[link]]``
 
 
 Quick start
@@ -91,7 +91,7 @@ A simple en.json file example is given below
 
 The json file should be a valid json. The ```@metadata``` holds all kind of data that are not messages. You can store author information, copyright, updated date or anything there.
 
-Messages are key value pairs. It is a good convetion to prefix your appname to message keys to make the messages unique. It acts as the namespace for the message keys. It is also a good convention to have the message keys with ```-``` separated words, all in lower case.
+Messages are key value pairs. It is a good convention to prefix your appname to message keys to make the messages unique. It acts as the namespace for the message keys. It is also a good convention to have the message keys with ```-``` separated words, all in lower case.
 
 If you are curious to see some real jquery.i18n message file from other projects:
 
@@ -132,7 +132,7 @@ There are some alternate message file format supported for different use cases. 
 }
 ```
 
-Here the json file contains language code as key value and messagekey-message pairs as the value for all language pairs. You can choose this format or per-language file formats depending on your use case. Per-language files is more convinient for collaboration, version controlling, scalability etc.
+Here the json file contains language code as key value and messagekey-message pairs as the value for all language pairs. You can choose this format or per-language file formats depending on your use case. Per-language files is more Continent for collaboration, version controlling, scalability etc.
 
 In this approach, it is also possible to give a file name as the value of language code.
 
@@ -368,7 +368,7 @@ Magic word support
 ===================
 * For plural, gender and grammar support, MediaWiki template-like syntax - {{...}} will be used.
 * There will be a default implementation for all these in $.i18n.language['default']
-* The plural, gender andgrammar methods in ```$.i18n.language[ 'default' ]``` can be overridden or extended in ```$.i18n.language['languageCode']```.
+* The plural, gender and grammar methods in ```$.i18n.language[ 'default' ]``` can be overridden or extended in ```$.i18n.language['languageCode']```.
 * Language-specific rules about Gender and Grammar can be written in languages/langXYZ.js files
 * Plural forms will be dynamically calculated using the CLDR plural parser.
 
@@ -415,7 +415,7 @@ Example qqq.json:
 		]
 	},
 	"appname-title": "Application name. Transliteration is recommended",
-	"appname-sub-title": "Brief explanation of the applciation",
+	"appname-sub-title": "Brief explanation of the application",
 	"appname-header-introduction": "Text for the introduction header",
 	"appname-about": "About this application text",
 	"appname-footer": "Footer text"
