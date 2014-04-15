@@ -78,7 +78,7 @@ A simple en.json file example is given below
 		],
 		"last-updated": "2012-09-21",
 		"locale": "en",
-		"message-documentation": "qqq"
+		"message-documentation": "qqq",
 		"AnotherMetadata": "AnotherMedatadataValue"
 	},
 	"appname-title": "Example Application",
@@ -132,7 +132,11 @@ There are some alternate message file format supported for different use cases. 
 }
 ```
 
+<<<<<<< HEAD
 Here the json file contains language code as key value and messagekey-message pairs as the value for all language pairs. You can choose this format or per-language file formats depending on your use case. Per-language files is more Continent for collaboration, version controlling, scalability etc.
+=======
+Here the json file contains language code as key value and messagekey-message pairs as the value for all language pairs. You can choose this format or per-language file formats depending on your use case. Per-language files are more convenient for collaboration, version controlling, scalability, etc.
+>>>>>>> upstream/master
 
 In this approach, it is also possible to give a file name as the value of language code.
 
