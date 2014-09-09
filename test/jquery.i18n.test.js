@@ -313,7 +313,7 @@
 				'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
 	} );
 
-	QUnit.test( 'Test explicit plural forms', 4, function ( assert ) {
+	QUnit.test( 'Test explicit plural forms', 5, function ( assert ) {
 		$.i18n();
 		assert.strictEqual( $.i18n.languages['default'].convertPlural( 0, [ '0=Explicit Zero', 'Singular', 'Plural'] ),
 			'Explicit Zero', 'Explicit Zero' );
@@ -326,7 +326,8 @@
 
 		assert.strictEqual( $.i18n.languages['default'].convertPlural( 3, ['0=Explicit Zero', '1=Explicit One', 'Singular', 'Plural'] ),
 			'Plural', 'Plural' );
-
+		// See https://bugzilla.wikimedia.org/69993
+		assert.strictEqual( $.i18n( 'Found {{PLURAL:$1|$1 results|1=$1 result}}', 1 ), 'Found 1 result', 'Plural message with explicit plural forms, plural form contains placeholder.');
 	} );
 
 	QUnit.test( 'Digit transform table tests', 4, function ( assert ) {
