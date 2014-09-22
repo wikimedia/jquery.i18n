@@ -126,7 +126,6 @@
 	$.when(
 		$.i18n().load( 'i18n/test-ml.json', 'ml' )
 	).then( function () {
-		QUnit.start();
 		QUnit.test( 'Message parse tests (ml, fr)', 8, function ( assert ) {
 			var i18n = $( document ).data( 'i18n' ),
 				pluralAndGenderMessage;
