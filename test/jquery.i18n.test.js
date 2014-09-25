@@ -1,7 +1,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	module( 'jquery.i18n - $.fn.i18n Tests', {
+	QUnit.module( 'jquery.i18n - $.fn.i18n Tests', {
 		setup: function () {
 			$.i18n( {
 				locale: 'localex'
@@ -12,7 +12,7 @@
 		}
 	} );
 
-	test( 'Message parse tests', 1, function ( assert ) {
+	QUnit.test( 'Message parse tests', 1, function ( assert ) {
 		var i18n = $( document ).data( 'i18n' ),
 			$fixture = $( '#qunit-fixture' );
 		// Load messages for localex
@@ -106,7 +106,7 @@
 			'Plural and gender test - no params passed. Should not fail'
 		);
 		assert.strictEqual(
-			$.i18n( pluralAndGenderMessage,'Meera', 1, 'randomtext', 'extraparam' ),
+			$.i18n( pluralAndGenderMessage, 'Meera', 1, 'randomtext', 'extraparam' ),
 			'Meera has 1 kitten. He loves to play with it.',
 			'Plural and gender test - more params passed. Should not fail'
 		);
@@ -126,30 +126,29 @@
 	$.when(
 		$.i18n().load( 'i18n/test-ml.json', 'ml' )
 	).then( function () {
-		QUnit.start();
 		QUnit.test( 'Message parse tests (ml, fr)', 8, function ( assert ) {
 			var i18n = $( document ).data( 'i18n' ),
 				pluralAndGenderMessage;
-		$.i18n( {
-			locale: 'ml'
-		} );
-		assert.strictEqual( i18n.locale, 'ml', 'Locale is Malayalam' );
-		assert.strictEqual( $.i18n( 'message_1' ), 'ഒന്ന്', 'Simple message' );
-		assert.strictEqual( $.i18n( 'This message key does not exist' ),
+			$.i18n( {
+				locale: 'ml'
+			} );
+			assert.strictEqual( i18n.locale, 'ml', 'Locale is Malayalam' );
+			assert.strictEqual( $.i18n( 'message_1' ), 'ഒന്ന്', 'Simple message' );
+			assert.strictEqual( $.i18n( 'This message key does not exist' ),
 				'This message key does not exist', 'This message key does not exist' );
-		assert.strictEqual( $.i18n( 'Hello $1', 'Bob' ), 'Hello Bob', 'Parameter replacement' );
-		pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
-			'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
-		assert.strictEqual( $.i18n( pluralAndGenderMessage, 'മീര', 1, 'female' ),
+			assert.strictEqual( $.i18n( 'Hello $1', 'Bob' ), 'Hello Bob', 'Parameter replacement' );
+			pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
+				'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
+			assert.strictEqual( $.i18n( pluralAndGenderMessage, 'മീര', 1, 'female' ),
 				'മീരയ്ക്കു് ഒരു പൂച്ചക്കുട്ടി ഉണ്ടു്. അവൾ അതുമായി കളിക്കാൻ ഇഷ്ടപ്പെടുന്നു.',
 				'Plural and gender test - female, singular' );
-		assert.strictEqual( $.i18n( pluralAndGenderMessage, 'ഹാരി', 2, 'male' ),
+			assert.strictEqual( $.i18n( pluralAndGenderMessage, 'ഹാരി', 2, 'male' ),
 				'ഹാരിയ്ക്കു് 2 പൂച്ചക്കുട്ടികൾ ഉണ്ടു്. അവൻ അവറ്റകളുമായി കളിക്കാൻ ഇഷ്ടപ്പെടുന്നു.',
 				'Plural and gender test - male, plural' );
-		i18n.locale = 'fr';
-		assert.strictEqual( $.i18n( 'Restaurer $1 modification{{PLURAL:$1||s}}', 1 ),
+			i18n.locale = 'fr';
+			assert.strictEqual( $.i18n( 'Restaurer $1 modification{{PLURAL:$1||s}}', 1 ),
 				'Restaurer 1 modification', 'Plural rule parsed correctly for French' );
-		assert.strictEqual( $.i18n( 'Restaurer $1 modification{{PLURAL:$1||s}}', 2 ),
+			assert.strictEqual( $.i18n( 'Restaurer $1 modification{{PLURAL:$1||s}}', 2 ),
 				'Restaurer 2 modifications', 'Plural rule parsed correctly for French' );
 		} );
 	} );
@@ -238,7 +237,7 @@
 		);
 	} );
 
-	module( 'jquery.i18n - Fallback test', {
+	QUnit.module( 'jquery.i18n - Fallback test', {
 		setup: function () {
 			$.i18n().destroy();
 			$.i18n();
@@ -248,7 +247,7 @@
 		}
 	} );
 
-	test( 'Locale Fallback test', 7, function ( assert ) {
+	QUnit.test( 'Locale Fallback test', 7, function ( assert ) {
 		var i18n = $( document ).data( 'i18n' );
 		i18n.locale = 'sa';
 		i18n.load( {
@@ -266,11 +265,11 @@
 		}, 'ru' );
 		assert.strictEqual( i18n.locale, 'tt-cyrl', 'Locale is tt-cyrl' );
 		assert.strictEqual( $.i18n( 'tt' ), 'russian-tt',
-				'Message is from fallback locale - Russian' );
+			'Message is from fallback locale - Russian' );
 		i18n.locale = 'tt';
 		assert.strictEqual( $.i18n().locale, 'tt', 'Locale is tt' );
 		assert.strictEqual( $.i18n( 'tt' ), 'russian-tt',
-				'Message is from fallback locale - Russian' );
+			'Message is from fallback locale - Russian' );
 	} );
 
 	QUnit.test( 'Message parse plural tests for Arabic', 17, function ( assert ) {
@@ -280,54 +279,54 @@
 		i18n.locale = 'ar';
 		assert.strictEqual( i18n.locale, 'ar', 'Locale is Arabic' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1 ), 'one',
-				'Arabic plural test for one' );
+			'Arabic plural test for one' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٠' ), 'zero',
-				'Arabic plural test for arabic digit zero' );
+			'Arabic plural test for arabic digit zero' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 2 ), 'two',
-				'Arabic plural test for two' );
+			'Arabic plural test for two' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 3 ), 'few',
-				'Arabic plural test for few' );
+			'Arabic plural test for few' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٨' ), 'few',
-				'Arabic plural test for few' );
+			'Arabic plural test for few' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 9 ), 'few',
-				'Arabic plural test for few' );
+			'Arabic plural test for few' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 110 ), 'few',
-				'Arabic plural test for few' );
+			'Arabic plural test for few' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 11 ), 'many',
-				'Arabic plural test for many' );
+			'Arabic plural test for many' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 15 ), 'many',
-				'Arabic plural test for many' );
+			'Arabic plural test for many' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 99 ), 'many',
-				'Arabic plural test for many' );
+			'Arabic plural test for many' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 9999 ), 'many',
-				'Arabic plural test for many' );
+			'Arabic plural test for many' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 100 ), 'other',
-				'Arabic plural test for other' );
+			'Arabic plural test for other' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 102 ), 'other',
-				'Arabic plural test for other' );
+			'Arabic plural test for other' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1000 ), 'other',
-				'Arabic plural test for other' );
+			'Arabic plural test for other' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1.7 ), 'one',
-				'Arabic decimal plural test for one' );
+			'Arabic decimal plural test for one' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٠١٢٣٤٥٦٧٨٩' ), 'many',
-				'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
+			'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
 	} );
 
 	QUnit.test( 'Test explicit plural forms', 5, function ( assert ) {
 		$.i18n();
-		assert.strictEqual( $.i18n.languages['default'].convertPlural( 0, [ '0=Explicit Zero', 'Singular', 'Plural'] ),
+		assert.strictEqual( $.i18n.languages[ 'default' ].convertPlural( 0, [ '0=Explicit Zero', 'Singular', 'Plural' ] ),
 			'Explicit Zero', 'Explicit Zero' );
 
-		assert.strictEqual( $.i18n.languages['default'].convertPlural( 1, ['0=Explicit Zero', 'Singular', 'Plural', '1=Explicit One'] ),
+		assert.strictEqual( $.i18n.languages[ 'default' ].convertPlural( 1, [ '0=Explicit Zero', 'Singular', 'Plural', '1=Explicit One' ] ),
 			'Explicit One', 'Explicit One' );
 
-		assert.strictEqual( $.i18n.languages['default'].convertPlural( 1, ['0=Explicit Zero', 'Singular', 'Plural'] ),
+		assert.strictEqual( $.i18n.languages[ 'default' ].convertPlural( 1, [ '0=Explicit Zero', 'Singular', 'Plural' ] ),
 			'Singular', 'Singular' );
 
-		assert.strictEqual( $.i18n.languages['default'].convertPlural( 3, ['0=Explicit Zero', '1=Explicit One', 'Singular', 'Plural'] ),
+		assert.strictEqual( $.i18n.languages[ 'default' ].convertPlural( 3, [ '0=Explicit Zero', '1=Explicit One', 'Singular', 'Plural' ] ),
 			'Plural', 'Plural' );
 		// See https://bugzilla.wikimedia.org/69993
-		assert.strictEqual( $.i18n( 'Found {{PLURAL:$1|$1 results|1=$1 result}}', 1 ), 'Found 1 result', 'Plural message with explicit plural forms, plural form contains placeholder.');
+		assert.strictEqual( $.i18n( 'Found {{PLURAL:$1|$1 results|1=$1 result}}', 1 ), 'Found 1 result', 'Plural message with explicit plural forms, plural form contains placeholder.' );
 	} );
 
 	QUnit.test( 'Digit transform table tests', 4, function ( assert ) {
@@ -336,13 +335,13 @@
 		// Switch to locale locally
 		i18n.locale = 'fa';
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8' ), '۸',
-				'Persian transform of 8' );
+			'Persian transform of 8' );
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8', true ), 8,
-				'Persian transform of 8' );
+			'Persian transform of 8' );
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '0123456789' ), '۰۱۲۳۴۵۶۷۸۹',
-				'Persian transform of 0123456789' );
+			'Persian transform of 0123456789' );
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '۰۱۲۳۴۵۶۷۸۹', true ), 123456789,
-				'Persian transform of 0123456789' );
+			'Persian transform of 0123456789' );
 	} );
 
 	QUnit.test( 'Digit transform table tests', 4, function ( assert ) {
@@ -351,13 +350,13 @@
 		// Switch to locale locally
 		i18n.locale = 'ar';
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8' ), '٨',
-				'Arabic transform of 8' );
+			'Arabic transform of 8' );
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '8', true ), 8,
-				'Arabic transform of 8' );
+			'Arabic transform of 8' );
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '0123456789' ), '٠١٢٣٤٥٦٧٨٩',
-				'Arabic transform of 0123456789' );
+			'Arabic transform of 0123456789' );
 		assert.strictEqual( $.i18n.parser.language.convertNumber( '٠١٢٣٤٥٦٧٨٩', true ), 123456789,
-				'Arabic transform of 0123456789' );
+			'Arabic transform of 0123456789' );
 	} );
 
 	QUnit.test( 'Support fallback loading from folder tests', 2, function ( assert ) {
@@ -365,29 +364,29 @@
 
 		QUnit.stop();
 		$.when(
-				i18n.load( 'i18n/fallback', 'uk' )
-			).then( function () {
-				QUnit.start();
-				i18n.locale = 'uk';
-				assert.strictEqual( i18n.locale, 'uk', 'Locale is uk' );
-				assert.strictEqual( $.i18n( 'message_1' ), 'ONE',
-					'Message loaded from fallback locale English' );
-			} );
+			i18n.load( 'i18n/fallback', 'uk' )
+		).then( function () {
+			QUnit.start();
+			i18n.locale = 'uk';
+			assert.strictEqual( i18n.locale, 'uk', 'Locale is uk' );
+			assert.strictEqual( $.i18n( 'message_1' ), 'ONE',
+				'Message loaded from fallback locale English' );
+		} );
 	} );
 
-	function grammarTest ( langCode, test ) {
+	function grammarTest( langCode, test ) {
 		QUnit.test( 'Grammar test for language ' + langCode, function ( assert ) {
 			QUnit.expect( test.length + 1 );
 			var i, grammarMessage,
 				i18n = $.i18n( {
-				locale: langCode
-			} );
+					locale: langCode
+				} );
 			assert.strictEqual( i18n.locale, langCode, 'Locale is ' + langCode );
 			for ( i = 0; i < test.length; i++ ) {
-				grammarMessage = '{{GRAMMAR:' + test[i].grammarForm + '|' +
-					test[i].word + '}}';
-				assert.equal( i18n.parse( grammarMessage ), test[i].expected,
-						test[i].description );
+				grammarMessage = '{{GRAMMAR:' + test[ i ].grammarForm + '|' +
+					test[ i ].word + '}}';
+				assert.equal( i18n.parse( grammarMessage ), test[ i ].expected,
+					test[ i ].description );
 			}
 		} );
 	}
@@ -713,7 +712,7 @@
 			grammarForm: 'dative',
 			expected: 'അവര്‍ക്ക്',
 			description: 'Grammar test for dative case'
-		},{
+		}, {
 			word: 'അവന്‍',
 			grammarForm: 'dative',
 			expected: 'അവന്',
