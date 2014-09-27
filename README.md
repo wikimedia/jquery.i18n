@@ -299,6 +299,8 @@ It is also possible to have the above li node with fallback text already in plac
 The framework will place the localized message corresponding to message-key as the text value of the node. Similar to $('selector').i18n( ... ).
 This will not work for dynamically created elements.
 
+Note that if data-i18n contains html markup, that html will not be used as the element content, instead, the text version will be used. $.fn.i18n is always about replacing text of the element. If you want to change the html of the element, you may want to use: ```$(selector).html($.i18n(messagekey))```
+
 Examples
 ========
 
