@@ -28,17 +28,12 @@ Quick start
 
 ```bash
 git clone https://github.com/wikimedia/jquery.i18n.git
+cd jquery.i18n
+git submodule update --init
 ```
 
-
-How to build and test jQuery i18n
-----------------------------------
-
-First, get a copy of the git repo by running:
-
-```shell
-git clone git://github.com/wikimedia/jquery.i18n.git
-```
+Testing
+-------
 
 ```shell
 npm install
