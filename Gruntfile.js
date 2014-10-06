@@ -8,21 +8,34 @@
 module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
-
+	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
+		connect: {
+			server: {
+				options: {
+					port: 9001,
+					base: '.'
+				}
+			}
+		},
 		jshint: {
 			options: JSON.parse( grunt.file.read( '.jshintrc' )
 				.replace( /\/\*(?:(?!\*\/)[\s\S])*\*\//g, '' ).replace( /\/\/[^\n\r]*/g, '' ) ),
-			all: ['src/**/*.js']
+			all: [ 'src/**/*.js' ]
 		},
 		qunit: {
-			all: ['test/**/*.html']
+			all: {
+				options: {
+					urls: [ 'http://localhost:<%=connect.server.options.port%>/test/index.html' ]
+				}
+			}
 		}
 	} );
 
-	grunt.registerTask( 'lint', ['jshint'] );
-	grunt.registerTask( 'unit', ['qunit'] );
-	grunt.registerTask( 'test', ['lint', 'unit'] );
-	grunt.registerTask( 'default', ['test'] );
+	grunt.registerTask( 'server', [ 'connect' ] );
+	grunt.registerTask( 'lint', [ 'jshint' ] );
+	grunt.registerTask( 'unit', [ 'server', 'qunit' ] );
+	grunt.registerTask( 'test', [ 'lint', 'unit' ] );
+	grunt.registerTask( 'default', [ 'test' ] );
 };
