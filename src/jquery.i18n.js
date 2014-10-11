@@ -142,6 +142,8 @@
 			if ( typeof source === 'string'	&&
 				source.split('.').pop() !== 'json'
 			) {
+				// Load specified locale then check for fallbacks when directory is specified in load()
+				sourceMap[locale] = source + '/' + locale + '.json';
 				fallbackLocales = ( $.i18n.fallbacks[locale] || [] )
 					.concat( this.options.fallbackLocale );
 				for ( locIndex in fallbackLocales ) {
