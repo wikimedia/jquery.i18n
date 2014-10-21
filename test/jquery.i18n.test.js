@@ -153,10 +153,16 @@
 		} );
 	} );
 
-	QUnit.test( 'Message load tests', 13, function ( assert ) {
+	QUnit.test( 'Message load tests', 14, function ( assert ) {
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
 		assert.strictEqual( i18n.locale, 'en', 'Locale is English - fallback locale' );
+
+
+		// Load without any parameter
+		i18n.locale = 'test-en'; //Ensure a test locale
+		i18n.load();
+		assert.strictEqual($.i18n('message_3'), 'THREE', 'Messages loaded for locale test-en');
 
 		i18n.locale = 'localex';
 		assert.strictEqual( i18n.locale, 'localex', 'Locale is localex' );
