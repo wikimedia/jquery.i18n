@@ -138,7 +138,7 @@
 		 */
 		load: function ( source, locale ) {
 			var fallbackLocales, locIndex, fallbackLocale, sourceMap = {};
-			if (!source && !locale) {
+			if ( !source && !locale ) {
 				source = 'i18n/' + $.i18n().locale + '.json';
 				locale = $.i18n().locale;
 			}
