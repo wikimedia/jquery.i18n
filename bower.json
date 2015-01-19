@@ -12,7 +12,7 @@
     "src/jquery.i18n.fallbacks.js",
     "src/jquery.i18n.language.js",
     "src/jquery.i18n.messagestore.js",
-    "src/jquery.i18n.parser.js",
+    "src/jquery.i18n.parser.js"
   ],
   "keywords": [
     "javascript",
