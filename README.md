@@ -107,7 +107,7 @@ There are some alternate message file format supported for different use cases. 
 		],
 		"last-updated": "2012-09-21",
 		"locale": "en",
-		"message-documentation": "qqq"
+		"message-documentation": "qqq",
 		"AnotherMetadata": "AnotherMedatadataValue"
 	},
 	"en": {
@@ -141,7 +141,7 @@ In this approach, it is also possible to give a file name as the value of langua
 		],
 		"last-updated": "2012-09-21",
 		"locale": "en",
-		"message-documentation": "qqq"
+		"message-documentation": "qqq",
 		"AnotherMetadata": "AnotherMedatadataValue"
 	},
 	"en": {
