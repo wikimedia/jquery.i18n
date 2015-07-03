@@ -790,4 +790,26 @@
 		grammarTest( langCode, test );
 	} );
 
+	QUnit.test( 'Bidi message arguments', 3, function ( assert ) {
+		var i18n = $( document ).data( 'i18n' );
+		i18n.locale = 'he';
+		i18n.load( {
+			'greet-msg': 'שלום {{bidi:$1}} הי!'
+		}, 'he' );
+		assert.strictEqual(
+			$.i18n( 'greet-msg', '123' ),
+			'שלום ' + '123' + ' הי!',
+			'Bidi with neutral argument'
+		);
+		assert.strictEqual(
+			$.i18n( 'greet-msg', 'Ben_(WMF)' ),
+			'שלום ' + '\u202A' + 'Ben_(WMF)' + '\u202C' + ' הי!',
+			'Bidi with LTR argument'
+		);
+		assert.strictEqual(
+			$.i18n( 'greet-msg', 'יהודי (מנוחין)' ),
+			'שלום ' + '\u202B' + 'יהודי (מנוחין)' + '\u202C' + ' הי!',
+			'Bidi with RTL argument'
+		);
+	} );
 }( jQuery ) );
