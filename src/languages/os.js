@@ -20,22 +20,20 @@
 			// Variable for ending
 			ending = '';
 
-			// Checking if the $word is in plural form
 			if ( word.match( /тæ$/i ) ) {
+				// Checking if the $word is in plural form
 				word = word.substring( 0, word.length - 1 );
 				endAllative = 'æм';
-			}
-			// Works if word is in singular form.
-			// Checking if word ends on one of the vowels: е, ё, и, о, ы, э, ю,
-			// я.
-			else if ( word.match( /[аæеёиоыэюя]$/i ) ) {
+			} else if ( word.match( /[аæеёиоыэюя]$/i ) ) {
+				// Works if word is in singular form.
+				// Checking if word ends on one of the vowels: е, ё, и, о, ы, э, ю,
+				// я.
 				jot = 'й';
-			}
-			// Checking if word ends on 'у'. 'У' can be either consonant 'W' or
-			// vowel 'U' in cyrillic Ossetic.
-			// Examples: {{grammar:genitive|аунеу}} = аунеуы,
-			// {{grammar:genitive|лæппу}} = лæппуйы.
-			else if ( word.match( /у$/i ) ) {
+			} else if ( word.match( /у$/i ) ) {
+				// Checking if word ends on 'у'. 'У' can be either consonant 'W' or
+				// vowel 'U' in cyrillic Ossetic.
+				// Examples: {{grammar:genitive|аунеу}} = аунеуы,
+				// {{grammar:genitive|лæппу}} = лæппуйы.
 				if ( !word.substring( word.length - 2, word.length - 1 )
 						.match( /[аæеёиоыэюя]$/i ) ) {
 					jot = 'й';

@@ -53,7 +53,7 @@
 				pos = 0;
 
 			// Try parsers until one works, if none work return null
-			function choice ( parserSyntax ) {
+			function choice( parserSyntax ) {
 				return function () {
 					var i, result;
 
@@ -72,7 +72,7 @@
 			// Try several parserSyntax-es in a row.
 			// All must succeed; otherwise, return null.
 			// This is the only eager one.
-			function sequence ( parserSyntax ) {
+			function sequence( parserSyntax ) {
 				var i, res,
 					originalPos = pos,
 					result = [];
@@ -94,7 +94,7 @@
 
 			// Run the same parser over and over until it fails.
 			// Must succeed a minimum of n times; otherwise, return null.
-			function nOrMore ( n, p ) {
+			function nOrMore( n, p ) {
 				return function () {
 					var originalPos = pos,
 						result = [],
@@ -117,7 +117,7 @@
 
 			// Helpers -- just make parserSyntax out of simpler JS builtin types
 
-			function makeStringParser ( s ) {
+			function makeStringParser( s ) {
 				var len = s.length;
 
 				return function () {
@@ -132,7 +132,7 @@
 				};
 			}
 
-			function makeRegexParser ( regex ) {
+			function makeRegexParser( regex ) {
 				return function () {
 					var matches = message.substr( pos ).match( regex );
 
@@ -163,7 +163,7 @@
 			// But using this as a combinator seems to cause problems
 			// when combined with nOrMore().
 			// May be some scoping issue.
-			function transform ( p, fn ) {
+			function transform( p, fn ) {
 				return function () {
 					var result = p();
 
@@ -174,19 +174,19 @@
 			// Used to define "literals" within template parameters. The pipe
 			// character is the parameter delimeter, so by default
 			// it is not a literal in the parameter
-			function literalWithoutBar () {
+			function literalWithoutBar() {
 				var result = nOrMore( 1, escapedOrLiteralWithoutBar )();
 
 				return result === null ? null : result.join( '' );
 			}
 
-			function literal () {
+			function literal() {
 				var result = nOrMore( 1, escapedOrRegularLiteral )();
 
 				return result === null ? null : result.join( '' );
 			}
 
-			function escapedLiteral () {
+			function escapedLiteral() {
 				var result = sequence( [ backslash, anyCharacter ] );
 
 				return result === null ? null : result[1];
@@ -196,7 +196,7 @@
 			escapedOrLiteralWithoutBar = choice( [ escapedLiteral, regularLiteralWithoutBar ] );
 			escapedOrRegularLiteral = choice( [ escapedLiteral, regularLiteral ] );
 
-			function replacement () {
+			function replacement() {
 				var result = sequence( [ dollar, digits ] );
 
 				if ( result === null ) {
@@ -216,7 +216,7 @@
 				}
 			);
 
-			function templateParam () {
+			function templateParam() {
 				var expr,
 					result = sequence( [ pipe, nOrMore( 0, paramExpression ) ] );
 
@@ -231,13 +231,13 @@
 				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
 			}
 
-			function templateWithReplacement () {
+			function templateWithReplacement() {
 				var result = sequence( [ templateName, colon, replacement ] );
 
 				return result === null ? null : [ result[0], result[2] ];
 			}
 
-			function templateWithOutReplacement () {
+			function templateWithOutReplacement() {
 				var result = sequence( [ templateName, colon, paramExpression ] );
 
 				return result === null ? null : [ result[0], result[2] ];
@@ -270,7 +270,7 @@
 			openTemplate = makeStringParser( '{{' );
 			closeTemplate = makeStringParser( '}}' );
 
-			function template () {
+			function template() {
 				var result = sequence( [ openTemplate, templateContents, closeTemplate ] );
 
 				return result === null ? null : result[1];
@@ -279,7 +279,7 @@
 			expression = choice( [ template, replacement, literal ] );
 			paramExpression = choice( [ template, replacement, literalWithoutBar ] );
 
-			function start () {
+			function start() {
 				var result = nOrMore( 0, expression )();
 
 				if ( result === null ) {

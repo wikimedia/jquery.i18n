@@ -1,29 +1,24 @@
 {
-	"predef": [
-		"jQuery",
-		"QUnit",
-		"_"
-	],
-
-	"camelcase": true,
-	"curly": true,
+	// Enforcing
+	"bitwise": true,
 	"eqeqeq": true,
-	"immed": true,
 	"latedef": true,
-	"newcap": true,
 	"noarg": true,
-	"noempty": true,
 	"nonew": true,
-	"plusplus": false,
-	"quotmark": "single",
 	"undef": true,
 	"unused": true,
-	"strict": true,
-	"trailing": true,
+	"strict": false,
 
+	// Relaxing
+	"es5": false,
+	"freeze": false,
+
+	// Environment
 	"browser": true,
+	"jquery": true,
 
-	"nomen": true,
-	"onevar": true,
-	"white": false
+	"globals": {
+		"QUnit": false,
+		"_": false
+	}
 }

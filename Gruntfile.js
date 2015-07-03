@@ -10,6 +10,7 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks( 'grunt-jscs' );
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -22,13 +23,25 @@ module.exports = function ( grunt ) {
 			}
 		},
 		jshint: {
-			options: JSON.parse( grunt.file.read( '.jshintrc' )
-				.replace( /\/\*(?:(?!\*\/)[\s\S])*\*\//g, '' ).replace( /\/\/[^\n\r]*/g, '' ) ),
+			options: {
+				jshintrc: true
+			},
 			all: [ 'src/**/*.js' ]
+		},
+		jscs: {
+			fix: {
+				options: {
+					fix: true
+				},
+				src: '<%= jshint.all %>'
+			},
+			main: {
+				src: '<%= jshint.all %>'
+			}
 		},
 		watch: {
 			files: [
-				'.{jshintignore,jshintrc}',
+				'.{jscsrc,jshintignore,jshintrc}',
 				'Gruntfile.js',
 				'<%= jshint.all %>'
 			],
@@ -44,7 +57,8 @@ module.exports = function ( grunt ) {
 	} );
 
 	grunt.registerTask( 'server', [ 'connect' ] );
-	grunt.registerTask( 'lint', [ 'jshint' ] );
+	grunt.registerTask( 'lint', [ 'jshint', 'jscs:main' ] );
+	grunt.registerTask( 'fix', [ 'jscs:fix' ] );
 	grunt.registerTask( 'unit', [ 'server', 'qunit' ] );
 	grunt.registerTask( 'test', [ 'lint', 'unit' ] );
 	grunt.registerTask( 'default', [ 'test' ] );
