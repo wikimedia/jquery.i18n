@@ -27,10 +27,15 @@
 		constructor: MessageParser,
 
 		simpleParse: function ( message, parameters ) {
-			return message.replace( /\$(\d+)/g, function ( str, match ) {
-				var index = parseInt( match, 10 ) - 1;
+			return message.replace( /(\\?\$\d+)/g, function ( str, match ) {
+				var index;
 
-				return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
+				if ( match[ 0 ] === '\\' ) {
+					// Escaped.
+					return match.slice( 1 );
+				}
+				index = parseInt( match.slice( 1 ), 10 ) - 1;
+				return parameters[ index ] !== undefined ? parameters[ index ] : match;
 			} );
 		},
 

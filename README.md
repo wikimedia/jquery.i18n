@@ -313,7 +313,12 @@ var message = "Welcome, $1";
 $.i18n(message, 'Alice'); // This gives "Welcome, Alice"
 ```
 
-
+To escape the $ sign, use double blackslash in json file. Example:
+```javascript
+{
+	"messageKey": "Price of {{PLURAL:$1|an item|$1 items}} is $2, you get \\$2 discount."
+}
+```
 ## Plurals
 
 To make the syntax of sentence correct, plural forms are required. jquery.i18n support plural forms in the message using the syntax `{{PLURAL:$1|pluralform1|pluralform2|...}}`
