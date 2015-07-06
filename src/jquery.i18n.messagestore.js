@@ -88,7 +88,7 @@
 		 * @param locale
 		 * @param messages
 		 */
-		set: function( locale, messages ) {
+		set: function ( locale, messages ) {
 			if ( !this.messages[locale] ) {
 				this.messages[locale] = messages;
 			} else {
@@ -107,7 +107,6 @@
 		}
 	};
 
-
 	function jsonMessageLoader( url ) {
 		var deferred = $.Deferred();
 
@@ -117,7 +116,7 @@
 				$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
 				// Ignore 404 exception, because we are handling fallabacks explicitly
 				deferred.resolve();
-		} );
+			} );
 
 		return deferred.promise();
 	}
