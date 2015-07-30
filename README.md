@@ -5,7 +5,7 @@ jQuery.i18n is a jQuery based Javascript internationalization library. It helps 
 
 This is a project by Wikimedia foundation's [Language Engineering team](http://wikimediafoundation.org/wiki/Language_Engineering_team) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
 
-The jquery.i18n library uses a json based localization file format and it is now used as localization file format for  MediaWiki.
+The jquery.i18n library uses a json based localization file format, "banana", which is used as the localization file format for  MediaWiki and other projects.
 
 Features
 ========
@@ -233,12 +233,12 @@ It is also possible to refer messages from an external URL. See below example
 
 ```javascript
 $.i18n().load( {
-	'en': {
-		'message_hello': 'Hello World',
-    	'message_welcome': 'Welcome'
+	en: {
+		message_hello: 'Hello World',
+    	message_welcome: 'Welcome'
 	},
-	'hi': 'i18n/messages-hi.json', // Messages for Hindi
-	'de': 'i18n/messages-de.json'
+	hi: 'i18n/messages-hi.json', // Messages for Hindi
+	de: 'i18n/messages-de.json'
 } );
 ```
 
@@ -246,15 +246,15 @@ Messages for a locale can be also loaded in parts. Example
 
 ```javascript
 $.i18n().load( {
-	'en': {
-		'message_hello': 'Hello World',
-    	'message_welcome': 'Welcome'
+	en: {
+		message_hello: 'Hello World',
+    	message_welcome: 'Welcome'
 	}
 } );
 
 $.i18n().load( {
     	// This does not remove the previous messages.
-	'en': {
+	en: {
 		'message_header' : 'Header',
 		'message_footer' : 'Footer',
 		// This will overwrite message_welcome message
@@ -358,6 +358,15 @@ $.i18n().locale = 'hy'; // Switch to locale Armenian
 $.i18n(message, 'Մաունա'); // This gives "Մաունայի"
 ```
 
+## Directionality-safe isolation
+
+To avoid BIDI corruption that looks like "(Foo_(Bar", which happens when a string is inserted into a context with the reverse directionality, you can use `{{bidi:…}}`. Directionality-neutral characters at the edge of the string can get wrongly interpreted by the BIDI algorithm. This would let you embed your substituted string into a new BIDI context, //e.g.//:
+
+   "`Shalom, {{bidi:$1}}, hi!`"
+
+The embedded context's directionality is determined by looking at the argument for `$1`, and then explicitly inserted into the Unicode text, ensuring correct rendering (because then the bidi algorithm "knows" the argument text is a separate context).
+
+
 Fallback
 ========
 
@@ -424,4 +433,4 @@ Example qqq.json:
 
 ```
 
-In MediaWiki and its hundreds of extension, message documentation is a practice strictly followed. There is a grunt task to check whether all messages are documented or not. See https://www.npmjs.org/package/grunt-banana-checker
+In MediaWiki and its hundreds of extensions, message documentation is a strictly followed practice. There is a grunt task to check whether all messages are documented or not. See https://www.npmjs.org/package/grunt-banana-checker

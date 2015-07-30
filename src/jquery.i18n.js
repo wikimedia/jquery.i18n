@@ -123,9 +123,9 @@
 		 * can also be passed. Example:
 		 * <code>
 		 * load( {
-		 * 'bn': 'i18n/bn.json',
-		 * 'he': 'i18n/he.json',
-		 * 'en': 'i18n/en.json'
+		 * bn: 'i18n/bn.json',
+		 * he: 'i18n/he.json',
+		 * en: 'i18n/en.json'
 		 * } )
 		 * </code>
 		 *
@@ -143,7 +143,7 @@
 				locale = $.i18n().locale;
 			}
 			if ( typeof source === 'string'	&&
-				source.split('.').pop() !== 'json'
+				source.split( '.' ).pop() !== 'json'
 			) {
 				// Load specified locale then check for fallbacks when directory is specified in load()
 				sourceMap[locale] = source + '/' + locale + '.json';
@@ -173,7 +173,7 @@
 			// should probably not change the 'this.parser' but just
 			// pass it to the parser.
 			this.parser.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
-			if( message === '' ) {
+			if ( message === '' ) {
 				message = key;
 			}
 			return this.parser.parse( message, parameters );

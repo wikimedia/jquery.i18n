@@ -17,7 +17,7 @@
 			$fixture = $( '#qunit-fixture' );
 		// Load messages for localex
 		i18n.load( {
-			'x': 'X'
+			x: 'X'
 		}, 'localex' );
 		$fixture.data( 'i18n', 'x' );
 		assert.strictEqual( $fixture.i18n().text(), 'X', 'Content of fixture localized' );
@@ -169,7 +169,7 @@
 
 		// Load messages for localez
 		i18n.load( {
-			'x': 'X'
+			x: 'X'
 		}, 'localex' );
 		assert.strictEqual(
 			$.i18n( 'x' ),
@@ -179,16 +179,16 @@
 
 		// Load messages for two locales - localey and localez
 		i18n.load( {
-			'localey': {
-				'y': 'Y'
+			localey: {
+				y: 'Y'
 			},
-			'localez': {
-				'z': 'Z'
+			localez: {
+				z: 'Z'
 			}
 		} );
 		i18n.load( {
-			'localey': {
-				'y1': 'Y1'
+			localey: {
+				y1: 'Y1'
 			}
 		} );
 
@@ -225,8 +225,8 @@
 			'en-US': {
 				'english-us': 'English-US'
 			},
-			'en': {
-				'english': 'English'
+			en: {
+				english: 'English'
 			}
 		} );
 		i18n.locale = 'en-US';
@@ -257,7 +257,7 @@
 		var i18n = $( document ).data( 'i18n' );
 		i18n.locale = 'sa';
 		i18n.load( {
-			'hindi': 'हिन्दी'
+			hindi: 'हिन्दी'
 		}, 'hi' );
 		i18n.load( {
 			'this-does-not-exist': 'This does not exist'
@@ -267,7 +267,7 @@
 		assert.strictEqual( $.i18n( 'this-does-not-exist' ), 'This does not exist', 'Message got from fallback locale - English' );
 		i18n.locale = 'tt-cyrl';
 		i18n.load( {
-			'tt': 'russian-tt'
+			tt: 'russian-tt'
 		}, 'ru' );
 		assert.strictEqual( i18n.locale, 'tt-cyrl', 'Locale is tt-cyrl' );
 		assert.strictEqual( $.i18n( 'tt' ), 'russian-tt',
@@ -790,4 +790,26 @@
 		grammarTest( langCode, test );
 	} );
 
+	QUnit.test( 'Bidi message arguments', 3, function ( assert ) {
+		var i18n = $( document ).data( 'i18n' );
+		i18n.locale = 'he';
+		i18n.load( {
+			'greet-msg': 'שלום {{bidi:$1}} הי!'
+		}, 'he' );
+		assert.strictEqual(
+			$.i18n( 'greet-msg', '123' ),
+			'שלום ' + '123' + ' הי!',
+			'Bidi with neutral argument'
+		);
+		assert.strictEqual(
+			$.i18n( 'greet-msg', 'Ben_(WMF)' ),
+			'שלום ' + '\u202A' + 'Ben_(WMF)' + '\u202C' + ' הי!',
+			'Bidi with LTR argument'
+		);
+		assert.strictEqual(
+			$.i18n( 'greet-msg', 'יהודי (מנוחין)' ),
+			'שלום ' + '\u202B' + 'יהודי (מנוחין)' + '\u202C' + ' הי!',
+			'Bidi with RTL argument'
+		);
+	} );
 }( jQuery ) );
