@@ -21,7 +21,7 @@
     "David Chan <david@troi.org>"
   ],
   "devDependencies": {
-    "qunit": "0.7.6",
+    "qunit": "^0.7.6",
     "grunt": "0.4.5",
     "grunt-cli": "0.1.13",
     "grunt-contrib-jshint": "0.11.2",
@@ -38,7 +38,7 @@
       "url" : "http://github.com/wikimedia/jquery.i18n/issues"
   },
   "engine": {
-    "node": ">=0.8.x"
+    "node": ">=0.10.x"
   },
   "license": "(MIT OR GPL-2.0)",
   "scripts": {
