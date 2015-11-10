@@ -8,6 +8,7 @@
 	"undef": true,
 	"unused": true,
 	"strict": false,
+	"es3": true,
 
 	// Relaxing
 	"es5": false,
