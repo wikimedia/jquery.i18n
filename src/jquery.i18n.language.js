@@ -467,7 +467,7 @@
 	};
 
 	$.extend( $.i18n.languages, {
-		/* default is a reserved eeyword breaking IE8 */
+		/* default is a reserved keyword breaking IE8 */
 		'default': language
 	} );
 }( jQuery ) );
