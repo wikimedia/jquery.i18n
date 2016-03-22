@@ -7,7 +7,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	$.i18n.languages.la = $.extend( {}, $.i18n.languages['default'], {
+	$.i18n.languages.la = $.extend( {}, $.i18n.languages[ 'default' ], {
 		convertGrammar: function ( word, form ) {
 			switch ( form ) {
 			case 'genitive':

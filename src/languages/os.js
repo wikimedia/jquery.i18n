@@ -7,7 +7,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	$.i18n.languages.os = $.extend( {}, $.i18n.languages['default'], {
+	$.i18n.languages.os = $.extend( {}, $.i18n.languages[ 'default' ], {
 		convertGrammar: function ( word, form ) {
 			var endAllative, jot, hyphen, ending;
 

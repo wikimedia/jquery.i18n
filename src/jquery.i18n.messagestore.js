@@ -74,7 +74,7 @@
 						locale = key;
 						// No {locale} given, assume data is a group of languages,
 						// call this function again for each language.
-						deferreds.push( messageStore.load( source[key], locale ) );
+						deferreds.push( messageStore.load( source[ key ], locale ) );
 					}
 				}
 				return $.when.apply( $, deferreds );
@@ -89,10 +89,10 @@
 		 * @param messages
 		 */
 		set: function ( locale, messages ) {
-			if ( !this.messages[locale] ) {
-				this.messages[locale] = messages;
+			if ( !this.messages[ locale ] ) {
+				this.messages[ locale ] = messages;
 			} else {
-				this.messages[locale] = $.extend( this.messages[locale], messages );
+				this.messages[ locale ] = $.extend( this.messages[ locale ], messages );
 			}
 		},
 
@@ -103,7 +103,7 @@
 		 * @returns {Boolean}
 		 */
 		get: function ( locale, messageKey ) {
-			return this.messages[locale] && this.messages[locale][messageKey];
+			return this.messages[ locale ] && this.messages[ locale ][ messageKey ];
 		}
 	};
 
