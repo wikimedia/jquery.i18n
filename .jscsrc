@@ -1,3 +1,5 @@
 {
-	"preset": "wikimedia"
+	"preset": "wikimedia",
+	"requireSpacesInsideBrackets": null,
+	"jsDoc": null
 }

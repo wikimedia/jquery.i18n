@@ -28,7 +28,7 @@
     "grunt-contrib-connect": "0.10.1",
     "grunt-contrib-qunit": "0.7.0",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-jscs": "1.8.0"
+    "grunt-jscs": "2.7.0"
   },
   "repository": {
     "type": "git",
