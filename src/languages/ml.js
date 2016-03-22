@@ -7,7 +7,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	$.i18n.languages.ml = $.extend( {}, $.i18n.languages['default'], {
+	$.i18n.languages.ml = $.extend( {}, $.i18n.languages[ 'default' ], {
 		convertGrammar: function ( word, form ) {
 			form = form.toLowerCase();
 			switch ( form ) {

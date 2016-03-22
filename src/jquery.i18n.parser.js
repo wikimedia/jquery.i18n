@@ -18,7 +18,7 @@
 
 	var MessageParser = function ( options ) {
 		this.options = $.extend( {}, $.i18n.parser.defaults, options );
-		this.language = $.i18n.languages[String.locale] || $.i18n.languages['default'];
+		this.language = $.i18n.languages[ String.locale ] || $.i18n.languages[ 'default' ];
 		this.emitter = $.i18n.parser.emitter;
 	};
 
@@ -30,7 +30,7 @@
 			return message.replace( /\$(\d+)/g, function ( str, match ) {
 				var index = parseInt( match, 10 ) - 1;
 
-				return parameters[index] !== undefined ? parameters[index] : '$' + match;
+				return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
 			} );
 		},
 
@@ -39,8 +39,8 @@
 				return this.simpleParse( message, replacements );
 			}
 
-			this.emitter.language = $.i18n.languages[$.i18n().locale] ||
-				$.i18n.languages['default'];
+			this.emitter.language = $.i18n.languages[ $.i18n().locale ] ||
+				$.i18n.languages[ 'default' ];
 
 			return this.emitter.emit( this.ast( message ), replacements );
 		},
@@ -58,7 +58,7 @@
 					var i, result;
 
 					for ( i = 0; i < parserSyntax.length; i++ ) {
-						result = parserSyntax[i]();
+						result = parserSyntax[ i ]();
 
 						if ( result !== null ) {
 							return result;
@@ -78,7 +78,7 @@
 					result = [];
 
 				for ( i = 0; i < parserSyntax.length; i++ ) {
-					res = parserSyntax[i]();
+					res = parserSyntax[ i ]();
 
 					if ( res === null ) {
 						pos = originalPos;
@@ -140,9 +140,9 @@
 						return null;
 					}
 
-					pos += matches[0].length;
+					pos += matches[ 0 ].length;
 
-					return matches[0];
+					return matches[ 0 ];
 				};
 			}
 
@@ -189,7 +189,7 @@
 			function escapedLiteral() {
 				var result = sequence( [ backslash, anyCharacter ] );
 
-				return result === null ? null : result[1];
+				return result === null ? null : result[ 1 ];
 			}
 
 			choice( [ escapedLiteral, regularLiteralWithoutSpace ] );
@@ -203,7 +203,7 @@
 					return null;
 				}
 
-				return [ 'REPLACE', parseInt( result[1], 10 ) - 1 ];
+				return [ 'REPLACE', parseInt( result[ 1 ], 10 ) - 1 ];
 			}
 
 			templateName = transform(
@@ -224,23 +224,23 @@
 					return null;
 				}
 
-				expr = result[1];
+				expr = result[ 1 ];
 
 				// use a "CONCAT" operator if there are multiple nodes,
 				// otherwise return the first node, raw.
-				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[0];
+				return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ];
 			}
 
 			function templateWithReplacement() {
 				var result = sequence( [ templateName, colon, replacement ] );
 
-				return result === null ? null : [ result[0], result[2] ];
+				return result === null ? null : [ result[ 0 ], result[ 2 ] ];
 			}
 
 			function templateWithOutReplacement() {
 				var result = sequence( [ templateName, colon, paramExpression ] );
 
-				return result === null ? null : [ result[0], result[2] ];
+				return result === null ? null : [ result[ 0 ], result[ 2 ] ];
 			}
 
 			templateContents = choice( [
@@ -254,7 +254,7 @@
 						nOrMore( 0, templateParam )
 					] );
 
-					return res === null ? null : res[0].concat( res[1] );
+					return res === null ? null : res[ 0 ].concat( res[ 1 ] );
 				},
 				function () {
 					var res = sequence( [ templateName, nOrMore( 0, templateParam ) ] );
@@ -263,7 +263,7 @@
 						return null;
 					}
 
-					return [ res[0] ].concat( res[1] );
+					return [ res[ 0 ] ].concat( res[ 1 ] );
 				}
 			] );
 
@@ -273,7 +273,7 @@
 			function template() {
 				var result = sequence( [ openTemplate, templateContents, closeTemplate ] );
 
-				return result === null ? null : result[1];
+				return result === null ? null : result[ 1 ];
 			}
 
 			expression = choice( [ template, replacement, literal ] );

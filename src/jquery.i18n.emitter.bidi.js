@@ -51,7 +51,7 @@
 		if ( !m ) {
 			return null;
 		}
-		if ( m[2] === undefined ) {
+		if ( m[ 2 ] === undefined ) {
 			return 'ltr';
 		}
 		return 'rtl';
@@ -72,17 +72,17 @@
 		 * direction inference). The latter is cleaner but still not widely supported.
 		 */
 		bidi: function ( nodes ) {
-			var dir = strongDirFromContent( nodes[0] );
+			var dir = strongDirFromContent( nodes[ 0 ] );
 			if ( dir === 'ltr' ) {
 				// Wrap in LEFT-TO-RIGHT EMBEDDING ... POP DIRECTIONAL FORMATTING
-				return '\u202A' + nodes[0] + '\u202C';
+				return '\u202A' + nodes[ 0 ] + '\u202C';
 			}
 			if ( dir === 'rtl' ) {
 				// Wrap in RIGHT-TO-LEFT EMBEDDING ... POP DIRECTIONAL FORMATTING
-				return '\u202B' + nodes[0] + '\u202C';
+				return '\u202B' + nodes[ 0 ] + '\u202C';
 			}
 			// No strong directionality: do not wrap
-			return nodes[0];
+			return nodes[ 0 ];
 		}
 	} );
 }( jQuery ) );

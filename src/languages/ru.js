@@ -5,7 +5,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	$.i18n.languages.ru = $.extend( {}, $.i18n.languages['default'], {
+	$.i18n.languages.ru = $.extend( {}, $.i18n.languages[ 'default' ], {
 		convertGrammar: function ( word, form ) {
 			if ( form === 'genitive' ) { // родительный падеж
 				if ( word.substr( -1 ) === 'ь' ) {

@@ -75,7 +75,7 @@
 						break;
 					}
 
-					locale = ( $.i18n.fallbacks[i18n.locale] && $.i18n.fallbacks[i18n.locale][fallbackIndex] ) ||
+					locale = ( $.i18n.fallbacks[ i18n.locale ] && $.i18n.fallbacks[ i18n.locale ][ fallbackIndex ] ) ||
 						i18n.options.fallbackLocale;
 					$.i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale );
 
@@ -146,12 +146,12 @@
 				source.split( '.' ).pop() !== 'json'
 			) {
 				// Load specified locale then check for fallbacks when directory is specified in load()
-				sourceMap[locale] = source + '/' + locale + '.json';
-				fallbackLocales = ( $.i18n.fallbacks[locale] || [] )
+				sourceMap[ locale ] = source + '/' + locale + '.json';
+				fallbackLocales = ( $.i18n.fallbacks[ locale ] || [] )
 					.concat( this.options.fallbackLocale );
 				for ( locIndex in fallbackLocales ) {
-					fallbackLocale = fallbackLocales[locIndex];
-					sourceMap[fallbackLocale] = source + '/' + fallbackLocale + '.json';
+					fallbackLocale = fallbackLocales[ locIndex ];
+					sourceMap[ fallbackLocale ] = source + '/' + fallbackLocale + '.json';
 				}
 				return this.load( sourceMap );
 			} else {
@@ -172,7 +172,7 @@
 			// FIXME: This changes the state of the I18N object,
 			// should probably not change the 'this.parser' but just
 			// pass it to the parser.
-			this.parser.language = $.i18n.languages[$.i18n().locale] || $.i18n.languages['default'];
+			this.parser.language = $.i18n.languages[ $.i18n().locale ] || $.i18n.languages[ 'default' ];
 			if ( message === '' ) {
 				message = key;
 			}
@@ -262,7 +262,7 @@
 		parse: function ( message, parameters ) {
 			return message.replace( /\$(\d+)/g, function ( str, match ) {
 				var index = parseInt( match, 10 ) - 1;
-				return parameters[index] !== undefined ? parameters[index] : '$' + match;
+				return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
 			} );
 		},
 		emitter: {}
