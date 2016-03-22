@@ -436,7 +436,7 @@
 		 * Get the digit transform table for the given language
 		 * See http://cldr.unicode.org/translation/numbering-systems
 		 * @param language
-		 * @returns {Array|boolean} List of digits in the passed language or false
+		 * @return {Array|boolean} List of digits in the passed language or false
 		 * representation, or boolean false if there is no information.
 		 */
 		digitTransformTable: function ( language ) {

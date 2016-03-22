@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Internationalization library
  *
  * Copyright (C) 2011-2013 Santhosh Thottingal, Neil Kandalgaonkar

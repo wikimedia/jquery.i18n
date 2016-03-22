@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Internationalization library
  *
  * Copyright (C) 2012 Santhosh Thottingal
@@ -134,7 +134,7 @@
 		 *
 		 * @param {String|Object} source
 		 * @param {String} locale Language tag
-		 * @returns {jQuery.Promise}
+		 * @return {jQuery.Promise}
 		 */
 		load: function ( source, locale ) {
 			var fallbackLocales, locIndex, fallbackLocale, sourceMap = {};
