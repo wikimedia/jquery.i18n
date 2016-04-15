@@ -7,7 +7,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	$.i18n.languages.fi = $.extend( {}, $.i18n.languages['default'], {
+	$.i18n.languages.fi = $.extend( {}, $.i18n.languages[ 'default' ], {
 		convertGrammar: function ( word, form ) {
 			// vowel harmony flag
 			var aou = word.match( /[aou][^äöy]*$/i ),

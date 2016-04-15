@@ -5,7 +5,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	$.i18n.languages.hy = $.extend( {}, $.i18n.languages['default'], {
+	$.i18n.languages.hy = $.extend( {}, $.i18n.languages[ 'default' ], {
 		convertGrammar: function ( word, form ) {
 			if ( form === 'genitive' ) { // սեռական հոլով
 				if ( word.substr( -1 ) === 'ա' ) {

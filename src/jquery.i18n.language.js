@@ -285,13 +285,13 @@
 
 			// Handle for Explicit 0= & 1= values
 			for ( index = 0; index < forms.length; index++ ) {
-				form = forms[index];
+				form = forms[ index ];
 				if ( explicitPluralPattern.test( form ) ) {
 					formCount = parseInt( form.substring( 0, form.indexOf( '=' ) ), 10 );
 					if ( formCount === count ) {
 						return ( form.substr( form.indexOf( '=' ) + 1 ) );
 					}
-					forms[index] = undefined;
+					forms[ index ] = undefined;
 				}
 			}
 
@@ -301,17 +301,17 @@
 				}
 			} );
 
-			pluralRules = this.pluralRules[$.i18n().locale];
+			pluralRules = this.pluralRules[ $.i18n().locale ];
 
 			if ( !pluralRules ) {
 				// default fallback.
-				return ( count === 1 ) ? forms[0] : forms[1];
+				return ( count === 1 ) ? forms[ 0 ] : forms[ 1 ];
 			}
 
 			pluralFormIndex = this.getPluralForm( count, pluralRules );
 			pluralFormIndex = Math.min( pluralFormIndex, forms.length - 1 );
 
-			return forms[pluralFormIndex];
+			return forms[ pluralFormIndex ];
 		},
 
 		/**
@@ -327,8 +327,8 @@
 				pluralFormIndex = 0;
 
 			for ( i = 0; i < pluralForms.length; i++ ) {
-				if ( pluralRules[pluralForms[i]] ) {
-					if ( pluralRuleParser( pluralRules[pluralForms[i]], number ) ) {
+				if ( pluralRules[ pluralForms[ i ] ] ) {
+					if ( pluralRuleParser( pluralRules[ pluralForms[ i ] ], number ) ) {
 						return pluralFormIndex;
 					}
 
@@ -367,17 +367,17 @@
 				tmp = [];
 
 				for ( item in transformTable ) {
-					tmp[transformTable[item]] = item;
+					tmp[ transformTable[ item ] ] = item;
 				}
 
 				transformTable = tmp;
 			}
 
 			for ( i = 0; i < numberString.length; i++ ) {
-				if ( transformTable[numberString[i]] ) {
-					convertedNumber += transformTable[numberString[i]];
+				if ( transformTable[ numberString[ i ] ] ) {
+					convertedNumber += transformTable[ numberString[ i ] ];
 				} else {
-					convertedNumber += numberString[i];
+					convertedNumber += numberString[ i ];
 				}
 			}
 
@@ -418,18 +418,18 @@
 			}
 
 			while ( forms.length < 2 ) {
-				forms.push( forms[forms.length - 1] );
+				forms.push( forms[ forms.length - 1 ] );
 			}
 
 			if ( gender === 'male' ) {
-				return forms[0];
+				return forms[ 0 ];
 			}
 
 			if ( gender === 'female' ) {
-				return forms[1];
+				return forms[ 1 ];
 			}
 
-			return ( forms.length === 3 ) ? forms[2] : forms[0];
+			return ( forms.length === 3 ) ? forms[ 2 ] : forms[ 0 ];
 		},
 
 		/**
@@ -458,11 +458,11 @@
 				bo: '༠༡༢༣༤༥༦༧༨༩' // FIXME use iso 639 codes
 			};
 
-			if ( !tables[language] ) {
+			if ( !tables[ language ] ) {
 				return false;
 			}
 
-			return tables[language].split( '' );
+			return tables[ language ].split( '' );
 		}
 	};
 

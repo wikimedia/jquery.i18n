@@ -1,3 +1,4 @@
 {
-	"preset": "wikimedia"
+	"preset": "wikimedia",
+	"jsDoc": null
 }
