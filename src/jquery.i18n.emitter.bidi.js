@@ -1,4 +1,4 @@
-/**
+/*!
  * BIDI embedding support for jQuery.i18n
  *
  * Copyright (C) 2015, David Chan

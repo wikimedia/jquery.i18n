@@ -1,4 +1,6 @@
 {
 	"preset": "wikimedia",
-	"jsDoc": null
+	"jsDoc": {
+		"checkAnnotations": "jsduck5"
+	}
 }

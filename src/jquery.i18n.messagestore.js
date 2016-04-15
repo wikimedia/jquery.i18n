@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Internationalization library - Message Store
  *
  * Copyright (C) 2012 Santhosh Thottingal
@@ -100,7 +100,7 @@
 		 *
 		 * @param locale
 		 * @param messageKey
-		 * @returns {Boolean}
+		 * @return {Boolean}
 		 */
 		get: function ( locale, messageKey ) {
 			return this.messages[ locale ] && this.messages[ locale ][ messageKey ];
