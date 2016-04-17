@@ -1,6 +1,7 @@
 {
 	"preset": "wikimedia",
 	"jsDoc": {
-		"checkAnnotations": "jsduck5"
+		"checkAnnotations": "jsduck5",
+		"requireParamTypes": true
 	}
 }

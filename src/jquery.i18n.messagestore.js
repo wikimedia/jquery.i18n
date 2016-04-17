@@ -85,8 +85,8 @@
 		/**
 		 * Set messages to the given locale.
 		 * If locale exists, add messages to the locale.
-		 * @param locale
-		 * @param messages
+		 * @param {string} locale
+		 * @param {Object} messages
 		 */
 		set: function ( locale, messages ) {
 			if ( !this.messages[ locale ] ) {
@@ -98,8 +98,8 @@
 
 		/**
 		 *
-		 * @param locale
-		 * @param messageKey
+		 * @param {string} locale
+		 * @param {string} messageKey
 		 * @return {Boolean}
 		 */
 		get: function ( locale, messageKey ) {
