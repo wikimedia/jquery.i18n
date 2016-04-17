@@ -26,7 +26,7 @@ module.exports = function ( grunt ) {
 			options: {
 				jshintrc: true
 			},
-			all: [ 'src/**/*.js' ]
+			all: [ '*.js', 'src/**/*.js' ]
 		},
 		jscs: {
 			fix: {
@@ -42,7 +42,6 @@ module.exports = function ( grunt ) {
 		watch: {
 			files: [
 				'.{jscsrc,jshintignore,jshintrc}',
-				'Gruntfile.js',
 				'<%= jshint.all %>'
 			],
 			tasks: 'test'
