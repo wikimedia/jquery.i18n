@@ -2,7 +2,7 @@
 	// Enforcing
 	"bitwise": true,
 	"eqeqeq": true,
-	"latedef": true,
+	"latedef": "nofunc",
 	"noarg": true,
 	"nonew": true,
 	"undef": true,
