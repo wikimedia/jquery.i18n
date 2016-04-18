@@ -41,8 +41,8 @@
 		 * null/undefined/false,
 		 * all cached messages for the i18n instance will get reset.
 		 *
-		 * @param {String|Object} source
-		 * @param {String} locale Language tag
+		 * @param {string|Object} source
+		 * @param {string} locale Language tag
 		 * @return {jQuery.Promise}
 		 */
 		load: function ( source, locale ) {
@@ -100,7 +100,7 @@
 		 *
 		 * @param {string} locale
 		 * @param {string} messageKey
-		 * @return {Boolean}
+		 * @return {boolean}
 		 */
 		get: function ( locale, messageKey ) {
 			return this.messages[ locale ] && this.messages[ locale ][ messageKey ];

@@ -267,7 +267,7 @@
 		 *
 		 * @param {integer} count
 		 *            Non-localized quantifier
-		 * @param {array} forms
+		 * @param {Array} forms
 		 *            List of plural forms
 		 * @return {string} Correct form for quantifier in this language
 		 */
@@ -390,9 +390,9 @@
 		 * Override this method for languages that need special grammar rules
 		 * applied dynamically.
 		 *
-		 * @param {String} word
-		 * @param {String} form
-		 * @return {String}
+		 * @param {string} word
+		 * @param {string} form
+		 * @return {string}
 		 */
 		convertGrammar: function ( word, form ) { /*jshint unused: false */
 			return word;
@@ -407,7 +407,7 @@
 		 *
 		 * @param {string} gender
 		 *      male, female, or anything else for neutral.
-		 * @param {array} forms
+		 * @param {Array} forms
 		 *      List of gender forms
 		 *
 		 * @return {string}

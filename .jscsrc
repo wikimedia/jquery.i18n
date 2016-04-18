@@ -3,6 +3,7 @@
 	"jsDoc": {
 		"checkAnnotations": "jsduck5",
 		"requireParamTypes": true,
-		"requireReturnTypes": true
+		"requireReturnTypes": true,
+		"checkTypes": "strictNativeCase"
 	}
 }
