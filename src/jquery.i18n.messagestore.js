@@ -85,6 +85,7 @@
 		/**
 		 * Set messages to the given locale.
 		 * If locale exists, add messages to the locale.
+		 *
 		 * @param {string} locale
 		 * @param {Object} messages
 		 */

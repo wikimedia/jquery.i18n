@@ -4,6 +4,7 @@
 		"checkAnnotations": "jsduck5",
 		"requireParamTypes": true,
 		"requireReturnTypes": true,
-		"checkTypes": "strictNativeCase"
+		"checkTypes": "strictNativeCase",
+		"requireNewlineAfterDescription": true
 	}
 }
