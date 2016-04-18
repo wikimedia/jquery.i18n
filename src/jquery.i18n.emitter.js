@@ -80,7 +80,7 @@
 		 * in our children and pass them upwards
 		 *
 		 * @param {Array} nodes Mixed, some single nodes, some arrays of nodes.
-		 * @return String
+		 * @return {String}
 		 */
 		concat: function ( nodes ) {
 			var result = '';

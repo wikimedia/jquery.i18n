@@ -269,7 +269,7 @@
 		 *            Non-localized quantifier
 		 * @param {array} forms
 		 *            List of plural forms
-		 * @return string Correct form for quantifier in this language
+		 * @return {string} Correct form for quantifier in this language
 		 */
 		convertPlural: function ( count, forms ) {
 			var pluralRules,
@@ -319,7 +319,7 @@
 		 *
 		 * @param {integer} number
 		 * @param {Object} pluralRules
-		 * @return plural form index
+		 * @return {integer} plural form index
 		 */
 		getPluralForm: function ( number, pluralRules ) {
 			var i,
@@ -410,7 +410,7 @@
 		 * @param {array} forms
 		 *      List of gender forms
 		 *
-		 * @return string
+		 * @return {string}
 		 */
 		gender: function ( gender, forms ) {
 			if ( !forms || forms.length === 0 ) {

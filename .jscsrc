@@ -2,6 +2,7 @@
 	"preset": "wikimedia",
 	"jsDoc": {
 		"checkAnnotations": "jsduck5",
-		"requireParamTypes": true
+		"requireParamTypes": true,
+		"requireReturnTypes": true
 	}
 }
