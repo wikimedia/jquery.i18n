@@ -2,12 +2,12 @@
 	// Enforcing
 	"bitwise": true,
 	"eqeqeq": true,
-	"latedef": true,
+	"latedef": "nofunc",
 	"noarg": true,
 	"nonew": true,
 	"undef": true,
 	"unused": true,
-	"strict": false,
+	"strict": true,
 	"es3": true,
 
 	// Relaxing

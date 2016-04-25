@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Internationalization library
  *
  * Copyright (C) 2012 Santhosh Thottingal
@@ -132,9 +132,9 @@
 		 * If the data argument is null/undefined/false,
 		 * all cached messages for the i18n instance will get reset.
 		 *
-		 * @param {String|Object} source
-		 * @param {String} locale Language tag
-		 * @returns {jQuery.Promise}
+		 * @param {string|Object} source
+		 * @param {string} locale Language tag
+		 * @return {jQuery.Promise}
 		 */
 		load: function ( source, locale ) {
 			var fallbackLocales, locIndex, fallbackLocale, sourceMap = {};

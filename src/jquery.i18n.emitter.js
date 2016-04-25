@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Internationalization library
  *
  * Copyright (C) 2011-2013 Santhosh Thottingal, Neil Kandalgaonkar
@@ -80,7 +80,7 @@
 		 * in our children and pass them upwards
 		 *
 		 * @param {Array} nodes Mixed, some single nodes, some arrays of nodes.
-		 * @return String
+		 * @return {string}
 		 */
 		concat: function ( nodes ) {
 			var result = '';
@@ -124,7 +124,7 @@
 		 * convertNumber.
 		 *
 		 * @param {Array} nodes List [ {String|Number}, {String}, {String} ... ]
-		 * @return {String} selected pluralized form according to current
+		 * @return {string} selected pluralized form according to current
 		 *  language.
 		 */
 		plural: function ( nodes ) {
@@ -139,7 +139,7 @@
 		 * {{gender:gender|masculine|feminine|neutral}}.
 		 *
 		 * @param {Array} nodes List [ {String}, {String}, {String} , {String} ]
-		 * @return {String} selected gender form according to current language
+		 * @return {string} selected gender form according to current language
 		 */
 		gender: function ( nodes ) {
 			var gender = nodes[ 0 ],
@@ -153,7 +153,7 @@
 		 * putting {{grammar:form|word}} in a message
 		 *
 		 * @param {Array} nodes List [{Grammar case eg: genitive}, {String word}]
-		 * @return {String} selected grammatical form according to current
+		 * @return {string} selected grammatical form according to current
 		 *  language.
 		 */
 		grammar: function ( nodes ) {

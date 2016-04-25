@@ -265,11 +265,11 @@
 		/**
 		 * Plural form transformations, needed for some languages.
 		 *
-		 * @param count
-		 *            integer Non-localized quantifier
-		 * @param forms
-		 *            array List of plural forms
-		 * @return string Correct form for quantifier in this language
+		 * @param {integer} count
+		 *            Non-localized quantifier
+		 * @param {Array} forms
+		 *            List of plural forms
+		 * @return {string} Correct form for quantifier in this language
 		 */
 		convertPlural: function ( count, forms ) {
 			var pluralRules,
@@ -317,9 +317,9 @@
 		/**
 		 * For the number, get the plural for index
 		 *
-		 * @param number
-		 * @param pluralRules
-		 * @return plural form index
+		 * @param {integer} number
+		 * @param {Object} pluralRules
+		 * @return {integer} plural form index
 		 */
 		getPluralForm: function ( number, pluralRules ) {
 			var i,
@@ -390,9 +390,9 @@
 		 * Override this method for languages that need special grammar rules
 		 * applied dynamically.
 		 *
-		 * @param word {String}
-		 * @param form {String}
-		 * @return {String}
+		 * @param {string} word
+		 * @param {string} form
+		 * @return {string}
 		 */
 		convertGrammar: function ( word, form ) { /*jshint unused: false */
 			return word;
@@ -405,12 +405,12 @@
 		 *
 		 * These details may be overriden per language.
 		 *
-		 * @param gender
-		 *      string male, female, or anything else for neutral.
-		 * @param forms
-		 *      array List of gender forms
+		 * @param {string} gender
+		 *      male, female, or anything else for neutral.
+		 * @param {Array} forms
+		 *      List of gender forms
 		 *
-		 * @return string
+		 * @return {string}
 		 */
 		gender: function ( gender, forms ) {
 			if ( !forms || forms.length === 0 ) {
@@ -435,8 +435,9 @@
 		/**
 		 * Get the digit transform table for the given language
 		 * See http://cldr.unicode.org/translation/numbering-systems
-		 * @param language
-		 * @returns {Array|boolean} List of digits in the passed language or false
+		 *
+		 * @param {string} language
+		 * @return {Array|boolean} List of digits in the passed language or false
 		 * representation, or boolean false if there is no information.
 		 */
 		digitTransformTable: function ( language ) {

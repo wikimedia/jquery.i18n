@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery Internationalization library - Message Store
  *
  * Copyright (C) 2012 Santhosh Thottingal
@@ -41,8 +41,8 @@
 		 * null/undefined/false,
 		 * all cached messages for the i18n instance will get reset.
 		 *
-		 * @param {String|Object} source
-		 * @param {String} locale Language tag
+		 * @param {string|Object} source
+		 * @param {string} locale Language tag
 		 * @return {jQuery.Promise}
 		 */
 		load: function ( source, locale ) {
@@ -85,8 +85,9 @@
 		/**
 		 * Set messages to the given locale.
 		 * If locale exists, add messages to the locale.
-		 * @param locale
-		 * @param messages
+		 *
+		 * @param {string} locale
+		 * @param {Object} messages
 		 */
 		set: function ( locale, messages ) {
 			if ( !this.messages[ locale ] ) {
@@ -98,9 +99,9 @@
 
 		/**
 		 *
-		 * @param locale
-		 * @param messageKey
-		 * @returns {Boolean}
+		 * @param {string} locale
+		 * @param {string} messageKey
+		 * @return {boolean}
 		 */
 		get: function ( locale, messageKey ) {
 			return this.messages[ locale ] && this.messages[ locale ][ messageKey ];
