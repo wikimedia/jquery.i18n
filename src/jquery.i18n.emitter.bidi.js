@@ -1,4 +1,4 @@
-/*!
+/* !
  * BIDI embedding support for jQuery.i18n
  *
  * Copyright (C) 2015, David Chan
@@ -12,6 +12,8 @@
  * @licence GNU General Public Licence 2.0 or later
  * @licence MIT License
  */
+
+/* eslint valid-jsdoc: "off" */
 
 ( function ( $ ) {
 	'use strict';

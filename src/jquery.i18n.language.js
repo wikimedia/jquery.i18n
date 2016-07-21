@@ -1,4 +1,4 @@
-/*global pluralRuleParser */
+/* global pluralRuleParser */
 ( function ( $ ) {
 	'use strict';
 
@@ -344,6 +344,7 @@
 		 *
 		 * @param {number} num Value to be converted
 		 * @param {boolean} integer Convert the return value to an integer
+		 * @return {number}
 		 */
 		convertNumber: function ( num, integer ) {
 			var tmp, item, i,
@@ -394,7 +395,7 @@
 		 * @param {string} form
 		 * @return {string}
 		 */
-		convertGrammar: function ( word, form ) { /*jshint unused: false */
+		convertGrammar: function ( word, form ) { /* eslint no-unused-vars: "off" */
 			return word;
 		},
 

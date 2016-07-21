@@ -21,21 +21,21 @@
     "David Chan <david@troi.org>"
   ],
   "devDependencies": {
-    "qunit": "0.9.1",
+    "eslint-config-wikimedia": "0.1.0",
     "grunt": "1.0.1",
     "grunt-cli": "1.2.0",
-    "grunt-contrib-jshint": "1.0.0",
     "grunt-contrib-connect": "1.0.1",
     "grunt-contrib-qunit": "1.2.0",
     "grunt-contrib-watch": "1.0.0",
-    "grunt-jscs": "2.8.0"
+    "grunt-eslint": "18.0.0",
+    "qunit": "0.9.1"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/wikimedia/jquery.i18n.git"
   },
   "bugs": {
-      "url" : "http://github.com/wikimedia/jquery.i18n/issues"
+    "url": "http://github.com/wikimedia/jquery.i18n/issues"
   },
   "engine": {
     "node": ">=0.8.x"

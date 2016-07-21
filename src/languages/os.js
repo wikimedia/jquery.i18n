@@ -43,31 +43,31 @@
 			}
 
 			switch ( form ) {
-			case 'genitive':
-				ending = hyphen + jot + 'ы';
-				break;
-			case 'dative':
-				ending = hyphen + jot + 'æн';
-				break;
-			case 'allative':
-				ending = hyphen + endAllative;
-				break;
-			case 'ablative':
-				if ( jot === 'й' ) {
-					ending = hyphen + jot + 'æ';
-				} else {
-					ending = hyphen + jot + 'æй';
-				}
-				break;
-			case 'superessive':
-				ending = hyphen + jot + 'ыл';
-				break;
-			case 'equative':
-				ending = hyphen + jot + 'ау';
-				break;
-			case 'comitative':
-				ending = hyphen + 'имæ';
-				break;
+				case 'genitive':
+					ending = hyphen + jot + 'ы';
+					break;
+				case 'dative':
+					ending = hyphen + jot + 'æн';
+					break;
+				case 'allative':
+					ending = hyphen + endAllative;
+					break;
+				case 'ablative':
+					if ( jot === 'й' ) {
+						ending = hyphen + jot + 'æ';
+					} else {
+						ending = hyphen + jot + 'æй';
+					}
+					break;
+				case 'superessive':
+					ending = hyphen + jot + 'ыл';
+					break;
+				case 'equative':
+					ending = hyphen + jot + 'ау';
+					break;
+				case 'comitative':
+					ending = hyphen + 'имæ';
+					break;
 			}
 
 			return word + ending;

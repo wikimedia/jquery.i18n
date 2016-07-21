@@ -1,16 +1,15 @@
-/*!
+/* !
  * Grunt file
  *
  * @package jquery.i18n
  */
 'use strict';
-/*jshint node:true */
+/* eslint-env node */
 module.exports = function ( grunt ) {
-	grunt.loadNpmTasks( 'grunt-contrib-jshint' );
 	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks( 'grunt-jscs' );
+	grunt.loadNpmTasks( 'grunt-eslint' );
 
 	grunt.initConfig( {
 		pkg: grunt.file.readJSON( 'package.json' ),
@@ -22,27 +21,19 @@ module.exports = function ( grunt ) {
 				}
 			}
 		},
-		jshint: {
-			options: {
-				jshintrc: true
-			},
-			all: [ '*.js', 'src/**/*.js' ]
-		},
-		jscs: {
+		eslint: {
 			fix: {
 				options: {
 					fix: true
 				},
-				src: '<%= jshint.all %>'
+				src: [ '*.js', 'src/**/*.js' ]
 			},
-			main: {
-				src: '<%= jshint.all %>'
-			}
+			all: [ '*.js', 'src/**/*.js' ]
 		},
 		watch: {
 			files: [
-				'.{jscsrc,jshintignore,jshintrc}',
-				'<%= jshint.all %>'
+				'.{eslintignore,eslintrc}',
+				'<%= eslint.all %>'
 			],
 			tasks: 'test'
 		},
@@ -56,8 +47,8 @@ module.exports = function ( grunt ) {
 	} );
 
 	grunt.registerTask( 'server', [ 'connect' ] );
-	grunt.registerTask( 'lint', [ 'jshint', 'jscs:main' ] );
-	grunt.registerTask( 'fix', [ 'jscs:fix' ] );
+	grunt.registerTask( 'lint', [ 'eslint' ] );
+	grunt.registerTask( 'fix', [ 'eslint:fix' ] );
 	grunt.registerTask( 'unit', [ 'server', 'qunit' ] );
 	grunt.registerTask( 'test', [ 'lint', 'unit' ] );
 	grunt.registerTask( 'default', [ 'test' ] );
