@@ -116,7 +116,7 @@
 		$.ajax({
 			url: url,
 			dataType: 'json',
-			async: !sync,
+			async: !sync
 		})
 		.done( deferred.resolve )
 		.fail( function ( jqxhr, settings, exception ) {
