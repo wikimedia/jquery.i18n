@@ -234,10 +234,23 @@
 		String.locale = i18n.locale;
 		return this.each( function () {
 			var $this = $( this ),
-				messageKey = $this.data( 'i18n' );
+				messageKey = $this.data( 'i18n' ),
+				lBracket, rBracket, type, key;
 
 			if ( messageKey ) {
-				$this.text( i18n.parse( messageKey ) );
+				lBracket = messageKey.indexOf( '[' );
+				rBracket = messageKey.indexOf( ']' );
+				if ( lBracket !== -1 && rBracket !== -1 && lBracket < rBracket ) {
+					type = messageKey.substring( lBracket + 1, rBracket );
+					key = messageKey.substr( rBracket + 1 );
+					if ( type === 'html' ) {
+						$this.html( i18n.parse( key ) );
+					} else {
+						$this.attr( type, i18n.parse( key ) );
+					}
+				} else {
+					$this.text( i18n.parse( messageKey ) );
+				}
 			} else {
 				$this.find( '[data-i18n]' ).i18n();
 			}
