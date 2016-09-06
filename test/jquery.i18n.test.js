@@ -23,6 +23,30 @@
 		assert.strictEqual( $fixture.i18n().text(), 'X', 'Content of fixture localized' );
 	} );
 
+	QUnit.test( 'Message parse HTML', 2, function ( assert ) {
+		var i18n = $( document ).data( 'i18n' ),
+			$fixture = $( '#qunit-fixture' );
+		// Load messages for localex
+		i18n.load( {
+			x: 'X<i>Y</i>',
+		}, 'localex' );
+		$fixture.data( 'i18n', 'x' );
+		assert.strictEqual( $fixture.i18n().html(), 'X&lt;i&gt;Y&lt;/i&gt;', 'Content of fixture localized with HTML encoded' );
+		$fixture.data( 'i18n', '[html]x' );
+		assert.strictEqual( $fixture.i18n().html(), 'X<i>Y</i>', 'Content of fixture localized with HTML as is' );
+	} );
+
+	QUnit.test( 'Message parse attrbutes', 1, function ( assert ) {
+		var i18n = $( document ).data( 'i18n' ),
+			$fixture = $( '#qunit-fixture' );
+		// Load messages for localex
+		i18n.load( {
+			x: 'title X',
+		}, 'localex' );
+		$fixture.data( 'i18n', '[title]x' );
+		assert.strictEqual( $fixture.i18n().attr( 'title' ), 'title X', 'Content of title attribute localized' );
+	} );
+
 	QUnit.module( 'jquery.i18n', {
 		setup: function () {
 			$.i18n( {
