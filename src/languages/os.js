@@ -22,7 +22,7 @@
 
 			if ( word.match( /тæ$/i ) ) {
 				// Checking if the $word is in plural form
-				word = word.substring( 0, word.length - 1 );
+				word = word.slice( 0, -1 );
 				endAllative = 'æм';
 			} else if ( word.match( /[аæеёиоыэюя]$/i ) ) {
 				// Works if word is in singular form.
@@ -34,7 +34,7 @@
 				// vowel 'U' in cyrillic Ossetic.
 				// Examples: {{grammar:genitive|аунеу}} = аунеуы,
 				// {{grammar:genitive|лæппу}} = лæппуйы.
-				if ( !word.substring( word.length - 2, word.length - 1 )
+				if ( !word.slice( -2, -1 )
 						.match( /[аæеёиоыэюя]$/i ) ) {
 					jot = 'й';
 				}

@@ -287,9 +287,9 @@
 			for ( index = 0; index < forms.length; index++ ) {
 				form = forms[ index ];
 				if ( explicitPluralPattern.test( form ) ) {
-					formCount = parseInt( form.substring( 0, form.indexOf( '=' ) ), 10 );
+					formCount = parseInt( form.slice( 0, form.indexOf( '=' ) ), 10 );
 					if ( formCount === count ) {
-						return ( form.substr( form.indexOf( '=' ) + 1 ) );
+						return ( form.slice( form.indexOf( '=' ) + 1 ) );
 					}
 					forms[ index ] = undefined;
 				}
