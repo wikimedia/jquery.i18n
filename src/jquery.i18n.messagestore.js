@@ -1,4 +1,4 @@
-/*!
+/* !
  * jQuery Internationalization library - Message Store
  *
  * Copyright (C) 2012 Santhosh Thottingal
@@ -12,8 +12,22 @@
  * @licence MIT License
  */
 
-( function ( $, window, undefined ) {
+( function ( $ ) {
 	'use strict';
+
+	function jsonMessageLoader( url ) {
+		var deferred = $.Deferred();
+
+		$.getJSON( url )
+			.done( deferred.resolve )
+			.fail( function ( jqxhr, settings, exception ) {
+				$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
+				// Ignore 404 exception, because we are handling fallabacks explicitly
+				deferred.resolve();
+			} );
+
+		return deferred.promise();
+	}
 
 	var MessageStore = function () {
 		this.messages = {};
@@ -108,19 +122,5 @@
 		}
 	};
 
-	function jsonMessageLoader( url ) {
-		var deferred = $.Deferred();
-
-		$.getJSON( url )
-			.done( deferred.resolve )
-			.fail( function ( jqxhr, settings, exception ) {
-				$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
-				// Ignore 404 exception, because we are handling fallabacks explicitly
-				deferred.resolve();
-			} );
-
-		return deferred.promise();
-	}
-
 	$.extend( $.i18n.messageStore, new MessageStore() );
-}( jQuery, window ) );
+}( jQuery ) );
