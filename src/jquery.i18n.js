@@ -142,7 +142,7 @@
 				source = 'i18n/' + $.i18n().locale + '.json';
 				locale = $.i18n().locale;
 			}
-			if ( typeof source === 'string'	&&
+			if ( typeof source === 'string' &&
 				source.split( '.' ).pop() !== 'json'
 			) {
 				// Load specified locale then check for fallbacks when directory is specified in load()
