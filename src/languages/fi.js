@@ -33,7 +33,7 @@
 				break;
 			case 'illative':
 				// Double the last letter and add 'n'
-				word += word.substr( word.length - 1 ) + 'n';
+				word += word.slice( -1 ) + 'n';
 				break;
 			case 'inessive':
 				word += ( aou ? 'ssa' : 'ssä' );
