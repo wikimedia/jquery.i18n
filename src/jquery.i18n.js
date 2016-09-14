@@ -142,7 +142,7 @@
 				source = 'i18n/' + $.i18n().locale + '.json';
 				locale = $.i18n().locale;
 			}
-			if ( typeof source === 'string'	&&
+			if ( typeof source === 'string' &&
 				source.split( '.' ).pop() !== 'json'
 			) {
 				// Load specified locale then check for fallbacks when directory is specified in load()
@@ -241,8 +241,8 @@
 				lBracket = messageKey.indexOf( '[' );
 				rBracket = messageKey.indexOf( ']' );
 				if ( lBracket !== -1 && rBracket !== -1 && lBracket < rBracket ) {
-					type = messageKey.substring( lBracket + 1, rBracket );
-					key = messageKey.substr( rBracket + 1 );
+					type = messageKey.slice( lBracket + 1, rBracket );
+					key = messageKey.slice( rBracket + 1 );
 					if ( type === 'html' ) {
 						$this.html( i18n.parse( key ) );
 					} else {

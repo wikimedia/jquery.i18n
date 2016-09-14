@@ -123,7 +123,7 @@
 				return function () {
 					var result = null;
 
-					if ( message.substr( pos, len ) === s ) {
+					if ( message.slice( pos, pos + len ) === s ) {
 						result = s;
 						pos += len;
 					}
@@ -134,7 +134,7 @@
 
 			function makeRegexParser( regex ) {
 				return function () {
-					var matches = message.substr( pos ).match( regex );
+					var matches = message.slice( pos ).match( regex );
 
 					if ( matches === null ) {
 						return null;
