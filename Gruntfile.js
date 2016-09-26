@@ -13,7 +13,6 @@ module.exports = function ( grunt ) {
 	grunt.loadNpmTasks( 'grunt-jscs' );
 
 	grunt.initConfig( {
-		pkg: grunt.file.readJSON( 'package.json' ),
 		connect: {
 			server: {
 				options: {
