@@ -343,6 +343,7 @@
 		 *
 		 * @param {number} num Value to be converted
 		 * @param {boolean} integer Convert the return value to an integer
+		 * @returns {String} The number converted into a String.
 		 */
 		convertNumber: function ( num, integer ) {
 			var tmp, item, i,

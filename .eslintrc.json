@@ -7,7 +7,6 @@
 	},
 	"rules": {
 		"dot-notation": 0,
-		"valid-jsdoc": 0,
 
 		"no-alert": "error"
 	}
