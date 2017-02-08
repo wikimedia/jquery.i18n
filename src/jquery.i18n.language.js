@@ -1,4 +1,4 @@
-/*global pluralRuleParser */
+/* global pluralRuleParser */
 ( function ( $ ) {
 	'use strict';
 
@@ -394,7 +394,7 @@
 		 * @param {string} form
 		 * @return {string}
 		 */
-		convertGrammar: function ( word, form ) { /*jshint unused: false */
+		convertGrammar: function ( word, form ) {
 			return word;
 		},
 
