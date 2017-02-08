@@ -1,4 +1,4 @@
-/*global pluralRuleParser */
+/* global pluralRuleParser */
 ( function ( $ ) {
 	'use strict';
 
@@ -178,11 +178,10 @@
 			pt: {
 				one: 'i = 1 and v = 0 or i = 0 and t = 1'
 			},
-			// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+			// eslint-disable-next-line camelcase
 			pt_PT: {
 				one: 'n = 1 and v = 0'
 			},
-			// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 			ro: {
 				one: 'i = 1 and v = 0',
 				few: 'v != 0 or n = 0 or n != 1 and n % 100 = 1..19'
@@ -344,6 +343,7 @@
 		 *
 		 * @param {number} num Value to be converted
 		 * @param {boolean} integer Convert the return value to an integer
+		 * @returns {String} The number converted into a String.
 		 */
 		convertNumber: function ( num, integer ) {
 			var tmp, item, i,
@@ -394,7 +394,8 @@
 		 * @param {string} form
 		 * @return {string}
 		 */
-		convertGrammar: function ( word, form ) { /*jshint unused: false */
+		// eslint-disable-next-line no-unused-vars
+		convertGrammar: function ( word, form ) {
 			return word;
 		},
 

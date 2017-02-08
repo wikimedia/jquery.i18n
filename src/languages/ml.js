@@ -55,7 +55,7 @@
 						word = word.slice( 0, -2 ) + 'ിന്റെ';
 					} else if ( word.slice( -1 ) === '്' ) {
 						word = word.slice( 0, -1 ) + 'ിന്റെ';
-					} else if (  word.slice( -1 ) === 'ു' ||
+					} else if ( word.slice( -1 ) === 'ു' ||
 						word.slice( -1 ) === 'ൂ' ||
 						word.slice( -1 ) === 'ൗ' ||
 						word.slice( -1 ) === 'ൌ'
