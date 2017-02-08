@@ -6,7 +6,6 @@
 		"qunit": true
 	},
 	"rules": {
-		"camelcase": 0,
 		"dot-notation": 0,
 		"indent": 0,
 		"no-unused-vars": 0,
