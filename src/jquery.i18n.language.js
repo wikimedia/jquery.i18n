@@ -178,11 +178,10 @@
 			pt: {
 				one: 'i = 1 and v = 0 or i = 0 and t = 1'
 			},
-			// jscs:disable requireCamelCaseOrUpperCaseIdentifiers
+			// eslint-disable-next-line camelcase
 			pt_PT: {
 				one: 'n = 1 and v = 0'
 			},
-			// jscs:enable requireCamelCaseOrUpperCaseIdentifiers
 			ro: {
 				one: 'i = 1 and v = 0',
 				few: 'v != 0 or n = 0 or n != 1 and n % 100 = 1..19'
