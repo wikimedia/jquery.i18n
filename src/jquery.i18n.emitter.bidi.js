@@ -45,6 +45,9 @@
 	 *
 	 * TODO: Does not handle BIDI control characters inside the text.
 	 * TODO: Does not handle unallocated characters.
+	 *
+	 * @param {string} text The text from which to extract initial directionality.
+	 * @return {string} Directionality (either 'ltr' or 'rtl')
 	 */
 	function strongDirFromContent( text ) {
 		var m = text.match( strongDirRegExp );
@@ -70,6 +73,9 @@
 		 * strong directional codepoint" rule. Essentially, this works round the fact that
 		 * there is no embedding equivalent of U+2068 FSI (isolation with heuristic
 		 * direction inference). The latter is cleaner but still not widely supported.
+		 *
+		 * @param {string[]} nodes The text nodes from which to take the first item.
+		 * @return {string} Wrapped String of content as needed.
 		 */
 		bidi: function ( nodes ) {
 			var dir = strongDirFromContent( nodes[ 0 ] );
