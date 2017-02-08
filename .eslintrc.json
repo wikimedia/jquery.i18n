@@ -1,0 +1,19 @@
+{
+	"extends": "wikimedia",
+	"env": {
+		"browser": true,
+		"jquery": true,
+		"qunit": true
+	},
+	"rules": {
+		"camelcase": 0,
+		"dot-notation": 0,
+		"indent": 0,
+		"no-unused-vars": 0,
+		"no-use-before-define": 0,
+		"valid-jsdoc": 0,
+
+		"no-alert": "error"
+	}
+}
+

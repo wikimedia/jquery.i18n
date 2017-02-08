@@ -23,11 +23,11 @@
   "devDependencies": {
     "qunit": "0.9.1",
     "grunt": "1.0.1",
-    "grunt-contrib-jshint": "1.0.0",
     "grunt-contrib-connect": "1.0.1",
     "grunt-contrib-qunit": "1.2.0",
     "grunt-contrib-watch": "1.0.0",
-    "grunt-jscs": "2.8.0"
+    "eslint-config-wikimedia": "0.3.0",
+    "grunt-eslint": "19.0.0"
   },
   "repository": {
     "type": "git",
