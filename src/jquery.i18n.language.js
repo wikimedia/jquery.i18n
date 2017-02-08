@@ -393,6 +393,7 @@
 		 * @param {string} form
 		 * @return {string}
 		 */
+		// eslint-disable-next-line no-unused-vars
 		convertGrammar: function ( word, form ) {
 			return word;
 		},

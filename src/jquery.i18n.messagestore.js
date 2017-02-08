@@ -12,7 +12,7 @@
  * @licence MIT License
  */
 
-( function ( $, window, undefined ) {
+( function ( $ ) {
 	'use strict';
 
 	var MessageStore = function () {
@@ -123,4 +123,4 @@
 	}
 
 	$.extend( $.i18n.messageStore, new MessageStore() );
-}( jQuery, window ) );
+}( jQuery ) );
