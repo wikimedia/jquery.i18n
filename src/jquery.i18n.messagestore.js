@@ -12,13 +12,27 @@
  * @licence MIT License
  */
 
-( function ( $, window, undefined ) {
+( function ( $ ) {
 	'use strict';
 
 	var MessageStore = function () {
 		this.messages = {};
 		this.sources = {};
 	};
+
+	function jsonMessageLoader( url ) {
+		var deferred = $.Deferred();
+
+		$.getJSON( url )
+			.done( deferred.resolve )
+			.fail( function ( jqxhr, settings, exception ) {
+				$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
+				// Ignore 404 exception, because we are handling fallabacks explicitly
+				deferred.resolve();
+			} );
+
+		return deferred.promise();
+	}
 
 	/**
 	 * See https://github.com/wikimedia/jquery.i18n/wiki/Specification#wiki-Message_File_Loading
@@ -108,19 +122,5 @@
 		}
 	};
 
-	function jsonMessageLoader( url ) {
-		var deferred = $.Deferred();
-
-		$.getJSON( url )
-			.done( deferred.resolve )
-			.fail( function ( jqxhr, settings, exception ) {
-				$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
-				// Ignore 404 exception, because we are handling fallabacks explicitly
-				deferred.resolve();
-			} );
-
-		return deferred.promise();
-	}
-
 	$.extend( $.i18n.messageStore, new MessageStore() );
-}( jQuery, window ) );
+}( jQuery ) );

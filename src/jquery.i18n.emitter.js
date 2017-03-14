@@ -38,36 +38,36 @@
 				messageParserEmitter = this;
 
 			switch ( typeof node ) {
-			case 'string':
-			case 'number':
-				ret = node;
-				break;
-			case 'object':
+				case 'string':
+				case 'number':
+					ret = node;
+					break;
+				case 'object':
 				// node is an array of nodes
-				subnodes = $.map( node.slice( 1 ), function ( n ) {
-					return messageParserEmitter.emit( n, replacements );
-				} );
+					subnodes = $.map( node.slice( 1 ), function ( n ) {
+						return messageParserEmitter.emit( n, replacements );
+					} );
 
-				operation = node[ 0 ].toLowerCase();
+					operation = node[ 0 ].toLowerCase();
 
-				if ( typeof messageParserEmitter[ operation ] === 'function' ) {
-					ret = messageParserEmitter[ operation ]( subnodes, replacements );
-				} else {
-					throw new Error( 'unknown operation "' + operation + '"' );
-				}
+					if ( typeof messageParserEmitter[ operation ] === 'function' ) {
+						ret = messageParserEmitter[ operation ]( subnodes, replacements );
+					} else {
+						throw new Error( 'unknown operation "' + operation + '"' );
+					}
 
-				break;
-			case 'undefined':
+					break;
+				case 'undefined':
 				// Parsing the empty string (as an entire expression, or as a
 				// paramExpression in a template) results in undefined
 				// Perhaps a more clever parser can detect this, and return the
 				// empty string? Or is that useful information?
 				// The logical thing is probably to return the empty string here
 				// when we encounter undefined.
-				ret = '';
-				break;
-			default:
-				throw new Error( 'unexpected type in AST: ' + typeof node );
+					ret = '';
+					break;
+				default:
+					throw new Error( 'unexpected type in AST: ' + typeof node );
 			}
 
 			return ret;
