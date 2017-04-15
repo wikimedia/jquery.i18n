@@ -4,3 +4,4 @@
 *.bak
 *.log
 node_modules/
+.idea/
