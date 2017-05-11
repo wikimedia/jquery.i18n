@@ -149,7 +149,7 @@
 				sourceMap[ locale ] = source + '/' + locale + '.json';
 				fallbackLocales = ( $.i18n.fallbacks[ locale ] || [] )
 					.concat( this.options.fallbackLocale );
-				for ( locIndex in fallbackLocales ) {
+				for ( locIndex = 0; locIndex < fallbackLocales.length; locIndex++ ) {
 					fallbackLocale = fallbackLocales[ locIndex ];
 					sourceMap[ fallbackLocale ] = source + '/' + fallbackLocale + '.json';
 				}
