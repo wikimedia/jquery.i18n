@@ -242,7 +242,7 @@
 				rBracket = messageKey.indexOf( ']' );
 				if ( lBracket !== -1 && rBracket !== -1 && lBracket < rBracket ) {
 					type = messageKey.slice( lBracket + 1, rBracket );
-					key = messageKey.slice( rBracket + 1 );
+					key = messageKey.slice( 0, lBracket );
 					if ( type === 'html' ) {
 						$this.html( i18n.parse( key ) );
 					} else {
