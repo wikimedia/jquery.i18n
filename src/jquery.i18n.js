@@ -77,7 +77,7 @@
 
 					locale = ( $.i18n.fallbacks[ i18n.locale ] && $.i18n.fallbacks[ i18n.locale ][ fallbackIndex ] ) ||
 						i18n.options.fallbackLocale;
-					$.i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale );
+					$.i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale + ' (' + value + ')' );
 
 					fallbackIndex++;
 				}
