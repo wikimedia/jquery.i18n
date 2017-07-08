@@ -20,7 +20,7 @@ Features
 * Dynamic change of interface language without refreshing a webpage.
 * Nestable grammar, plural, gender support. These constructs can be nested to any arbitrary level for supporting sophisticated message localization
 * Message documentation through special language code ```qqq```
-* Extensible message parser to add or customize magic words in the messages. Example: ```{sitename}``` or ```[[link]]``
+* Extensible message parser to add or customize magic words in the messages. Example: ```{sitename}``` or ```[[link]]```
 
 
 Quick start
@@ -231,7 +231,7 @@ It is also possible to refer messages from an external URL. See below example
 $.i18n().load( {
 	en: {
 		message_hello: 'Hello World',
-    	message_welcome: 'Welcome'
+		message_welcome: 'Welcome'
 	},
 	hi: 'i18n/messages-hi.json', // Messages for Hindi
 	de: 'i18n/messages-de.json'
@@ -244,7 +244,7 @@ Messages for a locale can be also loaded in parts. Example
 $.i18n().load( {
 	en: {
 		message_hello: 'Hello World',
-    	message_welcome: 'Welcome'
+		message_welcome: 'Welcome'
 	}
 } );
 
@@ -273,7 +273,7 @@ $.i18n( 'message-key-sample1' );
 $.i18n( 'message-key-sample1' );
 $.i18n( 'Found $1 {{plural:$1|result|results}}', 10 ); // Message key itself is message text
 $.i18n( 'Showing $1 out of $2 {{plural:$2|result|results}}', 5,100 );
-$.i18n(' User X updated {{gender|his|her}} profile', 'male' );
+$.i18n( 'User X updated {{gender|his|her}} profile', 'male' );
 
 $( '#foo' ).i18n(); // to translate the element matching jquery selector based on data-i18n key
 ```
