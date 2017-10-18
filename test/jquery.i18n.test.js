@@ -58,7 +58,7 @@
 		}
 	} );
 
-	QUnit.test( 'Message parse tests (en)', 14, function ( assert ) {
+	QUnit.test( 'Message parse tests (en)', 16, function ( assert ) {
 		var pluralAndGenderMessage,
 			pluralAndGenderMessageWithLessParaMS,
 			pluralAndGenderMessageWithCase,
@@ -73,6 +73,7 @@
 			QUnit.start();
 			assert.strictEqual( i18n.locale, 'en', 'Locale is English' );
 			assert.strictEqual( $.i18n( 'message_1' ), 'ONE', 'Simple message' );
+			assert.strictEqual( $.i18n( 'message_4', 5 ), 'Total $1 of $1500', 'Parameter replacement escaped' );
 		} );
 		assert.strictEqual(
 			$.i18n( 'This message key does not exist' ),
@@ -80,6 +81,10 @@
 			'This message key does not exist'
 		);
 		assert.strictEqual( $.i18n( 'Hello $1', 'Bob' ), 'Hello Bob', 'Parameter replacement' );
+		assert.strictEqual(
+			$.i18n( 'Price of {{PLURAL:$1|an item|$1 items}} is $2, you get \\$2 discount', 5, 2000 ),
+			'Price of 5 items is 2000, you get $2 discount', 'Parameter replacement with dollar sign escaped, not parsed using simplePaser'
+		);
 		pluralAndGenderMessage = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
 			'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
 		pluralAndGenderMessageWithLessParaMS = '$1 has $2 {{plural:$2|kitten}}. ' +

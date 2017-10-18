@@ -273,16 +273,22 @@
 	$.i18n.parser = {
 		// The default parser only handles variable substitution
 		parse: function ( message, parameters ) {
-			return message.replace( /\$(\d+)/g, function ( str, match ) {
-				var index = parseInt( match, 10 ) - 1;
-				return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
+			return message.replace( /(\\?\$\d+)/g, function ( str, match ) {
+				var index;
+
+				if ( match[ 0 ] === '\\' ) {
+					// Escaped.
+					return match.slice( 1 );
+				}
+				index = parseInt( match.slice( 1 ), 10 ) - 1;
+				return parameters[ index ] !== undefined ? parameters[ index ] : match;
 			} );
 		},
 		emitter: {}
 	};
 	$.i18n.fallbacks = {};
 	$.i18n.debug = false;
-	$.i18n.log = function ( /* arguments */ ) {
+	$.i18n.log = function () {
 		if ( window.console && $.i18n.debug ) {
 			window.console.log.apply( window.console, arguments );
 		}
