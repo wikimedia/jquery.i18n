@@ -7,9 +7,6 @@
 		// CLDR plural rules generated using
 		// libs/CLDRPluralRuleParser/tools/PluralXML2JSON.html
 		pluralRules: {
-			af: {
-				one: 'n = 1'
-			},
 			ak: {
 				one: 'n = 0..1'
 			},
@@ -33,64 +30,26 @@
 			as: {
 				one: 'i = 0 or n = 1'
 			},
-			asa: {
-				one: 'n = 1'
-			},
-			ast: {
-				one: 'i = 1 and v = 0'
-			},
-			az: {
-				one: 'n = 1'
-			},
 			be: {
 				one: 'n % 10 = 1 and n % 100 != 11',
 				few: 'n % 10 = 2..4 and n % 100 != 12..14',
 				many: 'n % 10 = 0 or n % 10 = 5..9 or n % 100 = 11..14'
 			},
-			bem: {
-				one: 'n = 1'
-			},
-			bez: {
-				one: 'n = 1'
-			},
-			bg: {
-				one: 'n = 1'
-			},
 			bh: {
 				one: 'n = 0..1'
 			},
-			bm: {},
 			bn: {
 				one: 'i = 0 or n = 1'
 			},
-			bo: {},
 			br: {
 				one: 'n % 10 = 1 and n % 100 != 11,71,91',
 				two: 'n % 10 = 2 and n % 100 != 12,72,92',
 				few: 'n % 10 = 3..4,9 and n % 100 != 10..19,70..79,90..99',
 				many: 'n != 0 and n % 1000000 = 0'
 			},
-			brx: {
-				one: 'n = 1'
-			},
 			bs: {
 				one: 'v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11',
 				few: 'v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14'
-			},
-			ca: {
-				one: 'i = 1 and v = 0'
-			},
-			ce: {
-				one: 'n = 1'
-			},
-			cgg: {
-				one: 'n = 1'
-			},
-			chr: {
-				one: 'n = 1'
-			},
-			ckb: {
-				one: 'n = 1'
 			},
 			cs: {
 				one: 'i = 1 and v = 0',
@@ -107,38 +66,10 @@
 			da: {
 				one: 'n = 1 or t != 0 and i = 0,1'
 			},
-			de: {
-				one: 'i = 1 and v = 0'
-			},
 			dsb: {
 				one: 'v = 0 and i % 100 = 1 or f % 100 = 1',
 				two: 'v = 0 and i % 100 = 2 or f % 100 = 2',
 				few: 'v = 0 and i % 100 = 3..4 or f % 100 = 3..4'
-			},
-			dv: {
-				one: 'n = 1'
-			},
-			dz: {},
-			ee: {
-				one: 'n = 1'
-			},
-			el: {
-				one: 'n = 1'
-			},
-			en: {
-				one: 'i = 1 and v = 0'
-			},
-			eo: {
-				one: 'n = 1'
-			},
-			es: {
-				one: 'n = 1'
-			},
-			et: {
-				one: 'i = 1 and v = 0'
-			},
-			eu: {
-				one: 'n = 1'
 			},
 			fa: {
 				one: 'i = 0 or n = 1'
@@ -146,23 +77,11 @@
 			ff: {
 				one: 'i = 0,1'
 			},
-			fi: {
-				one: 'i = 1 and v = 0'
-			},
 			fil: {
 				one: 'v = 0 and i = 1,2,3 or v = 0 and i % 10 != 4,6,9 or v != 0 and f % 10 != 4,6,9'
 			},
-			fo: {
-				one: 'n = 1'
-			},
 			fr: {
 				one: 'i = 0,1'
-			},
-			fur: {
-				one: 'n = 1'
-			},
-			fy: {
-				one: 'i = 1 and v = 0'
 			},
 			ga: {
 				one: 'n = 1',
@@ -175,12 +94,6 @@
 				two: 'n = 2,12',
 				few: 'n = 3..10,13..19'
 			},
-			gl: {
-				one: 'i = 1 and v = 0'
-			},
-			gsw: {
-				one: 'n = 1'
-			},
 			gu: {
 				one: 'i = 0 or n = 1'
 			},
@@ -192,12 +105,6 @@
 				two: 'v = 0 and i % 10 = 2',
 				few: 'v = 0 and i % 100 = 0,20,40,60,80',
 				many: 'v != 0'
-			},
-			ha: {
-				one: 'n = 1'
-			},
-			haw: {
-				one: 'n = 1'
 			},
 			he: {
 				one: 'i = 1 and v = 0',
@@ -216,21 +123,11 @@
 				two: 'v = 0 and i % 100 = 2 or f % 100 = 2',
 				few: 'v = 0 and i % 100 = 3..4 or f % 100 = 3..4'
 			},
-			hu: {
-				one: 'n = 1'
-			},
 			hy: {
 				one: 'i = 0,1'
 			},
-			id: {},
-			ig: {},
-			ii: {},
-			'in': {},
 			is: {
 				one: 't = 0 and i % 10 = 1 and i % 100 != 11 or t != 0'
-			},
-			it: {
-				one: 'i = 1 and v = 0'
 			},
 			iu: {
 				one: 'n = 1',
@@ -241,82 +138,23 @@
 				two: 'i = 2 and v = 0',
 				many: 'v = 0 and n != 0..10 and n % 10 = 0'
 			},
-			ja: {},
-			jbo: {},
-			jgo: {
-				one: 'n = 1'
-			},
-			ji: {
-				one: 'i = 1 and v = 0'
-			},
-			jmc: {
-				one: 'n = 1'
-			},
-			jv: {},
-			jw: {},
-			ka: {
-				one: 'n = 1'
-			},
 			kab: {
 				one: 'i = 0,1'
 			},
-			kaj: {
-				one: 'n = 1'
-			},
-			kcg: {
-				one: 'n = 1'
-			},
-			kde: {},
-			kea: {},
-			kk: {
-				one: 'n = 1'
-			},
-			kkj: {
-				one: 'n = 1'
-			},
-			kl: {
-				one: 'n = 1'
-			},
-			km: {},
 			kn: {
 				one: 'i = 0 or n = 1'
-			},
-			ko: {},
-			ks: {
-				one: 'n = 1'
-			},
-			ksb: {
-				one: 'n = 1'
-			},
-			ksh: {
-				zero: 'n = 0',
-				one: 'n = 1'
-			},
-			ku: {
-				one: 'n = 1'
 			},
 			kw: {
 				one: 'n = 1',
 				two: 'n = 2'
 			},
-			ky: {
-				one: 'n = 1'
-			},
 			lag: {
 				zero: 'n = 0',
 				one: 'i = 0,1 and n != 0'
 			},
-			lb: {
-				one: 'n = 1'
-			},
-			lg: {
-				one: 'n = 1'
-			},
-			lkt: {},
 			ln: {
 				one: 'n = 0..1'
 			},
-			lo: {},
 			lt: {
 				one: 'n % 10 = 1 and n % 100 != 11..19',
 				few: 'n % 10 = 2..9 and n % 100 != 11..19',
@@ -326,23 +164,11 @@
 				zero: 'n % 10 = 0 or n % 100 = 11..19 or v = 2 and f % 100 = 11..19',
 				one: 'n % 10 = 1 and n % 100 != 11 or v = 2 and f % 10 = 1 and f % 100 != 11 or v != 2 and f % 10 = 1'
 			},
-			mas: {
-				one: 'n = 1'
-			},
 			mg: {
 				one: 'n = 0..1'
 			},
-			mgo: {
-				one: 'n = 1'
-			},
 			mk: {
 				one: 'v = 0 and i % 10 = 1 or f % 10 = 1'
-			},
-			ml: {
-				one: 'n = 1'
-			},
-			mn: {
-				one: 'n = 1'
 			},
 			mo: {
 				one: 'i = 1 and v = 0',
@@ -351,68 +177,20 @@
 			mr: {
 				one: 'i = 0 or n = 1'
 			},
-			ms: {},
 			mt: {
 				one: 'n = 1',
 				few: 'n = 0 or n % 100 = 2..10',
 				many: 'n % 100 = 11..19'
 			},
-			my: {},
-			nah: {
-				one: 'n = 1'
-			},
 			naq: {
 				one: 'n = 1',
 				two: 'n = 2'
 			},
-			nb: {
-				one: 'n = 1'
-			},
-			nd: {
-				one: 'n = 1'
-			},
-			ne: {
-				one: 'n = 1'
-			},
-			nl: {
-				one: 'i = 1 and v = 0'
-			},
-			nn: {
-				one: 'n = 1'
-			},
-			nnh: {
-				one: 'n = 1'
-			},
-			no: {
-				one: 'n = 1'
-			},
-			nqo: {},
-			nr: {
-				one: 'n = 1'
-			},
 			nso: {
 				one: 'n = 0..1'
 			},
-			ny: {
-				one: 'n = 1'
-			},
-			nyn: {
-				one: 'n = 1'
-			},
-			om: {
-				one: 'n = 1'
-			},
-			or: {
-				one: 'n = 1'
-			},
-			os: {
-				one: 'n = 1'
-			},
 			pa: {
 				one: 'n = 0..1'
-			},
-			pap: {
-				one: 'n = 1'
 			},
 			pl: {
 				one: 'i = 1 and v = 0',
@@ -423,50 +201,22 @@
 				zero: 'n % 10 = 0 or n % 100 = 11..19 or v = 2 and f % 100 = 11..19',
 				one: 'n % 10 = 1 and n % 100 != 11 or v = 2 and f % 10 = 1 and f % 100 != 11 or v != 2 and f % 10 = 1'
 			},
-			ps: {
-				one: 'n = 1'
-			},
 			pt: {
-				one: 'n = 0..2 and n != 2'
-			},
-			'pt-PT': {
-				one: 'n = 1 and v = 0'
-			},
-			rm: {
-				one: 'n = 1'
+				one: 'i = 0..1'
 			},
 			ro: {
 				one: 'i = 1 and v = 0',
 				few: 'v != 0 or n = 0 or n != 1 and n % 100 = 1..19'
 			},
-			rof: {
-				one: 'n = 1'
-			},
-			root: {},
 			ru: {
 				one: 'v = 0 and i % 10 = 1 and i % 100 != 11',
 				few: 'v = 0 and i % 10 = 2..4 and i % 100 != 12..14',
 				many: 'v = 0 and i % 10 = 0 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 11..14'
 			},
-			rwk: {
-				one: 'n = 1'
-			},
-			sah: {},
-			saq: {
-				one: 'n = 1'
-			},
-			sdh: {
-				one: 'n = 1'
-			},
 			se: {
 				one: 'n = 1',
 				two: 'n = 2'
 			},
-			seh: {
-				one: 'n = 1'
-			},
-			ses: {},
-			sg: {},
 			sh: {
 				one: 'v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11',
 				few: 'v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14'
@@ -508,115 +258,27 @@
 				one: 'n = 1',
 				two: 'n = 2'
 			},
-			sn: {
-				one: 'n = 1'
-			},
-			so: {
-				one: 'n = 1'
-			},
-			sq: {
-				one: 'n = 1'
-			},
 			sr: {
 				one: 'v = 0 and i % 10 = 1 and i % 100 != 11 or f % 10 = 1 and f % 100 != 11',
 				few: 'v = 0 and i % 10 = 2..4 and i % 100 != 12..14 or f % 10 = 2..4 and f % 100 != 12..14'
 			},
-			ss: {
-				one: 'n = 1'
-			},
-			ssy: {
-				one: 'n = 1'
-			},
-			st: {
-				one: 'n = 1'
-			},
-			sv: {
-				one: 'i = 1 and v = 0'
-			},
-			sw: {
-				one: 'i = 1 and v = 0'
-			},
-			syr: {
-				one: 'n = 1'
-			},
-			ta: {
-				one: 'n = 1'
-			},
-			te: {
-				one: 'n = 1'
-			},
-			teo: {
-				one: 'n = 1'
-			},
-			th: {},
 			ti: {
 				one: 'n = 0..1'
-			},
-			tig: {
-				one: 'n = 1'
-			},
-			tk: {
-				one: 'n = 1'
 			},
 			tl: {
 				one: 'v = 0 and i = 1,2,3 or v = 0 and i % 10 != 4,6,9 or v != 0 and f % 10 != 4,6,9'
 			},
-			tn: {
-				one: 'n = 1'
-			},
-			to: {},
-			tr: {
-				one: 'n = 1'
-			},
-			ts: {
-				one: 'n = 1'
-			},
 			tzm: {
 				one: 'n = 0..1 or n = 11..99'
-			},
-			ug: {
-				one: 'n = 1'
 			},
 			uk: {
 				one: 'v = 0 and i % 10 = 1 and i % 100 != 11',
 				few: 'v = 0 and i % 10 = 2..4 and i % 100 != 12..14',
 				many: 'v = 0 and i % 10 = 0 or v = 0 and i % 10 = 5..9 or v = 0 and i % 100 = 11..14'
 			},
-			ur: {
-				one: 'i = 1 and v = 0'
-			},
-			uz: {
-				one: 'n = 1'
-			},
-			ve: {
-				one: 'n = 1'
-			},
-			vi: {},
-			vo: {
-				one: 'n = 1'
-			},
-			vun: {
-				one: 'n = 1'
-			},
 			wa: {
 				one: 'n = 0..1'
 			},
-			wae: {
-				one: 'n = 1'
-			},
-			wo: {},
-			xh: {
-				one: 'n = 1'
-			},
-			xog: {
-				one: 'n = 1'
-			},
-			yi: {
-				one: 'i = 1 and v = 0'
-			},
-			yo: {},
-			yue: {},
-			zh: {},
 			zu: {
 				one: 'i = 0 or n = 1'
 			}
