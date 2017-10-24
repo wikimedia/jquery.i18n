@@ -46,6 +46,7 @@
 			String.locale = i18n.locale;
 
 			// Override String.localeString method
+			/* eslint-disable no-extend-native */
 			String.prototype.toLocaleString = function () {
 				var localeParts, localePartIndex, value, locale, fallbackIndex,
 					tryingLocale, message;
@@ -85,6 +86,7 @@
 				// key not found
 				return '';
 			};
+			/* eslint-enable no-extend-native */
 		},
 
 		/*

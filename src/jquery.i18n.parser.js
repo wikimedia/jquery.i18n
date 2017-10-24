@@ -152,9 +152,9 @@
 			anyCharacter = makeRegexParser( /^./ );
 			dollar = makeStringParser( '$' );
 			digits = makeRegexParser( /^\d+/ );
-			regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
-			regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
-			regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
+			regularLiteral = makeRegexParser( /^[^{}[\]$\\]/ );
+			regularLiteralWithoutBar = makeRegexParser( /^[^{}[\]$\\|]/ );
+			regularLiteralWithoutSpace = makeRegexParser( /^[^{}[\]$\s]/ );
 
 			// There is a general pattern:
 			// parse a thing;
@@ -209,7 +209,7 @@
 			templateName = transform(
 				// see $wgLegalTitleChars
 				// not allowing : due to the need to catch "PLURAL:$1"
-				makeRegexParser( /^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/ ),
+				makeRegexParser( /^[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ ),
 
 				function ( result ) {
 					return result.toString();
