@@ -27,7 +27,9 @@
     "grunt-contrib-qunit": "1.2.0",
     "grunt-contrib-watch": "1.0.0",
     "eslint-config-wikimedia": "0.6.0",
-    "grunt-eslint": "21.0.0"
+    "grunt-eslint": "21.0.0",
+    "jquery": "3.2.1",
+    "qunitjs": "1.22.0"
   },
   "repository": {
     "type": "git",
