@@ -2,12 +2,12 @@
 	'use strict';
 
 	QUnit.module( 'jquery.i18n - $.fn.i18n Tests', {
-		setup: function () {
+		beforeEach: function () {
 			$.i18n( {
 				locale: 'localex'
 			} );
 		},
-		teardown: function () {
+		afterEach: function () {
 			$.i18n().destroy();
 		}
 	} );
@@ -48,12 +48,12 @@
 	} );
 
 	QUnit.module( 'jquery.i18n', {
-		setup: function () {
+		beforeEach: function () {
 			$.i18n( {
 				locale: 'en'
 			} );
 		},
-		teardown: function () {
+		afterEach: function () {
 			$.i18n().destroy();
 		}
 	} );
@@ -267,11 +267,11 @@
 	} );
 
 	QUnit.module( 'jquery.i18n - Fallback test', {
-		setup: function () {
+		beforeEach: function () {
 			$.i18n().destroy();
 			$.i18n();
 		},
-		teardown: function () {
+		afterEach: function () {
 			$.i18n().destroy();
 		}
 	} );
