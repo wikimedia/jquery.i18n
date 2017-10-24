@@ -66,13 +66,13 @@
 			pluralAndGenderMessageWithSyntaxError2,
 			i18n = $( document ).data( 'i18n' );
 
-		QUnit.stop();
+	    var done = assert.async();
 		$.when(
 			i18n.load( 'i18n/test-en.json', 'en' )
 		).then( function () {
-			QUnit.start();
 			assert.strictEqual( i18n.locale, 'en', 'Locale is English' );
 			assert.strictEqual( $.i18n( 'message_1' ), 'ONE', 'Simple message' );
+			done();
 		} );
 		assert.strictEqual(
 			$.i18n( 'This message key does not exist' ),
@@ -391,15 +391,15 @@
 	QUnit.test( 'Support fallback loading from folder tests', function ( assert ) {
 		var i18n = $( document ).data( 'i18n' );
 
-		QUnit.stop();
+	    var done = assert.async();
 		$.when(
 			i18n.load( 'i18n/fallback', 'uk' )
 		).then( function () {
-			QUnit.start();
 			i18n.locale = 'uk';
 			assert.strictEqual( i18n.locale, 'uk', 'Locale is uk' );
 			assert.strictEqual( $.i18n( 'message_1' ), 'ONE',
 				'Message loaded from fallback locale English' );
+	        done();
 		} );
 	} );
 
