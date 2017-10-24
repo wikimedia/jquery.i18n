@@ -406,7 +406,7 @@
 
 	function grammarTest( langCode, test ) {
 		QUnit.test( 'Grammar test for language ' + langCode, function ( assert ) {
-			QUnit.expect( test.length + 1 );
+			assert.expect( test.length + 1 );
 			var i, grammarMessage,
 				i18n = $.i18n( {
 					locale: langCode
