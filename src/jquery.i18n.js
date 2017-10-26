@@ -143,7 +143,7 @@
 				locale = $.i18n().locale;
 			}
 			if ( typeof source === 'string' &&
-				source.split( '.' ).pop() !== 'json'
+				source.split( '?' )[0].split( '.' ).pop() !== 'json'
 			) {
 				// Load specified locale then check for fallbacks when directory is specified in load()
 				sourceMap[ locale ] = source + '/' + locale + '.json';
