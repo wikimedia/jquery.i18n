@@ -28,7 +28,7 @@
 			$fixture = $( '#qunit-fixture' );
 		// Load messages for localex
 		i18n.load( {
-			x: 'X<i>Y</i>',
+			x: 'X<i>Y</i>'
 		}, 'localex' );
 		$fixture.data( 'i18n', 'x' );
 		assert.strictEqual( $fixture.i18n().html(), 'X&lt;i&gt;Y&lt;/i&gt;', 'Content of fixture localized with HTML encoded' );
@@ -41,7 +41,7 @@
 			$fixture = $( '#qunit-fixture' );
 		// Load messages for localex
 		i18n.load( {
-			x: 'title X',
+			x: 'title X'
 		}, 'localex' );
 		$fixture.data( 'i18n', '[title]x' );
 		assert.strictEqual( $fixture.i18n().attr( 'title' ), 'title X', 'Content of title attribute localized' );
@@ -181,7 +181,6 @@
 		$.i18n();
 		var i18n = $( document ).data( 'i18n' );
 		assert.strictEqual( i18n.locale, 'en', 'Locale is English - fallback locale' );
-
 
 		// Load without any parameter
 		i18n.locale = 'test-en'; // Ensure a test locale
@@ -336,7 +335,7 @@
 			'Arabic plural test for other' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1000 ), 'other',
 			'Arabic plural test for other' );
-		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1.7 ), 'one',
+		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', 1.7 ), 'other',
 			'Arabic decimal plural test for one' );
 		assert.strictEqual( $.i18n( '{{plural:$1|zero|one|two|few|many|other}}', '٠١٢٣٤٥٦٧٨٩' ), 'many',
 			'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
