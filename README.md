@@ -331,7 +331,20 @@ $.i18n(message, 4); // This gives "Found 4 results"
 ```
 Note that {{PLURAL:...}} is not case sensitive. It can be {{plural:...}} too.
 
-In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|)
+In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|). The number of plural forms for each language is defined in [CLDR](http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html). You need to provide all those plural forms for a language.
+
+For example, English has 2 plural forms and the message format will look like `{{PLURAL:$1|one|other}}`. for Arabic there are 6 plural forms and format will look like `{{PLURAL:$1|zero|one|two|few|many|other}}`.
+
+You cannot skip a plural form from the middle or beginning. However you can skip from end. For example, in arabic, if the message is like
+`{{PLURAL:$1|A|B}}`, for 0, A will be used, for numbers that fall under one,two,few,many,other categories B will be used.
+
+If there is an explicit plural form to be given for a specific number, it is possible with the following syntax
+
+```
+var message = 'Box has {{PLURAL:$1|one egg|$1 eggs|12=a dozen eggs}}.';
+$.i18n(message, 4 ); // Gives "Box has 4 eggs."
+$.i18n(message, 12 ); // Gives "Box has a dozen eggs."
+```
 
 ## Gender
 Similar to plural, depending on gender of placeholders, mostly user names, the syntax changes dynamically. An example in English is "Alice changed her profile picture" and "Bob changed his profile picture". To support this {{GENDER...}} syntax can be used as show in example
