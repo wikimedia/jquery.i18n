@@ -1,0 +1,32 @@
+{
+  "name": "jquery.i18n",
+  "version": "1.0.2",
+  "homepage": "https://github.com/wikimedia/jquery.i18n",
+  "authors": [
+    "Santhosh Thottingal <santhosh.thottingal@gmail.com>"
+  ],
+  "description": "jQuery based internationalization library",
+  "main": [
+    "src/jquery.i18n.js",
+    "src/jquery.i18n.emitter.js",
+    "src/jquery.i18n.fallbacks.js",
+    "src/jquery.i18n.language.js",
+    "src/jquery.i18n.messagestore.js",
+    "src/jquery.i18n.parser.js"
+  ],
+  "keywords": [
+    "javascript",
+    "jquery",
+    "js",
+    "i18n",
+    "internationalization"
+  ],
+  "license": ["GPL", "MIT"],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "demo"
+  ]
+}
