@@ -3,7 +3,7 @@ jQuery.i18n
 
 jQuery.i18n is a jQuery based Javascript internationalization library. It helps you to internationalize your web applications easily.
 
-This is a project by Wikimedia foundation's [Language Engineering team](http://wikimediafoundation.org/wiki/Language_Engineering_team) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
+This is a project by Wikimedia foundation's [Language Engineering team](https://www.mediawiki.org/wiki/Wikimedia_Language_engineering) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
 
 The jquery.i18n library uses a json based localization file format, "banana", which is used as the localization file format for  MediaWiki and other projects.
 
