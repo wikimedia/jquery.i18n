@@ -26,15 +26,15 @@
     "grunt-contrib-connect": "1.0.1",
     "grunt-contrib-qunit": "1.2.0",
     "grunt-contrib-watch": "1.0.0",
-    "eslint-config-wikimedia": "0.3.0",
-    "grunt-eslint": "19.0.0"
+    "eslint-config-wikimedia": "0.6.0",
+    "grunt-eslint": "21.0.0"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/wikimedia/jquery.i18n.git"
   },
   "bugs": {
-      "url" : "http://github.com/wikimedia/jquery.i18n/issues"
+    "url": "http://github.com/wikimedia/jquery.i18n/issues"
   },
   "engine": {
     "node": ">=4.0.0"
