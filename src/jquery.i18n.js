@@ -46,6 +46,8 @@
 			String.locale = i18n.locale;
 
 			// Override String.localeString method
+			// FIXME: This is a mistake. We should not modify String.prototype
+			/* eslint-disable no-extend-native */
 			String.prototype.toLocaleString = function () {
 				var localeParts, localePartIndex, value, locale, fallbackIndex,
 					tryingLocale, message;
@@ -75,7 +77,8 @@
 						break;
 					}
 
-					locale = ( $.i18n.fallbacks[ i18n.locale ] && $.i18n.fallbacks[ i18n.locale ][ fallbackIndex ] ) ||
+					locale = ( $.i18n.fallbacks[ i18n.locale ] &&
+						$.i18n.fallbacks[ i18n.locale ][ fallbackIndex ] ) ||
 						i18n.options.fallbackLocale;
 					$.i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale + ' (' + value + ')' );
 
@@ -146,7 +149,8 @@
 				// source extension should be json, but can have query params after that.
 				source.split( '?' )[ 0 ].split( '.' ).pop() !== 'json'
 			) {
-				// Load specified locale then check for fallbacks when directory is specified in load()
+				// Load specified locale then check for fallbacks when directory is
+				// specified in load()
 				sourceMap[ locale ] = source + '/' + locale + '.json';
 				fallbackLocales = ( $.i18n.fallbacks[ locale ] || [] )
 					.concat( this.options.fallbackLocale );

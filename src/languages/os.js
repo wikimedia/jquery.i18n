@@ -34,8 +34,7 @@
 				// vowel 'U' in cyrillic Ossetic.
 				// Examples: {{grammar:genitive|аунеу}} = аунеуы,
 				// {{grammar:genitive|лæппу}} = лæппуйы.
-				if ( !word.slice( -2, -1 )
-						.match( /[аæеёиоыэюя]$/i ) ) {
+				if ( !word.slice( -2, -1 ).match( /[аæеёиоыэюя]$/i ) ) {
 					jot = 'й';
 				}
 			} else if ( !word.match( /[бвгджзйклмнопрстфхцчшщьъ]$/i ) ) {
