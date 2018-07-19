@@ -69,7 +69,7 @@
 	    var done = assert.async();
 		$.when(
 			i18n.load( 'i18n/test-en.json', 'en' )
-		).then( function () {
+		).always( function () {
 			assert.strictEqual( i18n.locale, 'en', 'Locale is English' );
 			assert.strictEqual( $.i18n( 'message_1' ), 'ONE', 'Simple message' );
 			done();
