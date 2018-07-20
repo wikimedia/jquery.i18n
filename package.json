@@ -1,6 +1,6 @@
 {
   "name": "jquery.i18n",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "jQuery based internationalization library",
   "homepage": "https://github.com/wikimedia/jquery.i18n",
   "keywords": [
@@ -14,12 +14,6 @@
     "name": "Santhosh Thottingal",
     "email": "santhosh.thottingal@gmail.com"
   },
-  "contributors": [
-    "Amir Aharoni <amir.aharoni@mail.huji.ac.il>",
-    "Niklas Laxström <nlaxstrom@wikimedia.org>",
-    "Neil Kandalgaonkar <neilk@brevity.org>",
-    "David Chan <david@troi.org>"
-  ],
   "devDependencies": {
     "grunt": "1.0.3",
     "grunt-contrib-connect": "1.0.2",
