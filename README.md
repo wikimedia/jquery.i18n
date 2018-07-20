@@ -299,7 +299,7 @@ Note that if data-i18n contains html markup, that html will not be used as the e
 Examples
 ========
 
-See http://thottingal.in/projects/js/jquery.i18n/demo/
+See https://thottingal.in/projects/js/jquery.i18n/demo/
 
 Message format
 ==============
@@ -327,7 +327,7 @@ $.i18n(message, 4); // This gives "Found 4 results"
 ```
 Note that {{PLURAL:...}} is not case sensitive. It can be {{plural:...}} too.
 
-In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|). The number of plural forms for each language is defined in [CLDR](http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html). You need to provide all those plural forms for a language.
+In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|). The number of plural forms for each language is defined in [CLDR](https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html). You need to provide all those plural forms for a language.
 
 For example, English has 2 plural forms and the message format will look like `{{PLURAL:$1|one|other}}`. for Arabic there are 6 plural forms and format will look like `{{PLURAL:$1|zero|one|two|few|many|other}}`.
 
@@ -410,13 +410,13 @@ $.extend( $.i18n.parser.emitter, {
 
 This will parse the message
 ```javascript
-$.i18n( '{{link:{{SITENAME}}|http://en.wikipedia.org}}' );
+$.i18n( '{{link:{{SITENAME}}|https://en.wikipedia.org}}' );
 ```
 
 to
 
 ```html
-<a href="http://en.wikipedia.org">Wikipedia</a>
+<a href="https://en.wikipedia.org">Wikipedia</a>
 ```
 
 Message documentation
