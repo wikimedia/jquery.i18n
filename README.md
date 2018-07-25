@@ -190,9 +190,9 @@ It is possible to switch to another locale after plugin is initialized. See belo
 $.i18n({
     locale: 'he' // Locale is Hebrew
 });
-$.i18n( 'message_hello' ); // This will give the Hebrew translation of message key `message_hello`.
+$.i18n( 'message-hello' ); // This will give the Hebrew translation of message key `message-hello`.
 $.i18n().locale = 'ml'; // Now onwards locale is 'Malayalam'
-$.i18n( 'message_hello' ); // This will give the Malayalam translation of message key `message_hello`.
+$.i18n( 'message-hello' ); // This will give the Malayalam translation of message key `message-hello`.
 ```
 
 ## Message Loading
@@ -230,8 +230,8 @@ It is also possible to refer messages from an external URL. See below example
 ```javascript
 $.i18n().load( {
 	en: {
-		message_hello: 'Hello World',
-		message_welcome: 'Welcome'
+		message-hello: 'Hello World',
+		message-welcome: 'Welcome'
 	},
 	hi: 'i18n/messages-hi.json', // Messages for Hindi
 	de: 'i18n/messages-de.json'
@@ -243,18 +243,18 @@ Messages for a locale can be also loaded in parts. Example
 ```javascript
 $.i18n().load( {
 	en: {
-		message_hello: 'Hello World',
-		message_welcome: 'Welcome'
+		message-hello: 'Hello World',
+		message-welcome: 'Welcome'
 	}
 } );
 
 $.i18n().load( {
     	// This does not remove the previous messages.
 	en: {
-		'message_header' : 'Header',
-		'message_footer' : 'Footer',
-		// This will overwrite message_welcome message
-		'message_welcome' : 'Welcome back'
+		'message-header' : 'Header',
+		'message-footer' : 'Footer',
+		// This will overwrite message-welcome message
+		'message-welcome' : 'Welcome back'
 	}
 } );
 ```
