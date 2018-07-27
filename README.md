@@ -230,8 +230,8 @@ It is also possible to refer messages from an external URL. See below example
 ```javascript
 $.i18n().load( {
 	en: {
-		message-hello: 'Hello World',
-		message-welcome: 'Welcome'
+		'message-hello': 'Hello World',
+		'message-welcome': 'Welcome'
 	},
 	hi: 'i18n/messages-hi.json', // Messages for Hindi
 	de: 'i18n/messages-de.json'
@@ -243,8 +243,8 @@ Messages for a locale can be also loaded in parts. Example
 ```javascript
 $.i18n().load( {
 	en: {
-		message-hello: 'Hello World',
-		message-welcome: 'Welcome'
+		'message-hello': 'Hello World',
+		'message-welcome': 'Welcome'
 	}
 } );
 
