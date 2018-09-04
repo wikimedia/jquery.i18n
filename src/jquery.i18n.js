@@ -251,15 +251,9 @@
 	};
 
 	function getDefaultLocale() {
-		var nav, locale = $( 'html' ).attr( 'lang' );
-
+		var locale = $( 'html' ).attr( 'lang' );
 		if ( !locale ) {
-			if ( typeof window.navigator !== undefined ) {
-				nav = window.navigator;
-				locale = nav.language || nav.userLanguage || '';
-			} else {
-				locale = '';
-			}
+			locale = navigator.language || navigator.userLanguage || '';
 		}
 		return locale;
 	}
