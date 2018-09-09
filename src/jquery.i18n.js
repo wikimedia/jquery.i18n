@@ -35,8 +35,8 @@
 	I18N.prototype = {
 		/**
 		 * Localize a given messageKey to a locale.
-		 * @param {String} messageKey
-		 * @return {String} Localized message
+		 * @param {string} messageKey
+		 * @return {string} Localized message
 		 */
 		localize: function ( messageKey ) {
 			var localeParts, localePartIndex, locale, fallbackIndex,
