@@ -33,7 +33,8 @@ module.exports = function ( grunt ) {
 			},
 			main: [
 				'*.js',
-				'src/**/*.js'
+				'src/**/*.js',
+				'test/**/*.js'
 			]
 		},
 		watch: {
