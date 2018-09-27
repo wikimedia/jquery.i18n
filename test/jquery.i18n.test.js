@@ -345,6 +345,32 @@
 			'Arabic plural test for ۰۱۲۳۴۵۶۷۸۹' );
 	} );
 
+    QUnit.test( 'Message parse plural tests for German', function ( assert ) {
+        var i18n;
+        $.i18n();
+        i18n = $(document).data('i18n');
+        // Switch to locale locally
+        i18n.locale = 'de';
+        assert.strictEqual(i18n.locale, 'de', 'Locale is German');
+        var key = '$1 {{plural:$1|Meldung|Meldungen}}';
+        assert.strictEqual($.i18n(key, 1), '1 Meldung', "German plural test for one")
+        assert.strictEqual($.i18n(key, 2), '2 Meldungen', "German plural test for few")
+        assert.strictEqual($.i18n(key, 5), '5 Meldungen', "German plural test for many")
+    } );
+
+    QUnit.test( 'Message parse plural tests for Polish', function ( assert ) {
+        var i18n;
+        $.i18n();
+        i18n = $(document).data('i18n');
+        // Switch to locale locally
+        i18n.locale = 'pl';
+        assert.strictEqual(i18n.locale, 'pl', 'Locale is Polish');
+        var key = '$1 {{plural:$1|błąd|błędy|błędów}}';
+        assert.strictEqual($.i18n(key, 1), '1 błąd', "Polish plural test for one")
+        assert.strictEqual($.i18n(key, 2), '2 błędy', "Polish plural test for few")
+        assert.strictEqual($.i18n(key, 5), '5 błędów', "Polish plural test for many")
+    } );
+
 	QUnit.test( 'Test explicit plural forms', function ( assert ) {
 		$.i18n();
 		assert.strictEqual( $.i18n.languages[ 'default' ].convertPlural( 0, [ '0=Explicit Zero', 'Singular', 'Plural' ] ),
