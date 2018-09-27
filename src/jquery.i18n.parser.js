@@ -152,9 +152,9 @@
 			anyCharacter = makeRegexParser( /^./ );
 			dollar = makeStringParser( '$' );
 			digits = makeRegexParser( /^\d+/ );
-			regularLiteral = makeRegexParser( /^[^{}\[\]$\\]/ );
-			regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
-			regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
+			regularLiteral = makeRegexParser( /^[^{}[\]$\\]/ );
+			regularLiteralWithoutBar = makeRegexParser( /^[^{}[\]$\\|]/ );
+			regularLiteralWithoutSpace = makeRegexParser( /^[^{}[\]$\s]/ );
 
 			// There is a general pattern:
 			// parse a thing;
@@ -209,7 +209,7 @@
 			templateName = transform(
 				// see $wgLegalTitleChars
 				// not allowing : due to the need to catch "PLURAL:$1"
-				makeRegexParser( /^[ !"$&'()*,.\/0-9;=?@A-Z\^_`a-z~\x80-\xFF+\-]+/ ),
+				makeRegexParser( /^[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ ),
 
 				function ( result ) {
 					return result.toString();
@@ -294,7 +294,8 @@
 			/*
 			 * For success, the pos must have gotten to the end of the input
 			 * and returned a non-null.
-			 * n.b. This is part of language infrastructure, so we do not throw an internationalizable message.
+			 * n.b. This is part of language infrastructure, so we do not throw an
+			 * internationalizable message.
 			 */
 			if ( result === null || pos !== message.length ) {
 				throw new Error( 'Parse error at position ' + pos.toString() + ' in input: ' + message );

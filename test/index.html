@@ -5,7 +5,7 @@
 	<title>jQuery i18n Test Suite</title>
 
 	<!-- External libs -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
+	<script src="../node_modules/jquery/dist/jquery.min.js" ></script>
 	<script src="../libs/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js"></script>
 
 	<!-- Source of our libs -->
@@ -32,12 +32,11 @@
 	<script src="../src/languages/uk.js"></script>
 
 	<!-- Test framework -->
-	<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.14.0.css">
-	<script src="//code.jquery.com/qunit/qunit-1.14.0.js"></script>
+	<link rel="stylesheet" href="../node_modules/qunit/qunit/qunit.css">
+	<script src="../node_modules/qunit/qunit/qunit.js"></script>
 
 	<!-- Test config -->
 	<script>
-		QUnit.config.requireExpects = true;
 		$.i18n.debug = true;
 	</script>
 

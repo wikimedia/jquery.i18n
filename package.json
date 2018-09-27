@@ -1,6 +1,6 @@
 {
   "name": "jquery.i18n",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "jQuery based internationalization library",
   "homepage": "https://github.com/wikimedia/jquery.i18n",
   "keywords": [
@@ -14,27 +14,23 @@
     "name": "Santhosh Thottingal",
     "email": "santhosh.thottingal@gmail.com"
   },
-  "contributors": [
-    "Amir Aharoni <amir.aharoni@mail.huji.ac.il>",
-    "Niklas Laxström <nlaxstrom@wikimedia.org>",
-    "Neil Kandalgaonkar <neilk@brevity.org>",
-    "David Chan <david@troi.org>"
-  ],
   "devDependencies": {
-    "qunit": "0.9.1",
-    "grunt": "1.0.1",
-    "grunt-contrib-connect": "1.0.1",
-    "grunt-contrib-qunit": "1.2.0",
-    "grunt-contrib-watch": "1.0.0",
-    "eslint-config-wikimedia": "0.3.0",
-    "grunt-eslint": "19.0.0"
+    "eslint-config-wikimedia": "0.7.2",
+    "eslint-plugin-qunit": "3.3.1",
+    "grunt": "1.0.3",
+    "grunt-contrib-connect": "1.0.2",
+    "grunt-contrib-qunit": "2.0.0",
+    "grunt-contrib-watch": "1.1.0",
+    "grunt-eslint": "21.0.0",
+    "jquery": "3.2.1",
+    "qunit": "2.6.1"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/wikimedia/jquery.i18n.git"
   },
   "bugs": {
-      "url" : "http://github.com/wikimedia/jquery.i18n/issues"
+    "url": "http://github.com/wikimedia/jquery.i18n/issues"
   },
   "engine": {
     "node": ">=4.0.0"

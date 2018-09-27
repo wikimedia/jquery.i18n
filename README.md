@@ -3,7 +3,7 @@ jQuery.i18n
 
 jQuery.i18n is a jQuery based Javascript internationalization library. It helps you to internationalize your web applications easily.
 
-This is a project by Wikimedia foundation's [Language Engineering team](http://wikimediafoundation.org/wiki/Language_Engineering_team) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
+This is a project by Wikimedia foundation's [Language Engineering team](https://www.mediawiki.org/wiki/Wikimedia_Language_engineering) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
 
 The jquery.i18n library uses a json based localization file format, "banana", which is used as the localization file format for  MediaWiki and other projects.
 
@@ -190,9 +190,9 @@ It is possible to switch to another locale after plugin is initialized. See belo
 $.i18n({
     locale: 'he' // Locale is Hebrew
 });
-$.i18n( 'message_hello' ); // This will give the Hebrew translation of message key `message_hello`.
+$.i18n( 'message-hello' ); // This will give the Hebrew translation of message key `message-hello`.
 $.i18n().locale = 'ml'; // Now onwards locale is 'Malayalam'
-$.i18n( 'message_hello' ); // This will give the Malayalam translation of message key `message_hello`.
+$.i18n( 'message-hello' ); // This will give the Malayalam translation of message key `message-hello`.
 ```
 
 ## Message Loading
@@ -230,8 +230,8 @@ It is also possible to refer messages from an external URL. See below example
 ```javascript
 $.i18n().load( {
 	en: {
-		message_hello: 'Hello World',
-		message_welcome: 'Welcome'
+		'message-hello': 'Hello World',
+		'message-welcome': 'Welcome'
 	},
 	hi: 'i18n/messages-hi.json', // Messages for Hindi
 	de: 'i18n/messages-de.json'
@@ -243,18 +243,18 @@ Messages for a locale can be also loaded in parts. Example
 ```javascript
 $.i18n().load( {
 	en: {
-		message_hello: 'Hello World',
-		message_welcome: 'Welcome'
+		'message-hello': 'Hello World',
+		'message-welcome': 'Welcome'
 	}
 } );
 
 $.i18n().load( {
     	// This does not remove the previous messages.
 	en: {
-		'message_header' : 'Header',
-		'message_footer' : 'Footer',
-		// This will overwrite message_welcome message
-		'message_welcome' : 'Welcome back'
+		'message-header' : 'Header',
+		'message-footer' : 'Footer',
+		// This will overwrite message-welcome message
+		'message-welcome' : 'Welcome back'
 	}
 } );
 ```
@@ -294,12 +294,15 @@ It is also possible to have the above li node with fallback text already in plac
 The framework will place the localized message corresponding to message-key as the text value of the node. Similar to $('selector').i18n( ... ).
 This will not work for dynamically created elements.
 
-Note that if data-i18n contains html markup, that html will not be used as the element content, instead, the text version will be used. $.fn.i18n is always about replacing text of the element. If you want to change the html of the element, you may want to use: ```$(selector).html($.i18n(messagekey))```
+Note that if data-i18n contains html markup, that html will not be used as the element content, instead, the text version will be used. But if the message key is prefixed with `[html]`, the element's html will be changed. For example ```<li data-i18n="[html]message-key">Fallback html</li>```, in this if the message-key has a value containing HTML markup, the `<li>` tags html will be replaced by that html.
+
+
+If you want to change the html of the element, you can also use: ```$(selector).html($.i18n(messagekey))```
 
 Examples
 ========
 
-See http://thottingal.in/projects/js/jquery.i18n/demo/
+See https://thottingal.in/projects/js/jquery.i18n/demo/
 
 Message format
 ==============
@@ -327,7 +330,7 @@ $.i18n(message, 4); // This gives "Found 4 results"
 ```
 Note that {{PLURAL:...}} is not case sensitive. It can be {{plural:...}} too.
 
-In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|). The number of plural forms for each language is defined in [CLDR](http://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html). You need to provide all those plural forms for a language.
+In case of English, there are only 2 plural forms, but many languages use more than 2 plural forms. All the plural forms can be given in the above syntax, separated by pipe(|). The number of plural forms for each language is defined in [CLDR](https://www.unicode.org/cldr/charts/latest/supplemental/language_plural_rules.html). You need to provide all those plural forms for a language.
 
 For example, English has 2 plural forms and the message format will look like `{{PLURAL:$1|one|other}}`. for Arabic there are 6 plural forms and format will look like `{{PLURAL:$1|zero|one|two|few|many|other}}`.
 
@@ -410,13 +413,13 @@ $.extend( $.i18n.parser.emitter, {
 
 This will parse the message
 ```javascript
-$.i18n( '{{link:{{SITENAME}}|http://en.wikipedia.org}}' );
+$.i18n( '{{link:{{SITENAME}}|https://en.wikipedia.org}}' );
 ```
 
 to
 
 ```html
-<a href="http://en.wikipedia.org">Wikipedia</a>
+<a href="https://en.wikipedia.org">Wikipedia</a>
 ```
 
 Message documentation

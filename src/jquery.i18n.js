@@ -16,7 +16,7 @@
 ( function ( $ ) {
 	'use strict';
 
-	var nav, I18N,
+	var I18N,
 		slice = Array.prototype.slice;
 	/**
 	 * @constructor
@@ -30,61 +30,52 @@
 		this.locale = this.options.locale;
 		this.messageStore = this.options.messageStore;
 		this.languages = {};
-
-		this.init();
 	};
 
 	I18N.prototype = {
 		/**
-		 * Initialize by loading locales and setting up
-		 * String.prototype.toLocaleString and String.locale.
+		 * Localize a given messageKey to a locale.
+		 * @param {string} messageKey
+		 * @return {string} Localized message
 		 */
-		init: function () {
-			var i18n = this;
+		localize: function ( messageKey ) {
+			var localeParts, localePartIndex, locale, fallbackIndex,
+				tryingLocale, message;
 
-			// Set locale of String environment
-			String.locale = i18n.locale;
+			locale = this.locale;
+			fallbackIndex = 0;
 
-			// Override String.localeString method
-			String.prototype.toLocaleString = function () {
-				var localeParts, localePartIndex, value, locale, fallbackIndex,
-					tryingLocale, message;
+			while ( locale ) {
+				// Iterate through locales starting at most-specific until
+				// localization is found. As in fi-Latn-FI, fi-Latn and fi.
+				localeParts = locale.split( '-' );
+				localePartIndex = localeParts.length;
 
-				value = this.valueOf();
-				locale = i18n.locale;
-				fallbackIndex = 0;
+				do {
+					tryingLocale = localeParts.slice( 0, localePartIndex ).join( '-' );
+					message = this.messageStore.get( tryingLocale, messageKey );
 
-				while ( locale ) {
-					// Iterate through locales starting at most-specific until
-					// localization is found. As in fi-Latn-FI, fi-Latn and fi.
-					localeParts = locale.split( '-' );
-					localePartIndex = localeParts.length;
-
-					do {
-						tryingLocale = localeParts.slice( 0, localePartIndex ).join( '-' );
-						message = i18n.messageStore.get( tryingLocale, value );
-
-						if ( message ) {
-							return message;
-						}
-
-						localePartIndex--;
-					} while ( localePartIndex );
-
-					if ( locale === 'en' ) {
-						break;
+					if ( message ) {
+						return message;
 					}
 
-					locale = ( $.i18n.fallbacks[ i18n.locale ] && $.i18n.fallbacks[ i18n.locale ][ fallbackIndex ] ) ||
-						i18n.options.fallbackLocale;
-					$.i18n.log( 'Trying fallback locale for ' + i18n.locale + ': ' + locale + ' (' + value + ')' );
+					localePartIndex--;
+				} while ( localePartIndex );
 
-					fallbackIndex++;
+				if ( locale === 'en' ) {
+					break;
 				}
 
-				// key not found
-				return '';
-			};
+				locale = ( $.i18n.fallbacks[ this.locale ] &&
+						$.i18n.fallbacks[ this.locale ][ fallbackIndex ] ) ||
+						this.options.fallbackLocale;
+				$.i18n.log( 'Trying fallback locale for ' + this.locale + ': ' + locale + ' (' + messageKey + ')' );
+
+				fallbackIndex++;
+			}
+
+			// key not found
+			return '';
 		},
 
 		/*
@@ -146,7 +137,8 @@
 				// source extension should be json, but can have query params after that.
 				source.split( '?' )[ 0 ].split( '.' ).pop() !== 'json'
 			) {
-				// Load specified locale then check for fallbacks when directory is specified in load()
+				// Load specified locale then check for fallbacks when directory is
+				// specified in load()
 				sourceMap[ locale ] = source + '/' + locale + '.json';
 				fallbackLocales = ( $.i18n.fallbacks[ locale ] || [] )
 					.concat( this.options.fallbackLocale );
@@ -169,7 +161,7 @@
 		 * @return {string}
 		 */
 		parse: function ( key, parameters ) {
-			var message = key.toLocaleString();
+			var message = this.localize( key );
 			// FIXME: This changes the state of the I18N object,
 			// should probably not change the 'this.parser' but just
 			// pass it to the parser.
@@ -203,7 +195,7 @@
 		// NOTE: It should only change language for this one call.
 		// Then cache instances of I18N somewhere.
 		if ( options && options.locale && i18n && i18n.locale !== options.locale ) {
-			String.locale = i18n.locale = options.locale;
+			i18n.locale = options.locale;
 		}
 
 		if ( !i18n ) {
@@ -232,7 +224,7 @@
 			i18n = new I18N();
 			$.data( document, 'i18n', i18n );
 		}
-		String.locale = i18n.locale;
+
 		return this.each( function () {
 			var $this = $( this ),
 				messageKey = $this.data( 'i18n' ),
@@ -258,15 +250,12 @@
 		} );
 	};
 
-	String.locale = String.locale || $( 'html' ).attr( 'lang' );
-
-	if ( !String.locale ) {
-		if ( typeof window.navigator !== undefined ) {
-			nav = window.navigator;
-			String.locale = nav.language || nav.userLanguage || '';
-		} else {
-			String.locale = '';
+	function getDefaultLocale() {
+		var locale = $( 'html' ).attr( 'lang' );
+		if ( !locale ) {
+			locale = navigator.language || navigator.userLanguage || '';
 		}
+		return locale;
 	}
 
 	$.i18n.languages = {};
@@ -290,7 +279,7 @@
 	};
 	/* Static members */
 	I18N.defaults = {
-		locale: String.locale,
+		locale: getDefaultLocale(),
 		fallbackLocale: 'en',
 		parser: $.i18n.parser,
 		messageStore: $.i18n.messageStore
