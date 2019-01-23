@@ -62,7 +62,7 @@
 					localePartIndex--;
 				} while ( localePartIndex );
 
-				if ( locale === 'en' ) {
+				if ( locale === this.options.fallbackLocale ) {
 					break;
 				}
 
