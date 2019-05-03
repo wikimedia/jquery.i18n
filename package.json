@@ -17,13 +17,13 @@
   "devDependencies": {
     "eslint-config-wikimedia": "0.7.2",
     "eslint-plugin-qunit": "3.3.1",
-    "grunt": "1.0.3",
+    "grunt": "^1.0.4",
     "grunt-contrib-connect": "1.0.2",
     "grunt-contrib-qunit": "2.0.0",
     "grunt-contrib-watch": "1.1.0",
     "grunt-eslint": "21.0.0",
-    "jquery": "3.2.1",
-    "qunit": "2.6.1"
+    "jquery": "3.4.1",
+    "qunit": "^2.9.2"
   },
   "repository": {
     "type": "git",
