@@ -38,7 +38,7 @@
 		assert.strictEqual( $fixture.i18n().html(), 'X<i>Y</i>', 'Content of fixture localized with HTML as is' );
 	} );
 
-	QUnit.test( 'Message parse attrbutes', function ( assert ) {
+	QUnit.test( 'Message parse attributes', function ( assert ) {
 		var i18n = $( document ).data( 'i18n' ),
 			$fixture = $( '#qunit-fixture' );
 		// Load messages for localex
