@@ -7,6 +7,8 @@ This is a project by Wikimedia foundation's [Language Engineering team](https://
 
 The jquery.i18n library uses a json based localization file format, "banana", which is used as the localization file format for  MediaWiki and other projects.
 
+For jquery independent version of this library, see https://github.com/wikimedia/banana-i18n
+
 Features
 ========
 * Simple file format - JSON. Easily readable for humans and machines.
