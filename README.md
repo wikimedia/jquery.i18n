@@ -1,13 +1,16 @@
 jQuery.i18n
 ===========
 
+[![npm][npm]][npm-url]
+
+> NOTE: For jquery independent version of this library, see https://github.com/wikimedia/banana-i18n
+
 jQuery.i18n is a jQuery based Javascript internationalization library. It helps you to internationalize your web applications easily.
 
 This is a project by Wikimedia foundation's [Language Engineering team](https://www.mediawiki.org/wiki/Wikimedia_Language_engineering) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
 
 The jquery.i18n library uses a json based localization file format, "banana", which is used as the localization file format for  MediaWiki and other projects.
 
-For jquery independent version of this library, see https://github.com/wikimedia/banana-i18n
 
 Features
 ========
@@ -448,3 +451,6 @@ Example qqq.json:
 ```
 
 In MediaWiki and its hundreds of extensions, message documentation is a strictly followed practice. There is a grunt task to check whether all messages are documented or not. See https://www.npmjs.org/package/grunt-banana-checker
+
+[npm]: https://img.shields.io/npm/v/@wikimedia/jquery.i18n.svg
+[npm-url]: https://npmjs.com/package/@wikimedia/jquery.i18n

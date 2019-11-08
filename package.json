@@ -1,6 +1,6 @@
 {
   "name": "@wikimedia/jquery.i18n",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "jQuery based internationalization library",
   "homepage": "https://github.com/wikimedia/jquery.i18n",
   "keywords": [
