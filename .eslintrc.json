@@ -5,7 +5,8 @@
 		"jquery": true
 	},
 	"rules": {
-		"dot-notation": 0
+		"dot-notation": 0,
+		"linebreak-style": 0
 	}
 }
 
