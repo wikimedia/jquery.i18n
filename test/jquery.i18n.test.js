@@ -436,6 +436,20 @@
 		} );
 	} );
 
+	QUnit.test( 'Support combined file loading from URL', function ( assert ) {
+		var i18n = $( document ).data( 'i18n' ),
+			done = assert.async();
+
+		$.when(
+			i18n.load( 'i18n/test-combined.json' )
+		).then( function () {
+			i18n.locale = 'de';
+			assert.strictEqual( $.i18n( 'foo' ), 'Foo', 'German message' );
+			assert.strictEqual( $.i18n( 'bar' ), 'bar', 'English fallback message' );
+			done();
+		} );
+	} );
+
 	function grammarTest( langCode, test ) {
 		QUnit.test( 'Grammar test for language ' + langCode, function ( assert ) {
 			var i, grammarMessage,
