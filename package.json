@@ -15,14 +15,14 @@
     "email": "santhosh.thottingal@gmail.com"
   },
   "devDependencies": {
-    "eslint-config-wikimedia": "0.14.1",
-    "eslint-plugin-qunit": "4.0.0",
+    "eslint-config-wikimedia": "0.15.3",
+    "eslint-plugin-qunit": "4.2.0",
     "grunt": "1.1.0",
     "grunt-contrib-connect": "2.1.0",
     "grunt-contrib-qunit": "3.1.0",
     "grunt-contrib-watch": "1.1.0",
-    "grunt-eslint": "22.0.0",
-    "jquery": "3.4.0",
+    "grunt-eslint": "23.0.0",
+    "jquery": "3.5.1",
     "qunit": "2.9.2"
   },
   "repository": {
