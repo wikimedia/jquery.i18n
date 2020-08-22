@@ -228,19 +228,29 @@
 		return this.each( function () {
 			var $this = $( this ),
 				messageKey = $this.data( 'i18n' ),
-				lBracket, rBracket, type, key;
+				lBracket, rBracket, type, key, messageKeyArray;
 
 			if ( messageKey ) {
 				lBracket = messageKey.indexOf( '[' );
-				rBracket = messageKey.indexOf( ']' );
-				if ( lBracket !== -1 && rBracket !== -1 && lBracket < rBracket ) {
-					type = messageKey.slice( lBracket + 1, rBracket );
-					key = messageKey.slice( rBracket + 1 );
-					if ( type === 'html' ) {
-						$this.html( i18n.parse( key ) );
-					} else {
-						$this.attr( type, i18n.parse( key ) );
-					}
+				if ( lBracket !== -1 ) { // has any brackets, otherwise skip to perform better
+					messageKeyArray = messageKey.split( ';' );
+
+					messageKeyArray.forEach( function ( mk ) {
+						if ( mk !== '' ) {
+							lBracket = mk.indexOf( '[' );
+							rBracket = mk.indexOf( ']' );
+
+							if ( lBracket !== -1 && rBracket !== -1 && lBracket < rBracket ) {
+								type = mk.slice( lBracket + 1, rBracket );
+								key = mk.slice( rBracket + 1 );
+								if ( type === 'html' ) {
+									$this.html( i18n.parse( key ) );
+								} else {
+									$this.attr( type, i18n.parse( key ) );
+								}
+							}
+						}
+					} );
 				} else {
 					$this.text( i18n.parse( messageKey ) );
 				}
