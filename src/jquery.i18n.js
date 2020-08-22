@@ -231,29 +231,26 @@
 				lBracket, rBracket, type, key, messageKeyArray;
 
 			if ( messageKey ) {
-				lBracket = messageKey.indexOf( '[' );
-				if ( lBracket !== -1 ) { // has any brackets, otherwise skip to perform better
-					messageKeyArray = messageKey.split( ';' );
+				messageKeyArray = messageKey.split( ';' );
 
-					messageKeyArray.forEach( function ( mk ) {
-						if ( mk !== '' ) {
-							lBracket = mk.indexOf( '[' );
-							rBracket = mk.indexOf( ']' );
+				messageKeyArray.forEach( function ( mk ) {
+					if ( mk !== '' ) {
+						lBracket = mk.indexOf( '[' );
+						rBracket = mk.indexOf( ']' );
 
-							if ( lBracket !== -1 && rBracket !== -1 && lBracket < rBracket ) {
-								type = mk.slice( lBracket + 1, rBracket );
-								key = mk.slice( rBracket + 1 );
-								if ( type === 'html' ) {
-									$this.html( i18n.parse( key ) );
-								} else {
-									$this.attr( type, i18n.parse( key ) );
-								}
+						if ( lBracket !== -1 && rBracket !== -1 && lBracket < rBracket ) {
+							type = mk.slice( lBracket + 1, rBracket );
+							key = mk.slice( rBracket + 1 );
+							if ( type === 'html' ) {
+								$this.html( i18n.parse( key ) );
+							} else {
+								$this.attr( type, i18n.parse( key ) );
 							}
+						} else {
+							$this.text( i18n.parse( mk ) );
 						}
-					} );
-				} else {
-					$this.text( i18n.parse( messageKey ) );
-				}
+					}
+				} );
 			} else {
 				$this.find( '[data-i18n]' ).i18n();
 			}

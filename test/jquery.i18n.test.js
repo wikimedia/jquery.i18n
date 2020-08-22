@@ -62,6 +62,19 @@
 		assert.strictEqual( $fixture.i18n().attr( 'custom' ), 'custom Y', 'Content of second attribute localized' );
 	} );
 
+	QUnit.test( 'Message parse multiple attributes, one setting text', function ( assert ) {
+		var i18n = $( document ).data( 'i18n' ),
+			$fixture = $( '#qunit-fixture' );
+		// Load messages for localex
+		i18n.load( {
+			x: 'title X',
+			y: 'text y'
+		}, 'localex' );
+		$fixture.data( 'i18n', '[title]x;y' );
+		assert.strictEqual( $fixture.i18n().attr( 'title' ), 'title X', 'Content of first attribute localized' );
+		assert.strictEqual( $fixture.i18n().text(), 'text y', 'Content of fixture localized' );
+	} );
+
 	QUnit.module( 'jquery.i18n', {
 		beforeEach: function () {
 			$.i18n( {
