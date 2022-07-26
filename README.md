@@ -56,7 +56,7 @@ python -m http.server
 # python -m SimpleHTTPServer  
 
 ```
-Open `localhost:8000` in your browser, you can see the demo index page.
+Open `localhost:8000/demo` in your browser, you can see the demo index page.
 
 
 Message File Format
