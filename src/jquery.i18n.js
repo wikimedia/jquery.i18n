@@ -245,7 +245,7 @@
 
     return this.each(function () {
       var $this = $(this),
-        messageKey = $this.data("i18n") + " ",
+        messageKey = $this.data("i18n") +' ',
         lBracket,
         rBracket,
         type,
