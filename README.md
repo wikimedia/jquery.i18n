@@ -108,8 +108,8 @@ Messages are key-value pairs. It is a good convention to prefix your appname to 
 
 If you are curious to see some real jquery.i18n message file from other projects:
 
-- message files of MediaWiki https://github.com/wikimedia/mediawiki-core/tree/master/languages/i18n
-- message files from jquery.uls project https://github.com/wikimedia/jquery.uls/blob/master/i18n
+- message files of MediaWiki https://github.com/wikimedia/mediawiki/tree/master/languages/i18n
+- message files from jquery.uls project https://github.com/wikimedia/jquery.uls/tree/master/i18n
 
 Single message file for all languages
 -------------------------------------
