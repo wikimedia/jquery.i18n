@@ -5,7 +5,7 @@ jQuery.i18n
 
 > NOTE: For jquery independent version of this library, see https://github.com/wikimedia/banana-i18n
 
-jQuery.i18n is a jQuery based Javascript internationalization library. It helps you to internationalize your web applications easily.
+jQuery.i18n is a jQuery based JavaScript internationalization library. It helps you to internationalize your web applications easily.
 
 This is a project by Wikimedia foundation's [Language Engineering team](https://www.mediawiki.org/wiki/Wikimedia_Language_engineering) and used in some of the Wikimedia Foundation projects like Universal Language Selector.
 
