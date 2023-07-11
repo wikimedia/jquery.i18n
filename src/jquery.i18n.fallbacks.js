@@ -53,6 +53,7 @@
 		'bbc-latn': [ 'id' ],
 		bcc: [ 'fa' ],
 		bci: [ 'fr' ],
+		bdr: [ 'ms' ],
 		'be-tarask': [ 'be' ],
 		// Deprecated: Use 'be-tarask' instead. See T11823
 		'be-x-old': [ 'be-tarask', 'be' ],
