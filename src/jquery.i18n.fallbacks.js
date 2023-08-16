@@ -148,7 +148,7 @@
 		koi: [ 'ru' ],
 		krc: [ 'ru' ],
 		krl: [ 'fi' ],
-		ks: [ 'ks-arab' ],
+		ks: [ 'ur', 'hi' ],
 		ksh: [ 'de' ],
 		ksw: [ 'my' ],
 		ku: [ 'ku-latn' ],
