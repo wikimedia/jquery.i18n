@@ -16,6 +16,7 @@
 
 	$.i18n = $.i18n || {};
 	$.extend( $.i18n.fallbacks, {
+		aae: [ 'it' ],
 		ab: [ 'ru' ],
 		abs: [ 'id' ],
 		ace: [ 'id' ],
@@ -32,6 +33,7 @@
 		ami: [ 'zh-tw', 'zh-hant', 'zh', 'zh-hans' ],
 		an: [ 'es' ],
 		anp: [ 'hi' ],
+		apc: [ 'ar' ],
 		arn: [ 'es' ],
 		arq: [ 'ar' ],
 		ary: [ 'ar' ],
@@ -101,6 +103,7 @@
 		gan: [ 'gan-hant', 'gan-hans', 'zh-hant', 'zh', 'zh-hans' ],
 		'gan-hans': [ 'gan', 'gan-hant', 'zh-hans', 'zh', 'zh-hant' ],
 		'gan-hant': [ 'gan', 'gan-hans', 'zh-hant', 'zh', 'zh-hans' ],
+		gcf: [ 'fr' ],
 		gcr: [ 'fr' ],
 		gl: [ 'pt' ],
 		gld: [ 'ru' ],
@@ -132,6 +135,7 @@
 		kbd: [ 'kbd-cyrl' ],
 		kbp: [ 'fr' ],
 		kea: [ 'pt' ],
+		kge: [ 'id' ],
 		khw: [ 'ur' ],
 		kiu: [ 'tr' ],
 		kjh: [ 'ru' ],
@@ -223,6 +227,7 @@
 		ruq: [ 'ruq-latn', 'ro' ],
 		'ruq-cyrl': [ 'mk' ],
 		'ruq-latn': [ 'ro' ],
+		rut: [ 'ru' ],
 		sa: [ 'hi' ],
 		sah: [ 'ru' ],
 		scn: [ 'it' ],
