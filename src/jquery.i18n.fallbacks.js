@@ -188,6 +188,7 @@
 		mo: [ 'ro' ],
 		mrj: [ 'mhr', 'ru' ],
 		'ms-arab': [ 'ms' ],
+		mui: [ 'id' ],
 		mwl: [ 'pt' ],
 		myv: [ 'mdf', 'ru' ],
 		mzn: [ 'fa' ],
