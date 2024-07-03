@@ -125,6 +125,7 @@
 		ht: [ 'fr' ],
 		'hu-formal': [ 'hu' ],
 		hyw: [ 'hy' ],
+		iba: [ 'ms' ],
 		ii: [ 'zh-cn', 'zh-hans', 'zh', 'zh-hant' ],
 		'ike-cans': [ 'iu' ],
 		'ike-latn': [ 'iu' ],
