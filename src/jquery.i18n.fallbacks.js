@@ -199,6 +199,8 @@
 		nah: [ 'es' ],
 		nan: [ 'nan-latn-pehoeji', 'nan-latn-tailo', 'nan-hant', 'cdo', 'zh-hant', 'zh', 'zh-hans' ],
 		'nan-hant': [ 'nan', 'nan-latn-pehoeji', 'nan-latn-tailo', 'cdo', 'zh-hant', 'zh', 'zh-hans' ],
+		'nan-latn-pehoeji': [ 'nan-latn', 'nan-latn-tailo', 'nan', 'nan-hant', 'cdo', 'zh-hant', 'zh', 'zh-hans' ],
+		'nan-latn-tailo': [ 'nan-latn', 'nan-latn-pehoeji', 'nan', 'nan-hant', 'cdo', 'zh-hant', 'zh', 'zh-hans' ],
 		nap: [ 'it' ],
 		nb: [ 'no', 'nn' ],
 		nds: [ 'de' ],
