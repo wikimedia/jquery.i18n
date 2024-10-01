@@ -177,6 +177,7 @@
 		ln: [ 'fr' ],
 		lrc: [ 'fa' ],
 		ltg: [ 'lv' ],
+		lua: [ 'fr' ],
 		luz: [ 'fa' ],
 		lzh: [ 'zh-hant', 'zh', 'zh-hans' ],
 		lzz: [ 'tr' ],
