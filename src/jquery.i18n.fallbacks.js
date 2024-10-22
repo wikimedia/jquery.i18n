@@ -90,6 +90,7 @@
 		dsb: [ 'hsb', 'de' ],
 		dtp: [ 'ms' ],
 		dty: [ 'ne' ],
+		dua: [ 'fr' ],
 		egl: [ 'it' ],
 		eml: [ 'it' ],
 		'es-formal': [ 'es' ],
