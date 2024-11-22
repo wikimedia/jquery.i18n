@@ -120,6 +120,7 @@
 		guc: [ 'es' ],
 		hak: [ 'zh-hant', 'zh', 'zh-hans' ],
 		hif: [ 'hif-latn' ],
+		hke: [ 'fr' ],
 		hrx: [ 'de' ],
 		hsb: [ 'dsb', 'de' ],
 		hsn: [ 'zh-cn', 'zh-hans', 'zh', 'zh-hant' ],
