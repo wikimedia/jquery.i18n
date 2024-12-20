@@ -1,27 +1,32 @@
-function updateText() {
-	'use strict';
-	var i18n = $.i18n(), language, person, kittens, message, gender;
-
-	message = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
-		'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
-	language = $( '.language option:selected' ).val();
-	person = $( '.person option:selected' ).text();
-	gender = $( '.person option:selected' ).val();
-	kittens = $( '.kittens' ).val();
-
-	i18n.locale = language;
-	i18n.load( 'i18n/demo-' + i18n.locale + '.json', i18n.locale ).done(
-		function () {
-			var personName = $.i18n( person ), localizedMessage = $.i18n( message, personName,
-				kittens, gender );
-			$( '.result' ).text( localizedMessage ).prop( 'title', i18n.localize( message ) );
-		} );
+function loadTranslations(callback) {
+    var i18n = $.i18n();
+    // Load the translation file
+    i18n.load('../assets/lang/ui_' + i18n.locale + '.json', i18n.locale).done(function() {
+        callback(); // Once translations are loaded, call the callback function
+    });
 }
-// Enable debug
-$.i18n.debug = true;
 
-$( document ).ready( function ( $ ) {
-	'use strict';
-	updateText();
-	$( '.kittens, .person, .language' ).on( 'change keyup', updateText );
-} );
+function _T(key) {
+    'use strict';
+    var i18n = $.i18n();
+    return i18n(key); // Directly return the translation after it's loaded
+}
+
+$(document).ready(function () {
+    loadTranslations(function() {
+        // Now that translations are loaded, populate the formats object
+        var formats = { 
+            portrait: _T('text-portrait'), 
+            landscape: _T('text-landscape'), 
+            square: _T('text-square') 
+        };
+
+        $.each(formats, function (key, format) {
+            console.log('appending ' + key);
+            $('#format').append($('<option>', { 
+                value: key,
+                text: format
+            }));
+        });
+    });
+});
