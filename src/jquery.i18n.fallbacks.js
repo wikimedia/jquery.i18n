@@ -173,6 +173,7 @@
 		li: [ 'nl' ],
 		lij: [ 'it' ],
 		liv: [ 'et' ],
+		ljp: [ 'id' ],
 		lki: [ 'fa' ],
 		lld: [ 'it', 'rm', 'fur' ],
 		lmo: [ 'pms', 'eml', 'lij', 'vec', 'it' ],
