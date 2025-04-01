@@ -81,7 +81,7 @@
 		cpx: [ 'cpx-hant', 'cpx-hans', 'cpx-latn', 'cdo', 'zh-hant', 'zh', 'zh-hans' ],
 		'cpx-hans': [ 'cpx', 'cpx-hant', 'cpx-latn', 'cdo', 'zh-hans', 'zh', 'zh-hant' ],
 		'cpx-hant': [ 'cpx', 'cpx-hans', 'cpx-latn', 'cdo', 'zh-hant', 'zh', 'zh-hans' ],
-		crh: [ 'crh-latn' ],
+		crh: [ 'crh-latn', 'tr' ],
 		'crh-cyrl': [ 'tr' ],
 		'crh-latn': [ 'tr' ],
 		cs: [ 'sk' ],
