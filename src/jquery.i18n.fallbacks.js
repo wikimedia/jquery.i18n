@@ -69,6 +69,7 @@
 		bqi: [ 'fa' ],
 		btm: [ 'id' ],
 		bug: [ 'id' ],
+		'bug-bugi': [ 'bug', 'id' ],
 		bxr: [ 'ru' ],
 		ca: [ 'oc' ],
 		'cbk-zam': [ 'es' ],
