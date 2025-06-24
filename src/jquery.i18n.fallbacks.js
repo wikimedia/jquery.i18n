@@ -316,7 +316,6 @@
 		xal: [ 'ru' ],
 		xmf: [ 'ka' ],
 		yi: [ 'he' ],
-		yua: [ 'es' ],
 		yue: [ 'yue-hant', 'yue-hans' ],
 		'yue-hans': [ 'yue', 'yue-hant' ],
 		'yue-hant': [ 'yue', 'yue-hans' ],
