@@ -90,6 +90,7 @@
 		'de-at': [ 'de' ],
 		'de-ch': [ 'de' ],
 		'de-formal': [ 'de' ],
+		dlg: [ 'ru' ],
 		dsb: [ 'hsb', 'de' ],
 		dtp: [ 'ms' ],
 		dty: [ 'ne' ],
