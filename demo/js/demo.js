@@ -1,27 +1,50 @@
-function updateText() {
-	'use strict';
-	var i18n = $.i18n(), language, person, kittens, message, gender;
+// Assuming i18n is some object and its methods need to be handled manually, 
+// if you are using a library for i18n, the load mechanism might be similar
+function loadTranslations(callback) {
+    // Assuming i18n is an object with a load method
+    const i18n = { 
+        locale: 'en', // Replace with dynamic locale if needed
+        load: function(url, locale) {
+            return fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    this.translations = data;
+                });
+        },
+        get: function(key) {
+            return this.translations[key] || key; // Return the translation or the key itself if not found
+        }
+    };
 
-	message = '$1 has $2 {{plural:$2|kitten|kittens}}. ' +
-		'{{gender:$3|He|She}} loves to play with {{plural:$2|it|them}}.';
-	language = $( '.language option:selected' ).val();
-	person = $( '.person option:selected' ).text();
-	gender = $( '.person option:selected' ).val();
-	kittens = $( '.kittens' ).val();
-
-	i18n.locale = language;
-	i18n.load( 'i18n/demo-' + i18n.locale + '.json', i18n.locale ).done(
-		function () {
-			var personName = $.i18n( person ), localizedMessage = $.i18n( message, personName,
-				kittens, gender );
-			$( '.result' ).text( localizedMessage ).prop( 'title', i18n.localize( message ) );
-		} );
+    // Load the translation file
+    i18n.load('../assets/lang/ui_' + i18n.locale + '.json', i18n.locale)
+        .then(function() {
+            callback(); // Once translations are loaded, call the callback function
+        });
 }
-// Enable debug
-$.i18n.debug = true;
 
-$( document ).ready( function ( $ ) {
-	'use strict';
-	updateText();
-	$( '.kittens, .person, .language' ).on( 'change keyup', updateText );
-} );
+function _T(key) {
+    'use strict';
+    const i18n = { translations: {} }; // Assuming i18n object
+    return i18n.get(key); // Directly return the translation after it's loaded
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    loadTranslations(function() {
+        // Now that translations are loaded, populate the formats object
+        const formats = { 
+            portrait: _T('text-portrait'), 
+            landscape: _T('text-landscape'), 
+            square: _T('text-square') 
+        };
+
+        // Instead of $.each(), use Object.keys() and forEach() in vanilla JS
+        Object.keys(formats).forEach(function(key) {
+            console.log('appending ' + key);
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = formats[key];
+            document.getElementById('format').appendChild(option);
+        });
+    });
+});
