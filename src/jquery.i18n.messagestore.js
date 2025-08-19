@@ -26,7 +26,12 @@
 		$.getJSON( url )
 			.done( deferred.resolve )
 			.fail( function ( jqxhr, settings, exception ) {
-				$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
+				try {
+					JSON.parse(jqxhr.responseText);
+				} catch (error) {
+					$.i18n.log( 'Invalid JSON', error );
+					deferred.reject();
+				}
 				// Ignore 404 exception, because we are handling fallabacks explicitly
 				deferred.resolve();
 			} );
