@@ -15,7 +15,7 @@
     "email": "santhosh.thottingal@gmail.com"
   },
   "devDependencies": {
-    "eslint-config-wikimedia": "0.15.3",
+    "eslint-config-wikimedia": "0.32.3",
     "eslint-plugin-qunit": "4.2.0",
     "grunt": "1.6.1",
     "grunt-contrib-connect": "5.0.1",
