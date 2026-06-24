@@ -106,6 +106,7 @@
 		frc: [ 'fr' ],
 		frp: [ 'fr' ],
 		frr: [ 'de' ],
+		frs: [ 'de' ],
 		fur: [ 'it' ],
 		gag: [ 'tr' ],
 		gan: [ 'gan-hant', 'gan-hans', 'zh-hant', 'zh', 'zh-hans' ],
