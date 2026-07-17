@@ -192,7 +192,6 @@
 		lzh: [ 'zh-hant', 'zh', 'zh-hans' ],
 		lzz: [ 'tr' ],
 		mad: [ 'id' ],
-		mag: [ 'hi' ],
 		mai: [ 'hi' ],
 		'map-bms': [ 'jv', 'id' ],
 		mdf: [ 'myv', 'ru' ],
