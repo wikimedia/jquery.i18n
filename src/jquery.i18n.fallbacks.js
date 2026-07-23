@@ -18,6 +18,7 @@
 	$.extend( $.i18n.fallbacks, {
 		aae: [ 'it' ],
 		ab: [ 'ru' ],
+		abr: [ 'fr', 'tw' ],
 		abs: [ 'id' ],
 		ace: [ 'id' ],
 		acm: [ 'ar' ],
