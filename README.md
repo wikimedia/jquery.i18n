@@ -1,6 +1,8 @@
 jQuery.i18n
 ===========
 
+**GitHub Repository:** https://github.com/wikimedia/jquery.i18n
+
 [![npm][npm]][npm-url]
 
 > NOTE: For jquery independent version of this library, see https://github.com/wikimedia/banana-i18n
