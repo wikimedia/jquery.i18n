@@ -12,112 +12,115 @@
  * @licence MIT License
  */
 
-( function ( $ ) {
-	'use strict';
+(function ($) {
+  "use strict";
 
-	var MessageStore = function () {
-		this.messages = {};
-		this.sources = {};
-	};
+  var MessageStore = function () {
+    this.messages = {};
+    this.sources = {};
+  };
 
-	function jsonMessageLoader( url ) {
-		var deferred = $.Deferred();
+  function jsonMessageLoader(url) {
+    var deferred = $.Deferred();
 
-		$.getJSON( url )
-			.done( deferred.resolve )
-			.fail( function ( jqxhr, settings, exception ) {
-				$.i18n.log( 'Error in loading messages from ' + url + ' Exception: ' + exception );
-				// Ignore 404 exception, because we are handling fallabacks explicitly
-				deferred.resolve();
-			} );
+    $.getJSON(url)
+      .done(deferred.resolve)
+      .fail(function (jqxhr, settings, exception) {
+        if (jqxhr.status === 404) {
+          // Ignore 404 exception, because we are handling fallbacks explicitly
+          deferred.resolve();
+        } else {
+          $.i18n.log(
+            "Error in loading messages from " + url + " Exception: " + exception
+          );
+          deferred.reject(exception);
+        }
+      });
 
-		return deferred.promise();
-	}
+    return deferred.promise();
+  }
 
-	/**
-	 * See https://github.com/wikimedia/jquery.i18n/wiki/Specification#wiki-Message_File_Loading
-	 */
-	MessageStore.prototype = {
+  /**
+   * See https://github.com/wikimedia/jquery.i18n/wiki/Specification#wiki-Message_File_Loading
+   */
+  MessageStore.prototype = {
+    /**
+     * General message loading API This can take a URL string for
+     * the json formatted messages.
+     * <code>load('path/to/all_localizations.json');</code>
+     *
+     * This can also load a localization file for a locale <code>
+     * load( 'path/to/de-messages.json', 'de' );
+     * </code>
+     * A data object containing message key- message translation mappings
+     * can also be passed Eg:
+     * <code>
+     * load( { 'hello' : 'Hello' }, optionalLocale );
+     * </code> If the data argument is
+     * null/undefined/false,
+     * all cached messages for the i18n instance will get reset.
+     *
+     * @param {string|Object} source
+     * @param {string} locale Language tag
+     * @return {jQuery.Promise}
+     */
+    load: function (source, locale) {
+      var key = null,
+        deferreds = [],
+        messageStore = this;
 
-		/**
-		 * General message loading API This can take a URL string for
-		 * the json formatted messages.
-		 * <code>load('path/to/all_localizations.json');</code>
-		 *
-		 * This can also load a localization file for a locale <code>
-		 * load( 'path/to/de-messages.json', 'de' );
-		 * </code>
-		 * A data object containing message key- message translation mappings
-		 * can also be passed Eg:
-		 * <code>
-		 * load( { 'hello' : 'Hello' }, optionalLocale );
-		 * </code> If the data argument is
-		 * null/undefined/false,
-		 * all cached messages for the i18n instance will get reset.
-		 *
-		 * @param {string|Object} source
-		 * @param {string} locale Language tag
-		 * @return {jQuery.Promise}
-		 */
-		load: function ( source, locale ) {
-			var key = null,
-				deferreds = [],
-				messageStore = this;
+      if (typeof source === "string") {
+        // This is a URL to the messages file.
+        $.i18n.log("Loading messages from: " + source);
+        return jsonMessageLoader(source).then(function (localization) {
+          return messageStore.load(localization, locale);
+        });
+      }
 
-			if ( typeof source === 'string' ) {
-				// This is a URL to the messages file.
-				$.i18n.log( 'Loading messages from: ' + source );
-				return jsonMessageLoader( source )
-					.then( function ( localization ) {
-						return messageStore.load( localization, locale );
-					} );
-			}
+      if (locale) {
+        // source is an key-value pair of messages for given locale
+        messageStore.set(locale, source);
 
-			if ( locale ) {
-				// source is an key-value pair of messages for given locale
-				messageStore.set( locale, source );
+        return $.Deferred().resolve();
+      } else {
+        // source is a key-value pair of locales and their source
+        for (key in source) {
+          if (Object.prototype.hasOwnProperty.call(source, key)) {
+            locale = key;
+            // No {locale} given, assume data is a group of languages,
+            // call this function again for each language.
+            deferreds.push(messageStore.load(source[key], locale));
+          }
+        }
+        return $.when.apply($, deferreds);
+      }
+    },
 
-				return $.Deferred().resolve();
-			} else {
-				// source is a key-value pair of locales and their source
-				for ( key in source ) {
-					if ( Object.prototype.hasOwnProperty.call( source, key ) ) {
-						locale = key;
-						// No {locale} given, assume data is a group of languages,
-						// call this function again for each language.
-						deferreds.push( messageStore.load( source[ key ], locale ) );
-					}
-				}
-				return $.when.apply( $, deferreds );
-			}
+    /**
+     * Set messages to the given locale.
+     * If locale exists, add messages to the locale.
+     *
+     * @param {string} locale
+     * @param {Object} messages
+     */
+    set: function (locale, messages) {
+      if (!this.messages[locale]) {
+        this.messages[locale] = messages;
+      } else {
+        this.messages[locale] = $.extend(this.messages[locale], messages);
+      }
+    },
 
-		},
+    /**
+     *
+     * @param {string} locale
+     * @param {string} messageKey
+     * @return {boolean}
+     */
+    get: function (locale, messageKey) {
+      return this.messages[locale] && this.messages[locale][messageKey];
+    },
+  };
 
-		/**
-		 * Set messages to the given locale.
-		 * If locale exists, add messages to the locale.
-		 *
-		 * @param {string} locale
-		 * @param {Object} messages
-		 */
-		set: function ( locale, messages ) {
-			if ( !this.messages[ locale ] ) {
-				this.messages[ locale ] = messages;
-			} else {
-				this.messages[ locale ] = $.extend( this.messages[ locale ], messages );
-			}
-		},
-
-		/**
-		 *
-		 * @param {string} locale
-		 * @param {string} messageKey
-		 * @return {boolean}
-		 */
-		get: function ( locale, messageKey ) {
-			return this.messages[ locale ] && this.messages[ locale ][ messageKey ];
-		}
-	};
-
-	$.extend( $.i18n.messageStore, new MessageStore() );
-}( jQuery ) );
+  $.extend($.i18n.messageStore, new MessageStore());
+})(jQuery);
