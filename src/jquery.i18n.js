@@ -227,7 +227,7 @@
 
 		return this.each( function () {
 			var $this = $( this ),
-				messageKey = $this.data( 'i18n' ),
+				messageKey = String( $this.data( 'i18n' ) ),
 				lBracket, rBracket, type, key;
 
 			if ( messageKey ) {
