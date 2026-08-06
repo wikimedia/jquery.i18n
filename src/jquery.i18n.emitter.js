@@ -128,7 +128,7 @@
 		 *  language.
 		 */
 		plural: function ( nodes ) {
-			var count = parseFloat( this.language.convertNumber( nodes[ 0 ], 10 ) ),
+			var count = this.language.convertNumber( nodes[ 0 ], true ),
 				forms = nodes.slice( 1 );
 
 			return forms.length ? this.language.convertPlural( count, forms ) : '';
