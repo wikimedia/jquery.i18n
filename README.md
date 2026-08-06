@@ -464,6 +464,6 @@ Example qqq.json:
 ```
 
 In MediaWiki and its hundreds of extensions, message documentation is a strictly followed practice. There is a grunt task to check whether all messages are documented or not. See https://www.npmjs.org/package/grunt-banana-checker
-
+This is my first contribution.
 [npm]: https://img.shields.io/npm/v/@wikimedia/jquery.i18n.svg
 [npm-url]: https://npmjs.com/package/@wikimedia/jquery.i18n
