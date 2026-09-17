@@ -30,7 +30,7 @@
 			return message.replace( /\$(\d+)/g, function ( str, match ) {
 				var index = parseInt( match, 10 ) - 1;
 
-				return parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
+				return parameters && parameters[ index ] !== undefined ? parameters[ index ] : '$' + match;
 			} );
 		},
 
