@@ -17,7 +17,7 @@
   "devDependencies": {
     "eslint": "8.57.1",
     "eslint-config-wikimedia": "0.32.3",
-    "eslint-plugin-qunit": "4.2.0",
+    "eslint-plugin-qunit": "8.2.6",
     "grunt": "1.6.1",
     "grunt-contrib-connect": "5.0.1",
     "grunt-contrib-qunit": "10.1.1",
