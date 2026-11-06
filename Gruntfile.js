@@ -8,7 +8,6 @@
 /* eslint-env node */
 
 module.exports = function ( grunt ) {
-	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-contrib-qunit' );
 	grunt.loadNpmTasks( 'grunt-contrib-connect' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
@@ -22,25 +21,11 @@ module.exports = function ( grunt ) {
 				}
 			}
 		},
-		eslint: {
-			fix: {
-				options: {
-					fix: true
-				},
-				src: [
-					'<%= eslint.main %>'
-				]
-			},
-			main: [
+		watch: {
+			files: [
 				'*.js',
 				'src/**/*.js',
 				'test/**/*.js'
-			]
-		},
-		watch: {
-			files: [
-				'.eslintrc.json',
-				'<%= eslint.main %>'
 			],
 			tasks: 'test'
 		},
@@ -54,9 +39,7 @@ module.exports = function ( grunt ) {
 	} );
 
 	grunt.registerTask( 'server', [ 'connect' ] );
-	grunt.registerTask( 'lint', [ 'eslint:main' ] );
-	grunt.registerTask( 'fix', [ 'eslint:fix' ] );
 	grunt.registerTask( 'unit', [ 'server', 'qunit' ] );
-	grunt.registerTask( 'test', [ 'lint', 'unit' ] );
+	grunt.registerTask( 'test', [ 'unit' ] );
 	grunt.registerTask( 'default', [ 'test' ] );
 };
