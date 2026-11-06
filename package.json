@@ -36,6 +36,9 @@
     "node": ">=4.0.0"
   },
   "license": "(MIT OR GPL-2.0-or-later)",
+  "overrides": {
+    "puppeteer": "^24.0.0"
+  },
   "scripts": {
     "test": "eslint --ext .js *.js src test && grunt test --verbose"
   }
